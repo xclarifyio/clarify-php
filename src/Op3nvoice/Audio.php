@@ -18,10 +18,10 @@ class Audio extends Client
     {
         $ob = json_decode($metadata);
         if($ob === null) {
-            // todo: throw exception for invalid json?
+// todo: throw exception for invalid json?
         }
         if (!in_array($media_channel, array('left', 'right', 'split'))) {
-            // todo: throw exception for invalid enum type?
+// todo: throw exception for invalid enum type?
         }
 
         $request = $this->client->post('/v1/audio', array(), '', array('exceptions' => false));
@@ -33,7 +33,7 @@ class Audio extends Client
         $request->setPostField('metadata', $metadata);
         $response = $request->send();
 
-        //todo: we should probably get the Location header for this one too
+//todo: we should probably get the Location header for this one too
         $this->detail = $response->json();
 
         return $response->isSuccessful();
@@ -49,7 +49,7 @@ class Audio extends Client
 
         $this->detail = $response->json();
 
-        //todo: add information about pagination
+//todo: add information about pagination
         if ($response->isSuccessful()) {
             $items = $this->detail['_links']['item'];
         }
@@ -64,5 +64,14 @@ class Audio extends Client
         $response = $request->send();
 
         return $response->json();
+    }
+
+    public function delete($id)
+    {
+        $request = $this->client->delete($id, array(), '', array('exceptions' => false));
+        $response = $request->send();
+        $this->detail = $response->json();
+
+        return $response->isSuccessful();
     }
 }
