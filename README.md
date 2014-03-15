@@ -3,8 +3,8 @@ op3nvoice-php
 
 PHP Helper Library for Op3nvoice
 
-* Include Guzzle via Composer
-* Authentication
+* ~~Include Guzzle via Composer~~
+* ~~Authentication~~
 * Submit an audio bundle
 * Submit a video bundle
 * Search
