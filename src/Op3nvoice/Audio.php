@@ -39,6 +39,9 @@ class Audio extends Client
         return $response->isSuccessful();
     }
 
+    /**
+     * @return array
+     */
     public function index()
     {
         $items = array();
@@ -57,6 +60,10 @@ class Audio extends Client
         return $items;
     }
 
+    /**
+     * @param $id
+     * @return array|bool|float|int|string
+     */
     public function load($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
@@ -66,6 +73,10 @@ class Audio extends Client
         return $response->json();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function delete($id)
     {
         $request = $this->client->delete($id, array(), '', array('exceptions' => false));
