@@ -69,6 +69,7 @@ class Audio extends Client
     public function delete($id)
     {
         $request = $this->client->delete($id, array(), '', array('exceptions' => false));
+        $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $this->detail = $response->json();
 
