@@ -37,4 +37,21 @@ class Audio extends Client
 
         return $response->isSuccessful();
     }
+
+    public function index()
+    {
+        $items = array();
+
+        $request = $this->client->get($this->baseURI . '/audio', array(), array('exceptions' => false));
+        $request->addHeader('Authorization', $this->apiKey);
+        $response = $request->send();
+
+        $this->detail = $response->json();
+
+        if ($response->isSuccessful()) {
+            $items = $this->detail['_links']['item'];
+        }
+
+        return $items;
+    }
 }
