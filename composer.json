@@ -1,0 +1,22 @@
+{
+    "name": "op3nvoice/op3nvoice-helper",
+    "version": "0.0.1",
+    "type": "library",
+    "description": "A PHP wrapper for the Op3nvoice API",
+    "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search"],
+    "homepage": "https://github.com/caseysoftware/op3nvoice-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Keith Casey",
+            "email": "contrib@caseysoftware.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "guzzle/guzzle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Op3nvoice": "src/"}
+    }
+}
