@@ -8,12 +8,15 @@ abstract class Client
 {
     const USER_AGENT = 'op3nvoice-php/0.0.1';
 
-    protected $apiKey  = '';
-    protected $client  = null;
-    public $request = null;
+    protected $apiKey   = '';
+    protected $client   = null;
+    protected $request  = null;
     protected $response = null;
-    protected $baseURI = 'https://api-beta.op3nvoice.com/v1';
+    protected $baseURI  = 'https://api-beta.op3nvoice.com/v1';
 
+    /**
+     * @param $key
+     */
     public function __construct($key)
     {
         $this->apiKey = $key;
@@ -21,11 +24,14 @@ abstract class Client
         $this->client->setUserAgent($this::USER_AGENT . '/' . PHP_VERSION);
     }
 
+    /**
+     * @return bool
+     */
     public function authenticate()
     {
-        $this->request = $this->client->get('/');
-        $this->request->addHeader('Authorization', $this->apiKey);
-        $this->response =  $this->request->send();
+        $request = $this->client->get('/');
+        $request->addHeader('Authorization', $this->apiKey);
+        $this->response =  $request->send();
 
         return $this->response->isSuccessful();
     }

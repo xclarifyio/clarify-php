@@ -3,22 +3,12 @@
 require 'creds.php';
 require '../vendor/autoload.php';
 
-$client = new Op3nvoice\Client($apikey);
+$audio = new Op3nvoice\Audio($apikey);
 
-$bundles = $client->audio->create();
+$success = $audio->create('http://example.com/');
 
-foreach($bundles as $bundle) {
-    echo $bundle['name'] . "\n";
+if ($success) {
+    echo $audio->detail['_links']['self']['href'] . "\n";
+} else {
+    echo $audio->detail['message'] . "\n";
 }
-
-
-
-//include_once '../creds.php';
-//include_once '../Services/Marvel.php';
-//
-//$client = new Services_Marvel($public_key, $private_key);
-//$characters = $client->characters->index(3, 25);
-//
-//foreach ($characters as $character) {
-//    echo $character->name . "\n";
-//}
