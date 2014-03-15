@@ -7,14 +7,14 @@ class Audio extends Client
     public $detail = null;
 
     /**
-     * @param string $media_url
-     * @param string $name
-     * @param string $notify_url
-     * @param string $media_channel
-     * @param string $metadata
+     * @param string $media_url     The url where your audio file is available, valid filetypes are [Todo: list these]
+     * @param string $name          A human readable name for this bundle
+     * @param string $notify_url    A callback which we will post to when processing this bundle is complete
+     * @param string $media_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
+     * @param string $metadata      A JSON formatted string with additional information about this bundle
      * @return bool
      */
-    public function create($media_url = '', $name = '', $notify_url = '', $media_channel = 'split', $metadata = '')
+    public function create($media_url = '', $name = '', $notify_url = '', $media_channel = '', $metadata = '')
     {
         $ob = json_decode($metadata);
         if($ob === null) {
