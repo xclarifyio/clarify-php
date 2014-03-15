@@ -33,6 +33,7 @@ class Audio extends Client
         $request->setPostField('metadata', $metadata);
         $response = $request->send();
 
+        //todo: we should probably get the Location header for this one too
         $this->detail = $response->json();
 
         return $response->isSuccessful();
@@ -53,5 +54,14 @@ class Audio extends Client
         }
 
         return $items;
+    }
+
+    public function load($id)
+    {
+        $request = $this->client->get($this->baseURI . '/audio/' . $id, array(), array('exceptions' => false));
+        $request->addHeader('Authorization', $this->apiKey);
+        $response = $request->send();
+
+        return $response->json();
     }
 }
