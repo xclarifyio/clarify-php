@@ -24,7 +24,7 @@ class Audio extends Client
             // todo: throw exception for invalid enum type?
         }
 
-        $request = $this->client->post($this->baseURI . '/audio', array(), '', array('exceptions' => false));
+        $request = $this->client->post('/v1/audio', array(), '', array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
@@ -43,12 +43,13 @@ class Audio extends Client
     {
         $items = array();
 
-        $request = $this->client->get($this->baseURI . '/audio', array(), array('exceptions' => false));
+        $request = $this->client->get('/v1/audio', array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
 
         $this->detail = $response->json();
 
+        //todo: add information about pagination
         if ($response->isSuccessful()) {
             $items = $this->detail['_links']['item'];
         }
@@ -58,7 +59,7 @@ class Audio extends Client
 
     public function load($id)
     {
-        $request = $this->client->get($this->baseURI . '/audio/' . $id, array(), array('exceptions' => false));
+        $request = $this->client->get($id, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
 
