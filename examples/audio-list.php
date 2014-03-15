@@ -13,5 +13,4 @@ foreach($items as $item) {
 
     $item = $audio->load($item['href']);
     echo $item['name'] . "\n";
-    $item['_links']['self']['href'] . "\n";
 }
