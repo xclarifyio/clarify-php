@@ -4,7 +4,7 @@ namespace Op3nvoice;
 
 use Guzzle\Http;
 
-class Client
+abstract class Client
 {
     const USER_AGENT = 'op3nvoice-php/0.0.1';
 
@@ -24,26 +24,9 @@ class Client
     public function authenticate()
     {
         $this->request = $this->client->get('/');
-
-        return $this->process();
-    }
-
-    public function process()
-    {
         $this->request->addHeader('Authorization', $this->apiKey);
         $this->response =  $this->request->send();
 
         return $this->response->isSuccessful();
-    }
-
-    public function __get($name)
-    {
-        $classname = "\\Op3nvoice\\" . ucwords($name);
-
-        try {
-            return new $classname($this);
-        } catch (\Exception $exc) {
-            print_r($exc);
-        }
     }
 }
