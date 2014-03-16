@@ -8,9 +8,8 @@ $audio = new Op3nvoice\Audio($apikey);
 $items = $audio->index();
 
 foreach($items as $item) {
+    $bundle = $audio->load($item['href']);
 
-    echo $item['href'] . "\n";
-
-    $item = $audio->load($item['href']);
-    echo $item['name'] . "\n";
+    echo $bundle['_links']['self']['href'] . "\n";
+    echo $bundle['name'] . "\n";
 }

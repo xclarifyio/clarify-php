@@ -25,15 +25,34 @@ class Audio extends Client
         }
 
         $request = $this->client->post('/v1/audio', array(), '', array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
         $request->setPostField('notify_url', $notify_url);
         $request->setPostField('media_channel', $media_channel);
         $request->setPostField('metadata', $metadata);
+
+        $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
+        $this->detail = $response->json();
 
 //todo: we should probably get the Location header for this one too
+
+        return $response->isSuccessful();
+    }
+
+    public function update($id, $name = '', $notify_url = '', $version = 0)
+    {
+        if (!is_numeric($version)) {
+// todo: throw exception for not being a number?
+        }
+
+        $request = $this->client->put($id, array(), '', array('exceptions' => false));
+        $request->setPostField('name', $name);
+        $request->setPostField('notify_url', $notify_url);
+        $request->setPostField('version', $version);
+
+        $request->addHeader('Authorization', $this->apiKey);
+        $response = $request->send();
         $this->detail = $response->json();
 
         return $response->isSuccessful();
@@ -47,9 +66,9 @@ class Audio extends Client
         $items = array();
 
         $request = $this->client->get('/v1/audio', array(), array('exceptions' => false));
+
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
-
         $this->detail = $response->json();
 
 //todo: add information about pagination
@@ -61,25 +80,31 @@ class Audio extends Client
     }
 
     /**
+     * This loads an audio bundle using a full URI
      * @param $id
      * @return array|bool|float|int|string
      */
     public function load($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
+
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
+        $this->detail = $response->json();
 
         return $response->json();
     }
 
     /**
+     * This deletes an audio bundle using a full URI.
+     *
      * @param $id
      * @return bool
      */
     public function delete($id)
     {
         $request = $this->client->delete($id, array(), '', array('exceptions' => false));
+
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $this->detail = $response->json();
