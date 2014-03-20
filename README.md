@@ -10,7 +10,7 @@ PHP Helper Library for Op3nvoice
   * ~~list all bundles~~
   * ~~load a specific bundle~~
   * ~~delete a bundle~~
-  * update a bundle
+  * ~~update a bundle~~
   * get metadata
   * update metadata
   * delete metadata
@@ -31,7 +31,4 @@ PHP Helper Library for Op3nvoice
   * update a track
   * get track information
   * delete a track
-* Search
-  * Across all bundles
-  * Within just audio
-  * Within just video
+* ~~Search~~
