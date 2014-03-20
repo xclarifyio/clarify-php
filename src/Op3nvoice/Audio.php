@@ -111,4 +111,11 @@ class Audio extends Client
 
         return $response->isSuccessful();
     }
+
+    public function search($query, $limit = 10, $embed = '', $iterator = '')
+    {
+        $search = new Search($this->apiKey);
+
+        return $search->search($query, $limit, $embed, $iterator);
+    }
 }
