@@ -8,7 +8,7 @@ class Search extends Client
 
     public function search($query, $limit = 10, $embed = '', $iterator = '')
     {
-        $request = $this->client->get('/search', array(), array('exceptions' => false));
+        $request = $this->client->get('/v1/search', array(), array('exceptions' => false));
 
         $request->getQuery()->set('query', $query);
         $request->getQuery()->set('limit', $limit);
