@@ -11,7 +11,7 @@ The recommended way to install Op3nVoice is through [Composer](http://getcompose
 curl -sS https://getcomposer.org/installer | php
 
 # Add Guzzle as a dependency
-php composer.phar require guzzle/guzzle:~3.7
+php composer.phar require op3nvoice/op3nvoice-helper
 ```
 
 After installing, you need to require Composer's autoloader:
