@@ -1,7 +1,24 @@
-op3nvoice-php
+PHP Helper Library for Op3nVoice
 =============
 
-PHP Helper Library for Op3nvoice
+
+### Installing via Composer
+
+The recommended way to install Op3nVoice is through [Composer](http://getcomposer.org).
+
+```bash
+# Install Composer
+curl -sS https://getcomposer.org/installer | php
+
+# Add Guzzle as a dependency
+php composer.phar require guzzle/guzzle:~3.7
+```
+
+After installing, you need to require Composer's autoloader:
+
+```php
+require 'vendor/autoload.php';
+```
 
 * ~~Include Guzzle via Composer~~
 * ~~Authentication~~
