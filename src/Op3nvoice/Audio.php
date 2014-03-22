@@ -95,6 +95,17 @@ class Audio extends Client
         return $response->json();
     }
 
+    public function tracks($id)
+    {
+        $request = $this->client->get($id . '/tracks', array(), array('exceptions' => false));
+
+        $request->addHeader('Authorization', $this->apiKey);
+        $response = $request->send();
+        $this->detail = $response->json();
+
+        return $response->json();
+    }
+
     /**
      * This deletes an audio bundle using a full URI.
      *
