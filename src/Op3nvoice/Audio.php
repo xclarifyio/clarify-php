@@ -2,6 +2,8 @@
 
 namespace Op3nvoice;
 
+use Op3nvoice\Exceptions\InvalidJSONException;
+
 class Audio extends Client
 {
     public $detail = null;
@@ -18,7 +20,7 @@ class Audio extends Client
     {
         $ob = json_decode($metadata);
         if($ob === null) {
-// todo: throw exception for invalid json?
+            throw new InvalidJSONException();
         }
         if (!in_array($media_channel, array('left', 'right', 'split'))) {
 // todo: throw exception for invalid enum type?
