@@ -19,7 +19,7 @@ class Audio extends Client
     public function create($media_url = '', $name = '', $notify_url = '', $media_channel = '', $metadata = '')
     {
         $ob = json_decode($metadata);
-        if($ob === null) {
+        if($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
         if (!in_array($media_channel, array('left', 'right', 'split'))) {
@@ -30,7 +30,7 @@ class Audio extends Client
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
         $request->setPostField('notify_url', $notify_url);
-        $request->setPostField('media_channel', $media_channel);
+        $request->setPostField('audio_channel', $media_channel);
         $request->setPostField('metadata', $metadata);
 
         $request->addHeader('Authorization', $this->apiKey);
