@@ -1,0 +1,298 @@
+/*
+ * OP3Nvoice jPlayer controls stylesheet
+ * Copyright (c) 2013 OP3Nvoice Ltd.
+ *
+ */
+
+/* jquery-ui fixes for IE8 */
+div.o3v-jp-audio-controls .ui-slider,
+div.o3v-jp-audio-controls .ui-slider .ui-slider-range {
+    filter: none;
+}
+div.o3v-jp-audio-controls .ui-state-default,div.o3v-jp-audio-controls .ui-widget-content .ui-state-default,div.o3v-jp-audio-controls .ui-widget-header .ui-state-default,
+div.o3v-jp-audio-controls.ui-state-highlight,div.o3v-jp-audio-controls .ui-widget-content .ui-state-highlight,div.o3v-jp-audio-controls .ui-widget-header .ui-state-highlight,
+div.o3v-jp-audio-controls.ui-state-error,div.o3v-jp-audio-controls .ui-widget-content .ui-state-error,div.o3v-jp-audio-controls .ui-widget-header .ui-state-error {
+    filter:none;
+}
+div.o3v-jp-audio-controls .ui-button {
+    filter:none;
+}
+/* -----------------------*/
+
+div.o3v-jp-jplayer {
+    width:0px;
+    height:0px;
+}
+
+div.o3v-jp-audio-controls {
+	font-family:Verdana, Arial, sans-serif;
+	font-size:12px;
+	line-height:12px;
+	color: #666;
+	margin: 0;
+	width:642px;
+	height: 40px;
+	position: relative;
+	background: url("img/player-background.png") 0 0 repeat-x;
+}
+
+div.o3v-jp-audio-controls a {
+    position: absolute;
+    overflow:hidden;
+    text-indent:-9999px;
+}
+
+div.o3v-jp-play-controls
+{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+a.o3v-jp-play,
+a.o3v-jp-pause {
+    width:40px;
+    height:40px;
+    z-index:2;
+    margin: -7px 0 0 -5px;
+}
+
+a.o3v-jp-play {
+	background: url("img/player-controls.png") -32px 0 no-repeat;
+}
+a.o3v-jp-play:hover {
+	background: url("img/player-controls.png") -72px 0 no-repeat;
+}
+a.o3v-jp-pause {
+	background: url("img/player-controls.png") -112px 0 no-repeat;
+	display: none;
+}
+a.o3v-jp-pause:hover {
+	background: url("img/player-controls.png") -152px 0 no-repeat;
+}
+
+div.o3v-jp-playbg {
+    margin-left: -5px;
+    margin-top: -7px;
+    position: absolute;
+    float: left;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: url("img/player-controls.png") -192px 0 no-repeat;
+    z-index: 1;
+    pointer-events: none;
+}
+
+div.o3v-jp-playbg.o3v-jp-loading {
+    background: url("img/control-play-loading.gif") 50% 50% no-repeat;
+}
+
+/* mute button is hidden but used for volume control detection */
+a.o3v-jp-mute,
+a.o3v-jp-unmute {
+    background-color: red;
+    width:1px;
+    height:1px;
+    top:10px;
+    left:10px;
+    position: absolute;
+}
+
+div.o3v-jp-current-time,
+div.o3v-jp-duration,
+div.o3v-jp-remaining {
+    position: absolute;
+    font-size:11px;
+    font-style:normal;
+    width: 53px;
+    top: 7px;
+}
+
+div.o3v-jp-current-time {
+    text-align: right;
+    left: 34px;
+}
+
+div.o3v-jp-duration,
+div.o3v-jp-remaining {
+    text-align: left;
+    left: 555px;
+}
+
+div.o3v-jp-volume {
+    background: url("img/player-controls.png") -439px 0 no-repeat;
+    width:31px;
+    height:25px;
+    top:0px;
+    left:616px;
+    display: inline-block;
+    position: absolute;
+    border:0;
+}
+
+div.o3v-jp-volume.v0 {
+  background-position: -346px 0;
+}
+div.o3v-jp-volume.v1 {
+  background-position: -377px 0;
+}
+div.o3v-jp-volume.v2 {
+  background-position: -408px 0;
+}
+div.o3v-jp-volume.v3 {
+  background-position: -439px 0;
+}
+
+div.o3v-jp-right-cap {
+    background: url("img/player-controls.png") -470px 0 no-repeat;
+    width:8px;
+    height:25px;
+    top:0px;
+    left:634px;
+    display: inline-block;
+    position: absolute;
+    border:0;
+}
+
+div.o3v-jp-volume-pop
+{
+    position: absolute;
+    margin-left: 0;
+    margin-top: 25px;
+    display: none;
+    background: url("img/player-controls.png") 0 0 no-repeat;
+    width:31px;
+    height:63px;
+    border: none;
+    z-index: 50;
+}
+
+div.o3v-jp-volume-pop-up
+{
+    margin-top: -63px;
+}
+
+div.o3v-jp-volume-pop-down
+{
+    margin-top: 25px;
+}
+
+div.o3v-jp-volume:hover div.o3v-jp-volume-pop
+{
+    display: block;
+}
+
+/* jquery-ui elements */
+
+.o3v-slider-volume {
+    margin: 10px 0 6px 0;
+    width:31px;
+    height:46px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+.o3v-slider-volume .ui-slider-range {
+    background: none;
+}
+
+.o3v-slider-volume .ui-slider-handle { 
+    background: url("img/player-controls.png") -252px 0 no-repeat;
+    width: 25px;
+    height: 10px;
+    border: 0;
+    outline: none;
+    margin: 0 0 -3px 7px;
+    z-index: 3;
+    cursor: pointer;
+}
+
+.o3v-slider-playback {
+    position: absolute;
+    background-color: #ddd;
+    top:7px;
+    left:100px;
+    width:446px;
+    height:12px;
+    background: url("img/player-controls.png") -32px -40px no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.o3v-slider-playback .ui-slider-range {
+    background: url("img/player-controls.png") -32px -51px no-repeat;
+}
+
+.o3v-slider-playback .ui-slider-handle { 
+    background: url("img/player-controls.png") -232px 0px no-repeat;
+    width: 18px;
+    height: 20px;
+    border: 0;
+    outline: none;
+    margin-top: 0px;
+    margin-left: -10px;
+    cursor: pointer;
+}
+
+div.o3v-scrubber-search-overlay {
+    z-index: 2;
+    width:100%;
+    height:12px;
+    position: absolute;
+    left: -2px;
+    top: 0;
+}
+
+div.o3v-scrubber-search-mark {
+    width: 5px;
+    height: 11px;
+    padding: 0;
+    z-index: 2;
+    position: absolute;
+    border: 1px solid transparent;
+    -moz-background-clip: padding;     /* Firefox 3.6 */
+    -webkit-background-clip: padding;  /* Safari 4? Chrome 6? */
+    background-clip: padding-box;      /* Firefox 4, Safari 5, Opera 10, IE 9 */
+}
+
+div.o3v-scrubber-search-mark:hover {
+    z-index: 3;
+    border-color: #fff;
+    height: 20px;
+    top: -5px;
+}
+
+div.o3v-scrubber-search-mark a {
+    width: 100%;
+    height: 100%;
+    text-index: 0;
+}
+
+.o3v-search-color-0 { background-color: #ccf26a; border-color: #ccf26a; }
+.o3v-search-color-1 { background-color: #6acdff; border-color: #6acdff; }
+.o3v-search-color-2 { background-color: #ffb2cb; border-color: #ffb2cb; }
+.o3v-search-color-3 { background-color: #8eb16a; border-color: #8eb16a; }
+.o3v-search-color-4 { background-color: #b1f7f7; border-color: #b1f7f7; }
+.o3v-search-color-5 { background-color: #f76a6a; border-color: #f76a6a; }
+.o3v-search-color-6 { background-color: #b18ed4; border-color: #b18ed4; }
+.o3v-search-color-7 { background-color: #b18e6a; border-color: #b18e6a; }
+.o3v-search-color-8 { background-color: #ffff6f; border-color: #ffff6f; }
+.o3v-search-color-9 { background-color: #ffbf8e; border-color: #ffbf8e; }
+
+div.o3v-search-tag-box {
+    margin-bottom: 14px;
+}
+
+div.o3v-search-tag {
+    float:left;
+    padding: 2px 6px;
+    margin-right: 4px;
+    color: #333;
+}
+
+.o3v-clear
+{
+    clear:both;
+}
