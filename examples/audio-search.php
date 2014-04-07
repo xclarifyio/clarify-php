@@ -7,7 +7,6 @@ $audio = new Op3nvoice\Audio($apikey);
 
 $items = $audio->search('does');
 
-print_r($items); die();
 foreach($items as $item) {
     $bundle = $audio->load($item['href']);
 
