@@ -1,6 +1,6 @@
 <?php
 
-namespace Op3nvoice;
+namespace OP3Nvoice;
 
 class Search extends Client
 {

@@ -3,7 +3,7 @@
 require 'creds.php';
 require '../vendor/autoload.php';
 
-$audio = new Op3nvoice\Audio($apikey);
+$audio = new OP3Nvoice\Audio($apikey);
 
 $result = $audio->search('close');
 

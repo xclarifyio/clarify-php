@@ -1,18 +1,18 @@
 <?php
 
-namespace Op3nvoice;
+namespace OP3Nvoice;
 
 use Guzzle\Http;
 
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.0.1';
+    const USER_AGENT = 'op3nvoice-php/0.1.0';
 
     protected $apiKey   = '';
     protected $client   = null;
     protected $request  = null;
     protected $response = null;
-    protected $baseURI  = 'https://api-beta.op3nvoice.com/v1';
+    protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1';
 
     /**
      * @param $key

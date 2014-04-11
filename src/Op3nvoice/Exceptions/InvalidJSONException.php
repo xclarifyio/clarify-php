@@ -1,5 +1,5 @@
 <?php
 
-namespace Op3nvoice\Exceptions;
+namespace OP3Nvoice\Exceptions;
 
 class InvalidJSONException extends \Exception {}

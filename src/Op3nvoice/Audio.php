@@ -1,8 +1,8 @@
 <?php
 
-namespace Op3nvoice;
+namespace OP3Nvoice;
 
-use Op3nvoice\Exceptions\InvalidJSONException;
+use OP3Nvoice\Exceptions\InvalidJSONException;
 
 class Audio extends Client
 {

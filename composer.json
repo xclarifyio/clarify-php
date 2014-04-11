@@ -2,7 +2,7 @@
     "name": "op3nvoice/op3nvoice-helper",
     "version": "0.7.0",
     "type": "library",
-    "description": "A PHP wrapper for the Op3nvoice API",
+    "description": "A PHP wrapper for the OP3Nvoice API",
     "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search"],
     "homepage": "https://github.com/caseysoftware/op3nvoice-php",
     "license": "MIT",
@@ -17,6 +17,6 @@
         "guzzle/guzzle": "dev-master"
     },
     "autoload": {
-        "psr-0": { "Op3nvoice": "src/"}
+        "psr-0": { "OP3Nvoice": "src/"}
     }
 }
