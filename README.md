@@ -13,11 +13,48 @@ curl -sS https://getcomposer.org/installer | php
 php composer.phar require op3nvoice/op3nvoice-helper
 ```
 
-After installing, you need to require Composer's autoloader:
+or alternatively, you can add it directly to your `composer.json` file.
+
+```json
+{
+  "require": {
+    "op3nvoice/op3nvoice-helper": "dev-master"
+  }
+}
+```
+
+After installing, you need to require Composer's autoloader in your PHP script:
 
 ```php
 require 'vendor/autoload.php';
 ```
+
+### Usage
+
+To begin using this library, initialize the OP3Nvoice object with your API key:
+
+```php
+$audio = new OP3Nvoice\Audio($apikey);
+```
+
+Then add an audio or video file to your search index:
+
+```php
+$audio->create('http://example.com/', "My awesome audio file");
+```
+
+Within minutes your file will be added to your index and available via a simple search:
+
+```php
+$audio = new OP3Nvoice\Audio($apikey);
+$result = $audio->search('close');
+$results = $result['item_results'];
+```
+
+
+
+
+#### Todo List
 
 * ~~Include Guzzle via Composer~~
 * ~~Authentication~~
@@ -48,3 +85,11 @@ require 'vendor/autoload.php';
   * get track information
   * delete a track
 * ~~Search~~
+
+### Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request
