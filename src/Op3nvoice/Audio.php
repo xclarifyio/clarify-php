@@ -15,6 +15,7 @@ class Audio extends Client
      * @param string $media_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
      * @param string $metadata      A JSON formatted string with additional information about this bundle
      * @return bool
+     * @throws Exceptions\InvalidJSONException
      */
     public function create($media_url = '', $name = '', $notify_url = '', $media_channel = '', $metadata = '')
     {

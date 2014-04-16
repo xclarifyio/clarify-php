@@ -4,9 +4,16 @@ namespace OP3Nvoice;
 
 use Guzzle\Http;
 
+/**
+ * Class Client
+ * @package OP3Nvoice
+ *
+ * This is the base class that all of the individual media-related classes extend. At the moment, it simply initializes
+ *   the connection by setting the user agent and the base URI for the API calls.
+ */
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.1.0';
+    const USER_AGENT = 'op3nvoice-php/0.4.0';
 
     protected $apiKey   = '';
     protected $client   = null;
