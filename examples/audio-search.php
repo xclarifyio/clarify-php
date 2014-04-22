@@ -8,7 +8,7 @@ $audio = new OP3Nvoice\Audio($apikey);
 $result = $audio->search('close');
 
 $results = $result['item_results'];
-$items = $result['_links']['item'];
+$items = $result['_links']['items'];
 foreach($items as $index => $item) {
     $bundle = $audio->load($item['href']);
 
