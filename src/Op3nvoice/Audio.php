@@ -76,7 +76,7 @@ class Audio extends Client
 
 //todo: add information about pagination
         if ($response->isSuccessful()) {
-            $items = $this->detail['_links']['item'];
+            $items = $this->detail['_links']['items'];
         }
 
         return $items;

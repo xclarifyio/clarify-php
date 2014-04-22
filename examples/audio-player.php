@@ -12,7 +12,7 @@ $items = $audio->search($terms);
 $search_terms = json_encode($items['search_terms']);
 $item_results = json_encode($items['item_results']);
 
-$audiokey = $items['_links']['item'][0]['href'];
+$audiokey = $items['_links']['items'][0]['href'];
 $tracks = $audio->tracks($audiokey)['tracks'];
 $mediaUrl = $tracks[0]['media_url'];
 //todo: get the duration from the tracks record, currently coming back as zero
