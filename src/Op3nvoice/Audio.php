@@ -110,14 +110,16 @@ class Audio extends Client
         return $response->json();
     }
 
-    public function bundles($id)
+    public function metadata($id)
     {
-        $request = $this->client->get($id . '/bundles', array(), array('exceptions' => false));
+        $bundle = $this->load($id);
+        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
 
+        $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $this->detail = $response->json();
-
+print_r($this->detail);
         return $response->json();
     }
 
