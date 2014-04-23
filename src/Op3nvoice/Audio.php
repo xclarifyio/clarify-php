@@ -100,8 +100,9 @@ class Audio extends Client
 
     public function tracks($id)
     {
-        $request = $this->client->get($id . '/tracks', array(), array('exceptions' => false));
-
+        $bundle = $this->load($id);
+        $trackURI = $bundle['_links']['o3v:tracks']['href'];
+        $request = $this->client->get($trackURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $this->detail = $response->json();
