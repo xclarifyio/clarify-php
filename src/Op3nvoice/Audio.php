@@ -100,31 +100,6 @@ class Audio extends Client
         return $response->json();
     }
 
-//    public function tracks($id)
-//    {
-//        $bundle = $this->load($id);
-//        $trackURI = $bundle['_links']['o3v:tracks']['href'];
-//        $request = $this->client->get($trackURI, array(), array('exceptions' => false));
-//        $request->addHeader('Authorization', $this->apiKey);
-//        $response = $request->send();
-//        $this->detail = $response->json();
-//
-//        return $response->json();
-//    }
-//
-//    public function metadata($id)
-//    {
-//        $bundle = $this->load($id);
-//        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
-//
-//        $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
-//        $request->addHeader('Authorization', $this->apiKey);
-//        $response = $request->send();
-//        $this->detail = $response->json();
-//print_r($this->detail);
-//        return $response->json();
-//    }
-
     /**
      * This deletes an audio bundle using a full URI.
      *
