@@ -9,7 +9,6 @@ $items = $audio->index();
 
 foreach($items as $item) {
     $metadata = $audio->metadata->load($item['href']);
-    echo $metadata['_links']['self']['href'] . "\n";
 
-    echo $metadata['data'] . "\n\n";
+    print_r($metadata);
 }
