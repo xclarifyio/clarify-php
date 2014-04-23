@@ -2,7 +2,9 @@
 
 namespace OP3Nvoice;
 
+use OP3Nvoice\Metadata;
 use OP3Nvoice\Exceptions\InvalidJSONException;
+use OP3Nvoice\Exceptions\InvalidResourceException;
 
 class Audio extends Client
 {
@@ -98,30 +100,30 @@ class Audio extends Client
         return $response->json();
     }
 
-    public function tracks($id)
-    {
-        $bundle = $this->load($id);
-        $trackURI = $bundle['_links']['o3v:tracks']['href'];
-        $request = $this->client->get($trackURI, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
-
-        return $response->json();
-    }
-
-    public function metadata($id)
-    {
-        $bundle = $this->load($id);
-        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
-
-        $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
-print_r($this->detail);
-        return $response->json();
-    }
+//    public function tracks($id)
+//    {
+//        $bundle = $this->load($id);
+//        $trackURI = $bundle['_links']['o3v:tracks']['href'];
+//        $request = $this->client->get($trackURI, array(), array('exceptions' => false));
+//        $request->addHeader('Authorization', $this->apiKey);
+//        $response = $request->send();
+//        $this->detail = $response->json();
+//
+//        return $response->json();
+//    }
+//
+//    public function metadata($id)
+//    {
+//        $bundle = $this->load($id);
+//        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
+//
+//        $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
+//        $request->addHeader('Authorization', $this->apiKey);
+//        $response = $request->send();
+//        $this->detail = $response->json();
+//print_r($this->detail);
+//        return $response->json();
+//    }
 
     /**
      * This deletes an audio bundle using a full URI.
@@ -145,5 +147,18 @@ print_r($this->detail);
         $search = new Search($this->apiKey);
 
         return $search->search($query, $limit, $embed, $iterator);
+    }
+
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'tracks':
+                return new Tracks($this->apiKey);
+            case 'metadata':
+                return new Metadata($this->apiKey);
+                break;
+            default:
+                throw new InvalidResourceException();
+        }
     }
 }
