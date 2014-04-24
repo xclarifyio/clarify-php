@@ -29,7 +29,7 @@ class Audio extends Client
 // todo: throw exception for invalid enum type?
         }
 
-        $request = $this->client->post('/v1/audio', array(), '', array('exceptions' => false));
+        $request = $this->client->post('/audio', array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
         $request->setPostField('notify_url', $notify_url);
