@@ -6,13 +6,20 @@ use OP3Nvoice\Exceptions\InvalidJSONException;
 
 class Metadata extends Client
 {
-    public function load($id)
+    protected function getMetadataURI($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $bundle = $response->json();
         $metadataURI = $bundle['_links']['o3v:metadata']['href'];
+
+        return $metadataURI;
+    }
+
+    public function load($id)
+    {
+        $metadataURI = $this->getMetadataURI($id);
 
         $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
@@ -24,11 +31,7 @@ class Metadata extends Client
 
     public function update($id, $data, $version = '')
     {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $bundle = $response->json();
-        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
+        $metadataURI = $this->getMetadataURI($id);
 
         $ob = json_decode($data);
         if($data != '' && $ob === null) {
@@ -48,11 +51,7 @@ class Metadata extends Client
 
     public function delete($id)
     {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $bundle = $response->json();
-        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
+        $metadataURI = $this->getMetadataURI($id);
 
         $request = $this->client->delete($metadataURI, array(), '', array('exceptions' => false));
 
