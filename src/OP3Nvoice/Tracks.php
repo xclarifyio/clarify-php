@@ -8,9 +8,9 @@ class Tracks extends Subresource
 
     public function load($id)
     {
-        $trackURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->get($trackURI, array(), array('exceptions' => false));
+        $request = $this->client->get($resourceURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $this->detail = $response->json();
@@ -20,9 +20,9 @@ class Tracks extends Subresource
 
     public function update($id, $track = 0, $label ='', $media_url = '', $audio_channel = '', $source = '', $version = '')
     {
-        $trackURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->put($trackURI, array(), '', array('exceptions' => false));
+        $request = $this->client->put($resourceURI, array(), '', array('exceptions' => false));
         $request->setPostField('track', $track);
         $request->setPostField('label', $label);
         $request->setPostField('media_url', $media_url);
@@ -39,9 +39,9 @@ class Tracks extends Subresource
 
     public function create($id, $media_url, $label = '', $audio_channel = '', $source = '')
     {
-        $trackURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->post($trackURI, array(), '', array('exceptions' => false));
+        $request = $this->client->post($resourceURI, array(), '', array('exceptions' => false));
         $request->setPostField('media_url', $media_url);
         $request->setPostField('label', $label);
         $request->setPostField('audio_channel', $audio_channel);
@@ -58,9 +58,9 @@ class Tracks extends Subresource
 
     public function delete($id)
     {
-        $trackURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->delete($trackURI, array(), '', array('exceptions' => false));
+        $request = $this->client->delete($resourceURI, array(), '', array('exceptions' => false));
 
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
