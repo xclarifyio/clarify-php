@@ -51,21 +51,6 @@ class Tracks extends Subresource
         $response = $request->send();
         $this->detail = $response->json();
 
-//todo: we should probably get the Location header for this one too
-
-        return $response->isSuccessful();
-    }
-
-    public function delete($id)
-    {
-        $resourceURI = $this->getSubresourceURI($id);
-
-        $request = $this->client->delete($resourceURI, array(), '', array('exceptions' => false));
-
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
-
         return $response->isSuccessful();
     }
 }

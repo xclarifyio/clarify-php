@@ -39,17 +39,4 @@ class Metadata extends Subresource
 
         return $response->isSuccessful();
     }
-
-    public function delete($id)
-    {
-        $resourceURI = $this->getSubresourceURI($id);
-
-        $request = $this->client->delete($resourceURI, array(), '', array('exceptions' => false));
-
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
-
-        return $response->isSuccessful();
-    }
 }
