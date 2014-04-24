@@ -8,7 +8,7 @@ $audio = new OP3Nvoice\Audio($apikey);
 $items = $audio->index();
 
 foreach($items as $item) {
-    $metadata = $audio->tracks->load($item['href']);
+    $tracks = $audio->tracks->load($item['href']);
 
-    print_r($metadata);
+    print_r($tracks);
 }

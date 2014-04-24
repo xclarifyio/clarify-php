@@ -14,12 +14,12 @@ class Audio extends Client
      * @param string $media_url     The url where your audio file is available, valid filetypes are [Todo: list these]
      * @param string $name          A human readable name for this bundle
      * @param string $notify_url    A callback which we will post to when processing this bundle is complete
-     * @param string $media_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
+     * @param string $audio_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
      * @param string $metadata      A JSON formatted string with additional information about this bundle
      * @return bool
      * @throws Exceptions\InvalidJSONException
      */
-    public function create($media_url = '', $name = '', $notify_url = '', $media_channel = '', $metadata = '')
+    public function create($media_url = '', $name = '', $notify_url = '', $audio_channel = '', $metadata = '')
     {
         $ob = json_decode($metadata);
         if($metadata != '' && $ob === null) {
@@ -33,7 +33,7 @@ class Audio extends Client
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
         $request->setPostField('notify_url', $notify_url);
-        $request->setPostField('audio_channel', $media_channel);
+        $request->setPostField('audio_channel', $audio_channel);
         $request->setPostField('metadata', $metadata);
 
         $request->addHeader('Authorization', $this->apiKey);

@@ -48,6 +48,25 @@ class Tracks extends Client
         return $response->isSuccessful();
     }
 
+    public function create($id, $media_url, $label = '', $audio_channel = '', $source = '')
+    {
+        $trackURI = $this->getTrackURI($id);
+
+        $request = $this->client->post($trackURI, array(), '', array('exceptions' => false));
+        $request->setPostField('media_url', $media_url);
+        $request->setPostField('label', $label);
+        $request->setPostField('audio_channel', $audio_channel);
+        $request->setPostField('source', $source);
+
+        $request->addHeader('Authorization', $this->apiKey);
+        $response = $request->send();
+        $this->detail = $response->json();
+
+//todo: we should probably get the Location header for this one too
+
+        return $response->isSuccessful();
+    }
+
     public function delete($id)
     {
         $trackURI = $this->getTrackURI($id);
