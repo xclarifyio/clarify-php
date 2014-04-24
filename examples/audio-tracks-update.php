@@ -12,7 +12,7 @@ foreach($items as $item) {
     $data = $tracks->load($item['href']);
     print_r($data);
 
-    $tracks->update($item['href'], 3, "an awesome label");
+    $tracks->update($item['href'], 2, "an awesome label");
     $data = $tracks->load($item['href']);
     print_r($data);
 }

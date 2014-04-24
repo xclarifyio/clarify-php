@@ -33,11 +33,6 @@ class Tracks extends Client
     {
         $trackURI = $this->getTrackURI($id);
 
-        $ob = json_decode($data);
-        if($data != '' && $ob === null) {
-            throw new InvalidJSONException();
-        }
-
         $request = $this->client->put($trackURI, array(), '', array('exceptions' => false));
         $request->setPostField('track', $track);
         $request->setPostField('label', $label);
