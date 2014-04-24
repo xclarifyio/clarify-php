@@ -2,9 +2,7 @@
 
 namespace OP3Nvoice;
 
-use OP3Nvoice\Exceptions\InvalidJSONException;
-
-class Tracks extends Client
+class Tracks extends Subresource
 {
     protected $subresource = 'o3v:tracks';
 

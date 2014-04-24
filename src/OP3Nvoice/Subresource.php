@@ -1,0 +1,8 @@
+<?php
+
+namespace OP3Nvoice;
+
+abstract class Subresource extends Client
+{
+
+}
