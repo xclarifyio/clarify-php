@@ -6,17 +6,6 @@ class Tracks extends Subresource
 {
     protected $subresource = 'o3v:tracks';
 
-    protected function getSubresourceURI($id)
-    {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $bundle = $response->json();
-        $trackURI = $bundle['_links'][$this->subresource]['href'];
-
-        return $trackURI;
-    }
-
     public function load($id)
     {
         $trackURI = $this->getSubresourceURI($id);

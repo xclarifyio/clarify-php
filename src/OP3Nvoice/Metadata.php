@@ -8,17 +8,6 @@ class Metadata extends Subresource
 {
     protected $subresource = 'o3v:metadata';
 
-    protected function getSubresourceURI($id)
-    {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $bundle = $response->json();
-        $metadataURI = $bundle['_links'][$this->subresource]['href'];
-
-        return $metadataURI;
-    }
-
     public function load($id)
     {
         $metadataURI = $this->getSubresourceURI($id);
