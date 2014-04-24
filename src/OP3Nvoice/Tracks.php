@@ -6,18 +6,6 @@ class Tracks extends Subresource
 {
     protected $subresource = 'o3v:tracks';
 
-    public function load($id)
-    {
-        $resourceURI = $this->getSubresourceURI($id);
-
-        $request = $this->client->get($resourceURI, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
-
-        return $response->json();
-    }
-
     public function update($id, $track = 0, $label ='', $media_url = '', $audio_channel = '', $source = '', $version = '')
     {
         $resourceURI = $this->getSubresourceURI($id);
