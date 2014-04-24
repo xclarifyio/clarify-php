@@ -8,6 +8,13 @@ class Metadata extends Subresource
 {
     protected $subresource = 'o3v:metadata';
 
+    /**
+     * @param $id
+     * @param $data
+     * @param string $version
+     * @return bool
+     * @throws Exceptions\InvalidJSONException
+     */
     public function update($id, $data, $version = '')
     {
         $resourceURI = $this->getSubresourceURI($id);

@@ -45,6 +45,13 @@ class Audio extends Client
         return $response->isSuccessful();
     }
 
+    /**
+     * @param $id
+     * @param string $name
+     * @param string $notify_url
+     * @param int $version
+     * @return bool
+     */
     public function update($id, $name = '', $notify_url = '', $version = 0)
     {
         if (!is_numeric($version)) {
@@ -117,6 +124,13 @@ class Audio extends Client
         return $response->isSuccessful();
     }
 
+    /**
+     * @param $query
+     * @param int $limit
+     * @param string $embed
+     * @param string $iterator
+     * @return array|bool|float|int|string
+     */
     public function search($query, $limit = 10, $embed = '', $iterator = '')
     {
         $search = new Search($this->apiKey);
@@ -124,6 +138,11 @@ class Audio extends Client
         return $search->search($query, $limit, $embed, $iterator);
     }
 
+    /**
+     * @param $name
+     * @return Metadata|Tracks
+     * @throws Exceptions\InvalidResourceException
+     */
     public function __get($name)
     {
         switch ($name) {

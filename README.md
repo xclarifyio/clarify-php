@@ -53,9 +53,6 @@ $result = $audio->search('close');
 $results = $result['item_results'];
 ```
 
-
-
-
 #### Todo List
 
 * ~~Include Guzzle via Composer~~
@@ -66,13 +63,13 @@ $results = $result['item_results'];
   * ~~load a specific bundle~~
   * ~~delete a bundle~~
   * ~~update a bundle~~
-  * get metadata
-  * update metadata
-  * delete metadata
-  * add a track
-  * update a track
-  * get track information
-  * delete a track
+  * ~~get metadata~~
+  * ~~update metadata~~
+  * ~~delete metadata~~
+  * ~~add a track~~
+  * ~~update a track~~
+  * ~~get track information~~
+  * ~~delete a track~~
 * Video
   * create a bundle
   * list all bundles

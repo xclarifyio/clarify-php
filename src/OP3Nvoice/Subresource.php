@@ -4,6 +4,10 @@ namespace OP3Nvoice;
 
 abstract class Subresource extends Client
 {
+    /**
+     * @param $id
+     * @return mixed
+     */
     protected function getSubresourceURI($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
@@ -14,6 +18,10 @@ abstract class Subresource extends Client
         return $bundle['_links'][$this->subresource]['href'];
     }
 
+    /**
+     * @param $id
+     * @return array|bool|float|int|string
+     */
     public function load($id)
     {
         $resourceURI = $this->getSubresourceURI($id);
@@ -26,6 +34,10 @@ abstract class Subresource extends Client
         return $response->json();
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function delete($id)
     {
         $resourceURI = $this->getSubresourceURI($id);

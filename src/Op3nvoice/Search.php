@@ -6,6 +6,13 @@ class Search extends Client
 {
     public $detail = null;
 
+    /**
+     * @param $query
+     * @param int $limit
+     * @param string $embed
+     * @param string $iterator
+     * @return array|bool|float|int|string
+     */
     public function search($query, $limit = 10, $embed = '', $iterator = '')
     {
         $request = $this->client->get('/v1/search', array(), array('exceptions' => false));

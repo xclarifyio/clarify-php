@@ -13,7 +13,7 @@ use Guzzle\Http;
  */
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.4.0';
+    const USER_AGENT = 'op3nvoice-php/0.7.0';
 
     protected $apiKey   = '';
     protected $client   = null;

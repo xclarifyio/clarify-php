@@ -6,6 +6,16 @@ class Tracks extends Subresource
 {
     protected $subresource = 'o3v:tracks';
 
+    /**
+     * @param $id
+     * @param int $track
+     * @param string $label
+     * @param string $media_url
+     * @param string $audio_channel
+     * @param string $source
+     * @param string $version
+     * @return bool
+     */
     public function update($id, $track = 0, $label ='', $media_url = '', $audio_channel = '', $source = '', $version = '')
     {
         $resourceURI = $this->getSubresourceURI($id);
@@ -25,6 +35,14 @@ class Tracks extends Subresource
         return $response->isSuccessful();
     }
 
+    /**
+     * @param $id
+     * @param $media_url
+     * @param string $label
+     * @param string $audio_channel
+     * @param string $source
+     * @return bool
+     */
     public function create($id, $media_url, $label = '', $audio_channel = '', $source = '')
     {
         $resourceURI = $this->getSubresourceURI($id);
