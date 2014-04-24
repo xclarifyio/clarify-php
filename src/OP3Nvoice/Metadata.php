@@ -6,20 +6,22 @@ use OP3Nvoice\Exceptions\InvalidJSONException;
 
 class Metadata extends Client
 {
-    protected function getMetadataURI($id)
+    protected $subresource = 'o3v:metadata';
+
+    protected function getSubresourceURI($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $bundle = $response->json();
-        $metadataURI = $bundle['_links']['o3v:metadata']['href'];
+        $metadataURI = $bundle['_links'][$this->subresource]['href'];
 
         return $metadataURI;
     }
 
     public function load($id)
     {
-        $metadataURI = $this->getMetadataURI($id);
+        $metadataURI = $this->getSubresourceURI($id);
 
         $request = $this->client->get($metadataURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
@@ -31,7 +33,7 @@ class Metadata extends Client
 
     public function update($id, $data, $version = '')
     {
-        $metadataURI = $this->getMetadataURI($id);
+        $metadataURI = $this->getSubresourceURI($id);
 
         $ob = json_decode($data);
         if($data != '' && $ob === null) {
@@ -51,7 +53,7 @@ class Metadata extends Client
 
     public function delete($id)
     {
-        $metadataURI = $this->getMetadataURI($id);
+        $metadataURI = $this->getSubresourceURI($id);
 
         $request = $this->client->delete($metadataURI, array(), '', array('exceptions' => false));
 

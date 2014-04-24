@@ -6,20 +6,22 @@ use OP3Nvoice\Exceptions\InvalidJSONException;
 
 class Tracks extends Client
 {
-    protected function getTrackURI($id)
+    protected $subresource = 'o3v:tracks';
+
+    protected function getSubresourceURI($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
         $response = $request->send();
         $bundle = $response->json();
-        $trackURI = $bundle['_links']['o3v:tracks']['href'];
+        $trackURI = $bundle['_links'][$this->subresource]['href'];
 
         return $trackURI;
     }
 
     public function load($id)
     {
-        $trackURI = $this->getTrackURI($id);
+        $trackURI = $this->getSubresourceURI($id);
 
         $request = $this->client->get($trackURI, array(), array('exceptions' => false));
         $request->addHeader('Authorization', $this->apiKey);
@@ -31,7 +33,7 @@ class Tracks extends Client
 
     public function update($id, $track = 0, $label ='', $media_url = '', $audio_channel = '', $source = '', $version = '')
     {
-        $trackURI = $this->getTrackURI($id);
+        $trackURI = $this->getSubresourceURI($id);
 
         $request = $this->client->put($trackURI, array(), '', array('exceptions' => false));
         $request->setPostField('track', $track);
@@ -50,7 +52,7 @@ class Tracks extends Client
 
     public function create($id, $media_url, $label = '', $audio_channel = '', $source = '')
     {
-        $trackURI = $this->getTrackURI($id);
+        $trackURI = $this->getSubresourceURI($id);
 
         $request = $this->client->post($trackURI, array(), '', array('exceptions' => false));
         $request->setPostField('media_url', $media_url);
@@ -69,7 +71,7 @@ class Tracks extends Client
 
     public function delete($id)
     {
-        $trackURI = $this->getTrackURI($id);
+        $trackURI = $this->getSubresourceURI($id);
 
         $request = $this->client->delete($trackURI, array(), '', array('exceptions' => false));
 
