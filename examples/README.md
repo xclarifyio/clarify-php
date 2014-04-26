@@ -1,9 +1,9 @@
-Op3nvoice Audio Player
+OP3Nvoice Audio Player
 ======================
 
-This is a proof of concept audio player that integrates with the Op3nvoice search library.
+This is a proof of concept audio player that integrates with the OP3Nvoice search library.
 
-This uses the PHP library available here: https://github.com/Op3nvoice/op3nvoice-php
+This uses the PHP library available here: https://github.com/OP3Nvoice/op3nvoice-php
 
 To use this:
 *  load some audio files into your account using code similar to audio-create.php or even using curl;
