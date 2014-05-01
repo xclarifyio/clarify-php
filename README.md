@@ -12,7 +12,7 @@ The recommended way to install the OP3Nvoice library is through [Composer](http:
 curl -sS https://getcomposer.org/installer | php
 
 # Add OP3Nvoice as a dependency
-php composer.phar require op3nvoice/op3nvoice-helper
+php composer.phar require op3nvoice/op3nvoice-helper dev-master
 ```
 
 or alternatively, you can add it directly to your `composer.json` file.
