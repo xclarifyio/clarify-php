@@ -25,7 +25,7 @@ class Audio extends Client
         if($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
-        if (!in_array($media_channel, array('left', 'right', 'split'))) {
+        if (!in_array($audio_channel, array('left', 'right', 'split'))) {
 // todo: throw exception for invalid enum type?
         }
 
