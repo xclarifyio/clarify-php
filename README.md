@@ -83,6 +83,7 @@ $results = $result['item_results'];
   * update a track
   * get track information
   * delete a track
+* Refactor the existing Audio/Video classes to a single Bundle resource
 * ~~Search~~
 
 ### Contributing
