@@ -137,22 +137,4 @@ class Audio extends Client
 
         return $search->search($query, $limit, $embed, $iterator);
     }
-
-    /**
-     * @param $name
-     * @return Metadata|Tracks
-     * @throws Exceptions\InvalidResourceException
-     */
-    public function __get($name)
-    {
-        switch ($name) {
-            case 'tracks':
-                return new Tracks($this->apiKey);
-            case 'metadata':
-                return new Metadata($this->apiKey);
-                break;
-            default:
-                throw new InvalidResourceException();
-        }
-    }
 }

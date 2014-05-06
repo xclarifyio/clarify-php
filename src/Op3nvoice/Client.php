@@ -43,4 +43,22 @@ abstract class Client
 
         return $this->response->isSuccessful();
     }
+
+    /**
+     * @param $name
+     * @return Metadata|Tracks
+     * @throws InvalidResourceException
+     */
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'tracks':
+                return new Tracks($this->apiKey);
+            case 'metadata':
+                return new Metadata($this->apiKey);
+                break;
+            default:
+                throw new InvalidResourceException();
+        }
+    }
 }
