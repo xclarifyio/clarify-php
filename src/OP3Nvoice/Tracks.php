@@ -28,8 +28,7 @@ class Tracks extends Subresource
         $request->setPostField('source', $source);
         $request->setPostField('version', $version);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
         $this->detail = $response->json();
 
         return $response->isSuccessful();
@@ -53,8 +52,7 @@ class Tracks extends Subresource
         $request->setPostField('audio_channel', $audio_channel);
         $request->setPostField('source', $source);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
         $this->detail = $response->json();
 
         return $response->isSuccessful();

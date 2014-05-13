@@ -27,9 +27,8 @@ class Metadata extends Subresource
         $request = $this->client->put($resourceURI, array(), '', array('exceptions' => false));
         $request->setPostField('data', $data);
         $request->setPostField('version', $version);
+        $response = $this->process($request);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
         $this->detail = $response->json();
 
         return $response->isSuccessful();

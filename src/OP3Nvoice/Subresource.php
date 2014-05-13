@@ -11,8 +11,8 @@ abstract class Subresource extends Client
     protected function getSubresourceURI($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
+
         $bundle = $response->json();
 
         return $bundle['_links'][$this->subresource]['href'];
@@ -27,8 +27,8 @@ abstract class Subresource extends Client
         $resourceURI = $this->getSubresourceURI($id);
 
         $request = $this->client->get($resourceURI, array(), array('exceptions' => false));
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
+
         $this->detail = $response->json();
 
         return $response->json();
