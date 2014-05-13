@@ -46,11 +46,16 @@ abstract class Client
     public function authenticate()
     {
         $request = $this->client->get('/');
+        $this->process($request);
+
+        return $this->response->isSuccessful();
+    }
+
+    protected function process($request)
+    {
         $request->addHeader('Authorization', $this->apiKey);
         $this->response =  $request->send();
         $this->statusCode = $this->response->getStatusCode();
-
-        return $this->response->isSuccessful();
     }
 
     /**
@@ -110,13 +115,12 @@ abstract class Client
         $request->setPostField('audio_channel', $audio_channel);
         $request->setPostField('metadata', $metadata);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
-        $this->detail = $response->json();
+        $this->process($request);
+        $this->detail = $this->response->json();
 
 //todo: we should probably get the Location header for this one too
 
-        return $response->isSuccessful();
+        return $this->response->isSuccessful();
     }
 
     /**
