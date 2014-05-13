@@ -23,7 +23,8 @@ abstract class Client
     protected $client   = null;
     protected $request  = null;
     protected $response = null;
-    protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1';
+    protected $statusCode = null;
+    protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
 
     protected $detail   = null;
     /**
@@ -37,6 +38,9 @@ abstract class Client
     }
 
     /**
+     * This method doesn't do anything other than make an authenticated request. It's useful to check to make sure we're
+     *   using the credentials correctly.
+     *
      * @return bool
      */
     public function authenticate()
@@ -44,8 +48,23 @@ abstract class Client
         $request = $this->client->get('/');
         $request->addHeader('Authorization', $this->apiKey);
         $this->response =  $request->send();
+        $this->statusCode = $this->response->getStatusCode();
 
         return $this->response->isSuccessful();
+    }
+
+    /**
+     * The response and status code are immutable so we have them as a protected properties with a getter.
+     *
+     * @return null
+     */
+    public function getResponse()
+    {
+        return $this->response;
+    }
+    public function getStatusCode()
+    {
+        return $this->statusCode;
     }
 
     /**
@@ -61,7 +80,7 @@ abstract class Client
             case 'metadata':
                 return new Metadata($this->apiKey);
             default:
-                //throw new InvalidResourceException();
+                // do nothing
         }
     }
 
@@ -84,7 +103,7 @@ abstract class Client
 // todo: throw exception for invalid enum type?
         }
 
-        $request = $this->client->post('/bundles', array(), '', array('exceptions' => false));
+        $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
         $request->setPostField('notify_url', $notify_url);
