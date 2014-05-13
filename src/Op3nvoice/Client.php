@@ -60,7 +60,6 @@ abstract class Client
                 return new Tracks($this->apiKey);
             case 'metadata':
                 return new Metadata($this->apiKey);
-                break;
             default:
                 throw new InvalidResourceException();
         }
