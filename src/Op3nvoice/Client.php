@@ -37,20 +37,6 @@ abstract class Client
         $this->client->setUserAgent($this::USER_AGENT . '/' . PHP_VERSION);
     }
 
-    /**
-     * This method doesn't do anything other than make an authenticated request. It's useful to check to make sure we're
-     *   using the credentials correctly.
-     *
-     * @return bool
-     */
-    public function authenticate()
-    {
-        $request = $this->client->get('/');
-        $this->process($request);
-
-        return $this->response->isSuccessful();
-    }
-
     protected function process($request)
     {
         $request->addHeader('Authorization', $this->apiKey);
@@ -118,6 +104,7 @@ abstract class Client
         $this->process($request);
         $this->detail = $this->response->json();
 
+print_r($this->detail);
 //todo: we should probably get the Location header for this one too
 
         return $this->response->isSuccessful();
