@@ -61,7 +61,7 @@ $results = $result['item_results'];
 
 * ~~Include Guzzle via Composer~~
 * ~~Authentication~~
-* Audio
+* Bundle
   * ~~create a bundle~~
   * ~~list all bundles~~
   * ~~load a specific bundle~~
@@ -74,20 +74,7 @@ $results = $result['item_results'];
   * ~~update a track~~
   * ~~get track information~~
   * ~~delete a track~~
-* Video
-  * create a bundle
-  * list all bundles
-  * load a specific bundle
-  * delete a bundle
-  * update a bundle
-  * get metadata
-  * update metadata
-  * delete metadata
-  * add a track
-  * update a track
-  * get track information
-  * delete a track
-* Refactor the existing Audio/Video classes to a single Bundle resource
+* ~~Refactor the existing Audio/Video classes to a single Bundle resource~~
 * ~~Search~~
 
 ### Contributing
