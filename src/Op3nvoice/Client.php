@@ -26,7 +26,7 @@ abstract class Client
     protected $statusCode = null;
     protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
 
-    protected $detail   = null;
+    public $detail   = null;
     /**
      * @param $key
      */
