@@ -128,8 +128,7 @@ abstract class Client
         $request->setPostField('notify_url', $notify_url);
         $request->setPostField('version', $version);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
         $this->detail = $response->json();
 
         return $response->isSuccessful();
@@ -162,9 +161,8 @@ abstract class Client
     public function load($id)
     {
         $request = $this->client->get($id, array(), array('exceptions' => false));
+        $response = $this->process($request);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
         $this->detail = $response->json();
 
         return $response->json();
@@ -179,9 +177,8 @@ abstract class Client
     public function delete($id)
     {
         $request = $this->client->delete($id, array(), '', array('exceptions' => false));
+        $response = $this->process($request);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
         $this->detail = $response->json();
 
         return $response->isSuccessful();

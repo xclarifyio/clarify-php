@@ -21,8 +21,7 @@ class Search extends Client
         $request->getQuery()->set('limit', $limit);
         $request->getQuery()->set('embed', $embed);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
+        $response = $this->process($request);
 
 //todo: catch null results
         $this->detail = $response->json();
