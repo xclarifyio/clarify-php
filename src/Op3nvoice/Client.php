@@ -39,7 +39,7 @@ abstract class Client
 
     protected function process($request)
     {
-        $request->addHeader('Authorization', $this->apiKey);
+        $request->setHeader('Authorization', 'Bearer ' . $this->apiKey);
         $this->response =  $request->send();
         $this->statusCode = $this->response->getStatusCode();
 
@@ -142,12 +142,10 @@ abstract class Client
     {
         $items = array();
 
-        $request = $this->client->get('/v1/audio', array(), array('exceptions' => false));
+        $request = $this->client->get('bundles', array(), array('exceptions' => false));
+        $response = $this->process($request);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
         $this->detail = $response->json();
-
 //todo: add information about pagination
         if ($response->isSuccessful()) {
             $items = $this->detail['_links']['items'];
