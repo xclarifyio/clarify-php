@@ -3,7 +3,7 @@
 require 'creds.php';
 require '../vendor/autoload.php';
 
-$audio = new OP3Nvoice\Audio($apikey);
+$audio = new OP3Nvoice\Bundle($apikey);
 
 $success = $audio->create('http://example.com/', 'name' . rand(0, 500));
 

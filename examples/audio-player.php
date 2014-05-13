@@ -6,7 +6,7 @@ include '../vendor/autoload.php';
 $terms = isset($_GET['terms']) ? $_GET['terms'] : 'no search specified';
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$audio = new OP3Nvoice\Audio($apikey);
+$audio = new OP3Nvoice\Bundle($apikey);
 $items = $audio->search($terms);
 
 $search_terms = json_encode($items['search_terms']);

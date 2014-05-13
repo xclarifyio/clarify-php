@@ -61,7 +61,7 @@ abstract class Client
             case 'metadata':
                 return new Metadata($this->apiKey);
             default:
-                throw new InvalidResourceException();
+                //throw new InvalidResourceException();
         }
     }
 
