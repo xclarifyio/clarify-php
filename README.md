@@ -25,7 +25,11 @@ or alternatively, you can add it directly to your `composer.json` file.
 }
 ```
 
-After installing, you need to require Composer's autoloader in your PHP script:
+# Then install the libraries via Composer:
+```bash
+composer install
+
+Finally, require Composer's autoloader in your PHP script:
 
 ```php
 require 'vendor/autoload.php';
