@@ -43,9 +43,8 @@ abstract class Subresource extends Client
         $resourceURI = $this->getSubresourceURI($id);
 
         $request = $this->client->delete($resourceURI, array(), '', array('exceptions' => false));
+        $response = $this->process($request);
 
-        $request->addHeader('Authorization', $this->apiKey);
-        $response = $request->send();
         $this->detail = $response->json();
 
         return $response->isSuccessful();
