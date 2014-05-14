@@ -42,7 +42,7 @@ require 'vendor/autoload.php';
 To begin using this library, initialize the OP3Nvoice object with your API key:
 
 ```php
-$audio = new OP3Nvoice\Audio($apikey);
+$audio = new OP3Nvoice\Bundle($apikey);
 ```
 
 Then add an audio or video file to your search index:
@@ -54,7 +54,7 @@ $audio->create('http://example.com/', "My awesome audio file");
 Within minutes your file will be added to your index and available via a simple search:
 
 ```php
-$audio = new OP3Nvoice\Audio($apikey);
+$audio = new OP3Nvoice\Bundle($apikey);
 $result = $audio->search('close');
 $results = $result['item_results'];
 ```
