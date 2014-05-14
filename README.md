@@ -25,8 +25,8 @@ or alternatively, you can add it directly to your `composer.json` file.
 }
 ```
 
-# Then install the libraries via Composer:
 ```bash
+# Then install the libraries via Composer:
 composer install
 
 Finally, require Composer's autoloader in your PHP script:
