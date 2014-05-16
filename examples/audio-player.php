@@ -51,7 +51,7 @@ $duration = $tracks[0]['duration'];
 
                 // This is a sample "ItemResult" object from a SearchCollection JSON
                 // object. It is one item in the item_results array.
-                var itemResult =  <?php echo substr($item_results, 1, -1); ?>;
+                var itemResult =  <?php echo $item_results; ?>;
 
                 ////////////////////////////////////////////////////////
                 // Create a player and add in search results marks
