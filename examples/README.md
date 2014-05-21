@@ -1,5 +1,3 @@
-OP3Nvoice Audio Player
-======================
 
 This is a set of scripts to demonstrate using various pieces of the OP3Nvoice helper library.
 

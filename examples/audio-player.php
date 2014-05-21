@@ -1,5 +1,6 @@
 <?php
 
+// Don't forget to rename creds-dist.php to creds.php and insert your API key
 include 'creds.php';
 require '../vendor/autoload.php';
 
