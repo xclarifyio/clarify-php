@@ -17,16 +17,13 @@ Here is a complete explanation of everything in this package:
 | list.php | This lists the most recent 10 bundles from your account. |
 | search.php | The demonstrates simple search functionality and displays the bundle id along with the time offsets from the search results. |
 | update.php | This demonstrates how to update the information for a single bundle. |
-| ------------- | -- |
 | metadata-delete.php | This demonstrates how to delete metadata from one of your bundles. |
 | metadata-load.php | This retrieves the metadata for a recent bundle. |
 | metadata-update.php | This shows you how to update the metadata for a bundle. |
-| ------------- | -- |
 | tracks-create.php | This allows you to add a single track to an existing bundle. |
 | tracks-delete.php | This deletes a single track from a bundle. |
 | tracks-load.php | This loads all the information for a single track from a bundle. |
 | tracks-update.php | This allows you to update information for a single track from a bundle. |
-| ------------- | -- |
 | audio-player.php | This is a sample audio player used to view a search result from the system. |
 | css | These are styles for the sample audio and video players. You shouldn't have to do anything with it. |
 | scripts | This is the Javascript for the sample audio and video players. You shouldn't have to do anything with it. |
