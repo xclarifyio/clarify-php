@@ -23,7 +23,6 @@ class Search extends Client
 
         $response = $this->process($request);
 
-//todo: catch null results
         $this->detail = $response->json();
 
         return $response->json();
