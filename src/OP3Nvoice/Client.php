@@ -115,7 +115,7 @@ abstract class Client
      * @param string $name
      * @param string $notify_url
      * @param int $version
-     * @return bool
+     * @return mixed
      */
     public function update($id, $name = '', $notify_url = '', $version = 0)
     {
@@ -135,13 +135,20 @@ abstract class Client
     }
 
     /**
+     * @param int $limit
+     * @param string $embed
+     * @param string $iterator
      * @return array
      */
-    public function index()
+    public function index($limit = 10, $embed = '', $iterator = '' )
     {
         $items = array();
 
         $request = $this->client->get('bundles', array(), array('exceptions' => false));
+        $request->getQuery()->set('limit', $limit);
+        $request->getQuery()->set('embed', $embed);
+        $request->getQuery()->set('iterator', $iterator);
+
         $response = $this->process($request);
 
         $this->detail = $response->json();
