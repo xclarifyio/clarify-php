@@ -26,12 +26,7 @@ abstract class Subresource extends Client
     {
         $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->get($resourceURI, array(), array('exceptions' => false));
-        $response = $this->process($request);
-
-        $this->detail = $response->json();
-
-        return $response->json();
+        return parent::load($resourceURI);
     }
 
     /**
@@ -42,11 +37,6 @@ abstract class Subresource extends Client
     {
         $resourceURI = $this->getSubresourceURI($id);
 
-        $request = $this->client->delete($resourceURI, array(), '', array('exceptions' => false));
-        $response = $this->process($request);
-
-        $this->detail = $response->json();
-
-        return $response->isSuccessful();
+        return parent::delete($resourceURI);
     }
 }
