@@ -10,7 +10,7 @@ To use these examples,
 Here is a complete explanation of everything in this package:
 
 | Filename        | Description  |
-| ------------- | -- |
+| ------------- | --- |
 | create.php | This sample allows you to create a new bundle with a single audio or video file. |
 | creds-dist.php | This file should be renamed to creds.php and updated with your API key |
 | delete.php | This deletes a single (the most recent) bundle from your accounts. |
