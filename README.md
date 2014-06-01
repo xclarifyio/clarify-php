@@ -78,15 +78,19 @@ $audio = new OP3Nvoice\Bundle('my api key');
 
 Once you've created the object, you can use the object to load each of your audio files as shown:
 
+```php
 $result = $audio->create('http://example.com/sample-audio-file.wav', 'optional bundle name');
+```
+
 Here are some audio files you can use for testing:
 
+```bash
 https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav
 
 https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-2.wav
 
 https://s3-us-west-2.amazonaws.com/op3nvoice/dorothyandthewizardinoz_01_baum_64kb.mp3
-
+```
 
 Hint: You don't have to download these files. Instead you can pass us these urls via the create method shown above.
 
