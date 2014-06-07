@@ -3,7 +3,7 @@
 namespace OP3Nvoice;
 
 /**
- * @deprecated 
+ * @deprecated Deprecated since version 0.8, to be removed in 1.0.
  */
 class Audio extends Client
 {
