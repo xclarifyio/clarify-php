@@ -15,7 +15,12 @@ foreach ($items as $item) {
     echo $id . "\n";
     echo $bundle['name'] . "\n";
 
-    $success = $audio->update($id, 'updated-name-' . rand(0,500));
+    $success = $audio->update(
+        array(
+            'id' => $id,
+            'name' => 'updated-name-' . rand(0,500),
+        )
+    );
 
     if ($success) {
         $bundle = $audio->load($item['href']);

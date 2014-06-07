@@ -134,7 +134,7 @@ abstract class Client
     {
         $name = isset($options['name']) ? $options['name'] : '';
         $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
-        $version = isset($options['version']) ? $options['version'] : '';
+        $version = isset($options['version']) ? $options['version'] : '1';
         if (!is_numeric($version)) {
             throw new InvalidIntegerArgumentException();
         }
