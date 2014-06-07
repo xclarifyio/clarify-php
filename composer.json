@@ -1,6 +1,6 @@
 {
     "name": "op3nvoice/op3nvoice-helper",
-    "version": "0.8.0",
+    "version": "0.9.0",
     "type": "library",
     "description": "A PHP wrapper for the OP3Nvoice API",
     "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search"],
@@ -24,6 +24,6 @@
         "psr-4": { "OP3Nvoice\\": "src/"}
     },
     "autoload-dev": {
-        "psr-4": { "OP3Nvoice\\Tests": "tests/"}
+        "psr-4": { "OP3Nvoice\\Tests\\": "tests/"}
     }
 }
