@@ -20,7 +20,7 @@ or alternatively, you can add it directly to your `composer.json` file.
 ```json
 {
     "require": {
-        "op3nvoice/op3nvoice-helper": "dev-master"
+        "op3nvoice/op3nvoice-helper": "dev-master@dev"
     }
 }
 ```
