@@ -3,30 +3,38 @@
 namespace OP3Nvoice;
 
 use Guzzle\Http;
+use OP3Nvoice\Exceptions\InvalidEnumTypeException;
+use OP3Nvoice\Exceptions\InvalidIntegerArgumentException;
 use OP3Nvoice\Metadata;
 use OP3Nvoice\Tracks;
 use OP3Nvoice\Exceptions\InvalidJSONException;
 use OP3Nvoice\Exceptions\InvalidResourceException;
 
 /**
- * Class Client
- * @package OP3Nvoice
- *
  * This is the base class that all of the individual media-related classes extend. At the moment, it simply initializes
  *   the connection by setting the user agent and the base URI for the API calls.
  */
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.8.0';
+    const USER_AGENT = 'op3nvoice-php/0.9.0';
 
     protected $apiKey   = '';
     protected $client   = null;
+
+    /**
+     * @var $response \Guzzle\Http\Message\Request
+     */
     protected $request  = null;
+
+    /**
+     * @var $response \Guzzle\Http\Message\Response
+     */
     protected $response = null;
     protected $statusCode = null;
     protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
 
     public $detail   = null;
+
     /**
      * @param $key
      */
@@ -55,6 +63,7 @@ abstract class Client
     {
         return $this->response;
     }
+
     public function getStatusCode()
     {
         return $this->statusCode;
@@ -73,29 +82,33 @@ abstract class Client
             case 'metadata':
                 return new Metadata($this->apiKey);
             default:
-                // do nothing
+                throw new InvalidResourceException('Not supported');
         }
     }
 
     /**
-     * @param string $media_url     The url where your audio file is available, valid filetypes are [Todo: list these]
-     * @param string $name          A human readable name for this bundle
-     * @param string $notify_url    A callback which we will post to when processing this bundle is complete
-     * @param string $audio_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
-     * @param string $metadata      A JSON formatted string with additional information about this bundle
-     * @return bool
+     * @param array $options
+     * @throws Exceptions\InvalidEnumTypeException
      * @throws Exceptions\InvalidJSONException
+     * @return bool
      */
-    public function create($media_url = '', $name = '', $notify_url = '', $audio_channel = '', $metadata = '')
+    public function create(array $options)
     {
+        $metadata = isset($options['metadata']) ? $options['metadata'] : '';
+        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : 'left';
+        $name = isset($options['name']) ? $options['name'] : '';
+        $media_url = isset($options['media_url']) ? $options['media_url'] : '';
+        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
+
         $ob = json_decode($metadata);
-        if($metadata != '' && $ob === null) {
+        if ($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
         if (!in_array($audio_channel, array('left', 'right', 'split'))) {
-// todo: throw exception for invalid enum type?
+            throw new InvalidEnumTypeException();
         }
 
+        /** @var $request \Guzzle\Http\Message\Request */
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
@@ -105,25 +118,28 @@ abstract class Client
 
         $response = $this->process($request);
         $this->detail = $response->json();
-//todo: we should probably get the Location header for this one too
 
-        return $response->isSuccessful();
+        return array(
+            'code' => $response->getStatusCode(),
+            'location_header' => $response->getHeader('Location'),
+        );
     }
 
     /**
-     * @param $id
-     * @param string $name
-     * @param string $notify_url
-     * @param int $version
+     * @param array $options
+     * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
-    public function update($id, $name = '', $notify_url = '', $version = 0)
+    public function update(array $options)
     {
+        $name = isset($options['name']) ? $options['name'] : '';
+        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
+        $version = isset($options['version']) ? $options['version'] : '1';
         if (!is_numeric($version)) {
-// todo: throw exception for not being a number?
+            throw new InvalidIntegerArgumentException();
         }
 
-        $request = $this->client->put($id, array(), '', array('exceptions' => false));
+        $request = $this->client->put($options['id'], array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('notify_url', $notify_url);
         $request->setPostField('version', $version);

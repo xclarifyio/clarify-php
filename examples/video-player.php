@@ -1,13 +1,13 @@
 <?php
 
 // Don't forget to rename creds-dist.php to creds.php and insert your API key
-include 'creds.php';
-require '../vendor/autoload.php';
+include __DIR__.'/creds.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $terms = $_GET['terms'];
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$video = new OP3Nvoice\Bundle($apikey);
+$video = new \OP3Nvoice\Bundle($apikey);
 $items = $video->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
@@ -44,8 +44,8 @@ $duration = $tracks[0]['duration'];
             o3vPlayer.jPlayerOptions.swfPath = 'scripts/jquery';
 
             // Set to the playback URL for the video file(s).
-            var mediaURLs = { m4v:"http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
-                poster:"http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"};
+            var mediaURLs = { m4v:"http://media.swagit.com/podcasts/2014/05/31/05312014-504.360.mp4",
+                poster:"http://stills.swagit.com/swagit/swagit/05312014-504.480x360.jpg"};
 
             ////////////////////////////////////////////////////////
 

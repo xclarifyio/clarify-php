@@ -9,15 +9,15 @@ class Metadata extends Subresource
     protected $subresource = 'o3v:metadata';
 
     /**
-     * @param $id
-     * @param $data
-     * @param string $version
+     * @param array $options
      * @return bool
      * @throws Exceptions\InvalidJSONException
      */
-    public function update($id, $data, $version = '')
+    public function update(array $options)
     {
-        $resourceURI = $this->getSubresourceURI($id);
+        $data = isset($options['data']) ? $options['data'] : '';
+        $version = isset($options['version']) ? $options['version'] : '';
+        $resourceURI = $this->getSubresourceURI($options['id']);
 
         $ob = json_decode($data);
         if($data != '' && $ob === null) {

@@ -2,6 +2,9 @@
 
 namespace OP3Nvoice;
 
+/**
+ * @deprecated Deprecated since version 0.8, to be removed in 1.0.
+ */
 class Audio extends Client
 {
     public function __construct($key)
