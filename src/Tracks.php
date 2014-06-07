@@ -7,26 +7,20 @@ class Tracks extends Subresource
     protected $subresource = 'o3v:tracks';
 
     /**
-     * @param $id
-     * @param int $track
-     * @param string $label
-     * @param string $media_url
-     * @param string $audio_channel
-     * @param string $source
-     * @param string $version
+     * @param array $options
      * @return bool
      */
-    public function update($id, $track = 0, $label ='', $media_url = '', $audio_channel = '', $source = '', $version = '')
+    public function update(array $options)
     {
-        $resourceURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($options['id']);
 
         $request = $this->client->put($resourceURI, array(), '', array('exceptions' => false));
-        $request->setPostField('track', $track);
-        $request->setPostField('label', $label);
-        $request->setPostField('media_url', $media_url);
-        $request->setPostField('audio_channel', $audio_channel);
-        $request->setPostField('source', $source);
-        $request->setPostField('version', $version);
+        $request->setPostField('track', isset($options['track']) ? $options['track'] : 0);
+        $request->setPostField('label', isset($options['label']) ? $options['label'] : '');
+        $request->setPostField('media_url', isset($options['media_url']) ? $options['media_url'] : '');
+        $request->setPostField('audio_channel', isset($options['audio_channel']) ? $options['audio_channel'] : '');
+        $request->setPostField('source', isset($options['source']) ? $options['source'] : '');
+        $request->setPostField('version', isset($options['version']) ? $options['version'] : '');
 
         $response = $this->process($request);
         $this->detail = $response->json();
@@ -35,22 +29,19 @@ class Tracks extends Subresource
     }
 
     /**
-     * @param $id
-     * @param $media_url
-     * @param string $label
-     * @param string $audio_channel
-     * @param string $source
+     * @param array $options
+     *
      * @return bool
      */
-    public function create($id, $media_url, $label = '', $audio_channel = '', $source = '')
+    public function create(array $options)
     {
-        $resourceURI = $this->getSubresourceURI($id);
+        $resourceURI = $this->getSubresourceURI($options['id']);
 
         $request = $this->client->post($resourceURI, array(), '', array('exceptions' => false));
-        $request->setPostField('media_url', $media_url);
-        $request->setPostField('label', $label);
-        $request->setPostField('audio_channel', $audio_channel);
-        $request->setPostField('source', $source);
+        $request->setPostField('media_url', $options['media_url']);
+        $request->setPostField('label', isset($options['label']) ? $options['label'] : '');
+        $request->setPostField('audio_channel', isset($options['audio_channel']) ? $options['audio_channel'] : '');
+        $request->setPostField('source', isset($options['source']) ? $options['source'] : '');
 
         $response = $this->process($request);
         $this->detail = $response->json();

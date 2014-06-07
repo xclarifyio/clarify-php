@@ -7,7 +7,7 @@ require __DIR__.'/../vendor/autoload.php';
 $terms = $_GET['terms'];
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$video = new OP3Nvoice\Bundle($apikey);
+$video = new \OP3Nvoice\Bundle($apikey);
 $items = $video->search($terms);
 
 $search_terms = json_encode($items['search_terms']);

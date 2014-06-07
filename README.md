@@ -66,7 +66,7 @@ This quickstart demonstrates a simple way to get started using the OP3Nvoice API
 
 ### Creating the object
 
-While you can use any programming language you choose, we provide helper libraries in a couple to get you started. In PHP, you simply include the library and create a new OP3Nvoice\Audio object using your API Key:
+While you can use any programming language you choose, we provide helper libraries in a couple to get you started. In PHP, you simply include the library and create a new \OP3Nvoice\Audio object using your API Key:
 
 ```php
 require __DIR__.'/../vendor/autoload.php';

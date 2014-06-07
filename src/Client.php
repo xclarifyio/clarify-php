@@ -3,6 +3,8 @@
 namespace OP3Nvoice;
 
 use Guzzle\Http;
+use OP3Nvoice\Exceptions\InvalidEnumTypeException;
+use OP3Nvoice\Exceptions\InvalidIntegerArgumentException;
 use OP3Nvoice\Metadata;
 use OP3Nvoice\Tracks;
 use OP3Nvoice\Exceptions\InvalidJSONException;
@@ -19,6 +21,10 @@ abstract class Client
     protected $apiKey   = '';
     protected $client   = null;
     protected $request  = null;
+
+    /**
+     * @var $response \Guzzle\Http\Message\Response
+     */
     protected $response = null;
     protected $statusCode = null;
     protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
@@ -76,22 +82,25 @@ abstract class Client
     }
 
     /**
-     * @param string $media_url     The url where your audio file is available, valid filetypes are [Todo: list these]
-     * @param string $name          A human readable name for this bundle
-     * @param string $notify_url    A callback which we will post to when processing this bundle is complete
-     * @param string $audio_channel Whether this is stereo or mono. Valid values are: left, right, split or an empty string
-     * @param string $metadata      A JSON formatted string with additional information about this bundle
-     * @return bool
+     * @param array $options
+     * @throws Exceptions\InvalidEnumTypeException
      * @throws Exceptions\InvalidJSONException
+     * @return bool
      */
-    public function create($media_url = '', $name = '', $notify_url = '', $audio_channel = '', $metadata = '')
+    public function create(array $options)
     {
+        $metadata = isset($options['metadata']) ? $options['metadata'] : '';
+        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
+        $name = isset($options['name']) ? $options['name'] : '';
+        $media_url = isset($options['media_url']) ? $options['media_url'] : '';
+        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
+
         $ob = json_decode($metadata);
-        if($metadata != '' && $ob === null) {
+        if ($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
         if (!in_array($audio_channel, array('left', 'right', 'split'))) {
-// todo: throw exception for invalid enum type?
+            throw new InvalidEnumTypeException();
         }
 
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
@@ -103,9 +112,11 @@ abstract class Client
 
         $response = $this->process($request);
         $this->detail = $response->json();
-//todo: we should probably get the Location header for this one too
 
-        return $response->isSuccessful();
+        return array(
+            'code' => $response->getStatusCode(),
+            'location_header' => $response->getHeader('Location'),
+        );
     }
 
     /**
@@ -113,12 +124,13 @@ abstract class Client
      * @param string $name
      * @param string $notify_url
      * @param int $version
+     * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
     public function update($id, $name = '', $notify_url = '', $version = 0)
     {
         if (!is_numeric($version)) {
-// todo: throw exception for not being a number?
+            throw new InvalidIntegerArgumentException();
         }
 
         $request = $this->client->put($id, array(), '', array('exceptions' => false));
