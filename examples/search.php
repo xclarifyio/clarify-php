@@ -6,7 +6,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $audio = new \OP3Nvoice\Bundle($apikey);
 
-$result = $audio->search('close');
+$result = $audio->search('strong');
 
 $results = $result['item_results'];
 $items = $result['_links']['items'];
