@@ -2,4 +2,7 @@
 
 namespace OP3Nvoice\Exceptions;
 
-class InvalidIntegerArgumentException extends \Exception {}
+class InvalidIntegerArgumentException extends \Exception
+{
+
+}

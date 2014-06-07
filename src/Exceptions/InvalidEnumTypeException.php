@@ -2,4 +2,7 @@
 
 namespace OP3Nvoice\Exceptions;
 
-class InvalidEnumTypeException extends \Exception {}
+class InvalidEnumTypeException extends \Exception
+{
+
+}

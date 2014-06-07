@@ -2,4 +2,7 @@
 
 namespace OP3Nvoice\Exceptions;
 
-class InvalidResourceException extends \Exception {}
+class InvalidResourceException extends \Exception
+{
+
+}
