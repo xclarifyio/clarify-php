@@ -9,15 +9,12 @@ use OP3Nvoice\Exceptions\InvalidJSONException;
 use OP3Nvoice\Exceptions\InvalidResourceException;
 
 /**
- * Class Client
- * @package OP3Nvoice
- *
  * This is the base class that all of the individual media-related classes extend. At the moment, it simply initializes
  *   the connection by setting the user agent and the base URI for the API calls.
  */
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.8.0';
+    const USER_AGENT = 'op3nvoice-php/1.0.0';
 
     protected $apiKey   = '';
     protected $client   = null;
@@ -27,6 +24,7 @@ abstract class Client
     protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
 
     public $detail   = null;
+
     /**
      * @param $key
      */
@@ -73,7 +71,7 @@ abstract class Client
             case 'metadata':
                 return new Metadata($this->apiKey);
             default:
-                // do nothing
+                throw new InvalidResourceException('Not supported');
         }
     }
 

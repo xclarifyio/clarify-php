@@ -11,6 +11,7 @@ class Search extends Client
      * @param int $limit
      * @param string $embed
      * @param string $iterator
+     *
      * @return array|bool|float|int|string
      */
     public function search($query, $limit = 10, $embed = '', $iterator = '')
