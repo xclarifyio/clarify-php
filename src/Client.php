@@ -20,6 +20,10 @@ abstract class Client
 
     protected $apiKey   = '';
     protected $client   = null;
+
+    /**
+     * @var $response \Guzzle\Http\Message\Request
+     */
     protected $request  = null;
 
     /**
@@ -59,6 +63,7 @@ abstract class Client
     {
         return $this->response;
     }
+
     public function getStatusCode()
     {
         return $this->statusCode;
@@ -103,6 +108,7 @@ abstract class Client
             throw new InvalidEnumTypeException();
         }
 
+        /** @var $request \Guzzle\Http\Message\Request */
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
@@ -120,20 +126,20 @@ abstract class Client
     }
 
     /**
-     * @param $id
-     * @param string $name
-     * @param string $notify_url
-     * @param int $version
+     * @param array $options
      * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
-    public function update($id, $name = '', $notify_url = '', $version = 0)
+    public function update(array $options)
     {
+        $name = isset($options['name']) ? $options['name'] : '';
+        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
+        $version = isset($options['version']) ? $options['version'] : '';
         if (!is_numeric($version)) {
             throw new InvalidIntegerArgumentException();
         }
 
-        $request = $this->client->put($id, array(), '', array('exceptions' => false));
+        $request = $this->client->put($options['id'], array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('notify_url', $notify_url);
         $request->setPostField('version', $version);
