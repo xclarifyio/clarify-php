@@ -20,7 +20,8 @@ foreach ($items as $item) {
 
     $metadata->update(
         array(
-            'id' => $item['href'], '{"status": "This is awesome!!"}',
+            'id' => $item['href'],
+            'data' => '{"status": "This is awesome!!"}',
         )
     );
     $data = $metadata->load($item['href']);

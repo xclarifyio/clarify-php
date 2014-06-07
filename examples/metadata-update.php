@@ -13,7 +13,12 @@ foreach ($items as $item) {
     $data = $metadata->load($item['href']);
     print_r($data);
 
-    $metadata->update($item['href'], '{"status": "This is awesome!!"}');
+    $metadata->update(
+        array(
+            'id' => $item['href'],
+            'data' => '{"status": "This is awesome!!"}',
+        )
+    );
     $data = $metadata->load($item['href']);
     print_r($data);
 }
