@@ -1,8 +1,8 @@
 <?php
 
 // Don't forget to rename creds-dist.php to creds.php and insert your API key
-require 'creds.php';
-require '../vendor/autoload.php';
+require __DIR__.'/creds.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $audio = new OP3Nvoice\Bundle($apikey);
 

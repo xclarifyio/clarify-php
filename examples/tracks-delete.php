@@ -1,10 +1,10 @@
 <?php
 
 // Don't forget to rename creds-dist.php to creds.php and insert your API key
-require 'creds.php';
-require '../vendor/autoload.php';
+require __DIR__.'/creds.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$audio = new OP3Nvoice\Bundle($apikey);
+$audio = new \OP3Nvoice\Bundle($apikey);
 
 $items = $audio->index();
 
@@ -13,7 +13,7 @@ $items = $audio->index();
  *   loading each of their tracks. Updating the tracks and then reloading it for display. Then it deletes the
  *   tracks and shows the tracks object again.
  */
-foreach($items as $item) {
+foreach ($items as $item) {
     $tracks = $audio->tracks;
     $data = $tracks->load($item['href']);
     print_r($data);

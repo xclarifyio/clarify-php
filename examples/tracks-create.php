@@ -1,10 +1,10 @@
 <?php
 
 // Don't forget to rename creds-dist.php to creds.php and insert your API key
-require 'creds.php';
-require '../vendor/autoload.php';
+require __DIR__.'/creds.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$audio = new OP3Nvoice\Bundle($apikey);
+$audio = new \OP3Nvoice\Bundle($apikey);
 
 $items = $audio->index();
 
@@ -12,7 +12,7 @@ $items = $audio->index();
  * This gets the first item from our list of bundles, shows the existing tracks, adds three audio tracks, and then
  *   shows the new list of tracks.
  */
-foreach($items as $item) {
+foreach ($items as $item) {
     $tracks = $audio->tracks->load($item['href']);
     print_r($tracks);
 

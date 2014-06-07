@@ -1,8 +1,8 @@
 <?php
 
 // Don't forget to rename creds-dist.php to creds.php and insert your API key
-include 'creds.php';
-require '../vendor/autoload.php';
+include __DIR__.'/creds.php';
+require __DIR__.'/../vendor/autoload.php';
 
 $terms = $_GET['terms'];
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
