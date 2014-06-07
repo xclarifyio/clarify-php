@@ -19,9 +19,9 @@ or alternatively, you can add it directly to your `composer.json` file.
 
 ```json
 {
-  "require": {
-    "op3nvoice/op3nvoice-helper": "dev-master"
-  }
+    "require": {
+        "op3nvoice/op3nvoice-helper": "dev-master"
+    }
 }
 ```
 
@@ -34,7 +34,7 @@ composer install
 Finally, require Composer's autoloader in your PHP script:
 
 ```php
-require 'vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 ```
 
 ### Usage
@@ -42,7 +42,7 @@ require 'vendor/autoload.php';
 To begin using this library, initialize the OP3Nvoice object with your API key:
 
 ```php
-$audio = new OP3Nvoice\Bundle($apikey);
+$audio = new \OP3Nvoice\Bundle($apikey);
 ```
 
 Then add an audio or video file to your search index:
@@ -54,7 +54,7 @@ $audio->create('http://example.com/', "My awesome audio file");
 Within minutes your file will be added to your index and available via a simple search:
 
 ```php
-$audio = new OP3Nvoice\Bundle($apikey);
+$audio = new \OP3Nvoice\Bundle($apikey);
 $result = $audio->search('close');
 $results = $result['item_results'];
 ```
@@ -69,17 +69,17 @@ This quickstart demonstrates a simple way to get started using the OP3Nvoice API
 While you can use any programming language you choose, we provide helper libraries in a couple to get you started. In PHP, you simply include the library and create a new OP3Nvoice\Audio object using your API Key:
 
 ```php
-require '../vendor/autoload.php';
+require __DIR__.'/../vendor/autoload.php';
 
-$audio = new OP3Nvoice\Bundle('my api key');
+$audio = new \OP3Nvoice\Bundle('my-api-key');
 ```
 
 ### Loading Audio
 
-Once you've created the object, you can use the object to load each of your audio files as shown:
+Once you've created the object, you can use the object to load each one of your audio files as shown:
 
 ```php
-$result = $audio->create('http://example.com/sample-audio-file.wav', 'optional bundle name');
+$result = $audio->create('http://example.com/sample-audio-file.wav', "optional bundle name");
 ```
 
 Here are some audio files you can use for testing:
@@ -96,10 +96,10 @@ Hint: You don't have to download these files. Instead you can pass us these urls
 
 ### Searching Audio
 
-To search, you use the same OP3Nvoice\Audio object and search using your keywords. This can be accomplished in a single line of code:
+To search, you use the same \OP3Nvoice\Audio object and search using your keywords. This can be accomplished in a single line of code:
 
 ```php
-$result = $audio->search('my keyword');
+$result = $audio->search('my-keyword');
 ```
 
 Then you can process and interact the results however you wish. The code below simply shows the resulting bundle id, bundle name, and the start/end offsets for each occurrence of the search terms.
@@ -107,14 +107,14 @@ Then you can process and interact the results however you wish. The code below s
 ```php
 $results = $result['item_results'];
 $items = $result['_links']['items'];
-foreach($items as $index => $item) {
+foreach ($items as $index => $item) {
     $bundle = $audio->load($item['href']);
 
     echo $bundle['_links']['self']['href'] . "\n";
     echo $bundle['name'] . "\n";
 
     $search_hits = $results[$index]['term_results'][0]['matches'][0]['hits'];
-    foreach($search_hits as $search_hit) {
+    foreach ($search_hits as $search_hit) {
         echo $search_hit['start'] . ' -- ' . $search_hit['end'] . "\n";
     }
 }
@@ -133,10 +133,12 @@ name453
 
 ### Putting it All Together
 
-From here, we can visualize our search results with our included audio player. The player should work with no additional configuration but the bulk of the logic is here:
+From here, we can visualize our search results with our [audio player](https://github.com/OP3Nvoice/op3nvoice-audio-player)
+or our [video player](https://github.com/OP3Nvoice/op3nvoice-video-player) for video. The player should work with no
+additional configuration but the bulk of the logic is here:
 
 ```php
-$audio = new OP3Nvoice\Bundle($apikey);
+$audio = new \OP3Nvoice\Bundle($apikey);
 $items = $audio->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
