@@ -44,8 +44,8 @@ $duration = $tracks[0]['duration'];
             o3vPlayer.jPlayerOptions.swfPath = 'scripts/jquery';
 
             // Set to the playback URL for the video file(s).
-            var mediaURLs = { m4v:"http://www.jplayer.org/video/m4v/Big_Buck_Bunny_Trailer.m4v",
-                poster:"http://www.jplayer.org/video/poster/Big_Buck_Bunny_Trailer_480x270.png"};
+            var mediaURLs = { m4v:"http://media.swagit.com/podcasts/2014/05/31/05312014-504.360.mp4",
+                poster:"http://stills.swagit.com/swagit/swagit/05312014-504.480x360.jpg"};
 
             ////////////////////////////////////////////////////////
 
