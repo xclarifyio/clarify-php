@@ -17,6 +17,6 @@
         "guzzle/guzzle": "v3.9.0"
     },
     "autoload": {
-        "psr-0": { "OP3Nvoice": "src/"}
+        "psr-0": { "OP3Nvoice\\": "src/"}
     }
 }

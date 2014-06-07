@@ -1,7 +1,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/OP3Nvoice/op3nvoice-php/badges/quality-score.png?s=461ba0663e453941a097d9b8049ba865c4512617)](https://scrutinizer-ci.com/g/OP3Nvoice/op3nvoice-php/)
 
 PHP Helper Library for OP3Nvoice
-=============
+================================
 
 ### Installing via Composer
 
@@ -12,7 +12,7 @@ The recommended way to install the OP3Nvoice library is through [Composer](http:
 curl -sS https://getcomposer.org/installer | php
 
 # Add OP3Nvoice as a dependency
-php composer.phar require op3nvoice/op3nvoice-helper dev-master
+php composer.phar require op3nvoice/op3nvoice-helper dev-master@dev
 ```
 
 or alternatively, you can add it directly to your `composer.json` file.
