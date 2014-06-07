@@ -38,7 +38,7 @@ $duration = $tracks[0]['duration'];
     <link rel="stylesheet" href="css/o3v-player.css"/>
 
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
 
             // Set the path to the jplayer swf file.
             o3vPlayer.jPlayerOptions.swfPath = 'scripts/jquery';

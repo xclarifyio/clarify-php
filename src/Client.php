@@ -5,8 +5,6 @@ namespace OP3Nvoice;
 use Guzzle\Http;
 use OP3Nvoice\Exceptions\InvalidEnumTypeException;
 use OP3Nvoice\Exceptions\InvalidIntegerArgumentException;
-use OP3Nvoice\Metadata;
-use OP3Nvoice\Tracks;
 use OP3Nvoice\Exceptions\InvalidJSONException;
 use OP3Nvoice\Exceptions\InvalidResourceException;
 
@@ -87,7 +85,7 @@ abstract class Client
     }
 
     /**
-     * @param array $options
+     * @param  array                               $options
      * @throws Exceptions\InvalidEnumTypeException
      * @throws Exceptions\InvalidJSONException
      * @return bool
@@ -126,7 +124,7 @@ abstract class Client
     }
 
     /**
-     * @param array $options
+     * @param  array                                      $options
      * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
@@ -151,12 +149,12 @@ abstract class Client
     }
 
     /**
-     * @param int $limit
-     * @param string $embed
-     * @param string $iterator
+     * @param  int    $limit
+     * @param  string $embed
+     * @param  string $iterator
      * @return array
      */
-    public function index($limit = 10, $embed = '', $iterator = '' )
+    public function index($limit = 10, $embed = '', $iterator = '')
     {
         $items = array();
 
@@ -209,9 +207,9 @@ abstract class Client
 
     /**
      * @param $query
-     * @param int $limit
-     * @param string $embed
-     * @param string $iterator
+     * @param  int                         $limit
+     * @param  string                      $embed
+     * @param  string                      $iterator
      * @return array|bool|float|int|string
      */
     public function search($query, $limit = 10, $embed = '', $iterator = '')

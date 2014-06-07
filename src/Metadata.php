@@ -9,7 +9,7 @@ class Metadata extends Subresource
     protected $subresource = 'o3v:metadata';
 
     /**
-     * @param array $options
+     * @param  array                           $options
      * @return bool
      * @throws Exceptions\InvalidJSONException
      */
@@ -20,7 +20,7 @@ class Metadata extends Subresource
         $resourceURI = $this->getSubresourceURI($options['id']);
 
         $ob = json_decode($data);
-        if($data != '' && $ob === null) {
+        if ($data != '' && $ob === null) {
             throw new InvalidJSONException();
         }
 

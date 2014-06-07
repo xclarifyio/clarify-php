@@ -8,7 +8,7 @@ class Search extends Client
 
     /**
      * @param $query
-     * @param int $limit
+     * @param int    $limit
      * @param string $embed
      * @param string $iterator
      *

@@ -7,7 +7,7 @@ class Tracks extends Subresource
     protected $subresource = 'o3v:tracks';
 
     /**
-     * @param array $options
+     * @param  array $options
      * @return bool
      */
     public function update(array $options)
