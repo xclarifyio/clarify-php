@@ -106,7 +106,7 @@ abstract class Client
             throw new InvalidEnumTypeException();
         }
 
-        /** @var $request \Guzzle\Http\Message\Request */
+        /** @var $request \Guzzle\Http\Message\RequestInterface */
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
         $request->setPostField('name', $name);
         $request->setPostField('media_url', $media_url);
