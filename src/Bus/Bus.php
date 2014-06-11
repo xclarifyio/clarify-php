@@ -10,8 +10,12 @@ class Bus
 {
     protected $client;
 
-    public function __construct()
+    public function __construct($apikey)
     {
+        // use $apikey which is the Oauth2.0 bearer token
+        // to initialize the client configuration via
+        // a setting Bearer header subscriber
+
         $spec = new OP3NvoiceSpec();
         $apiBaseUrl = 'https://api-beta.OP3Nvoice.com/v1/';
         $description = new Description($spec->getDescription($apiBaseUrl));
