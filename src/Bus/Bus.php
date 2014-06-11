@@ -15,7 +15,7 @@ class Bus
     {
         $config = [
             'defaults' => [
-                'headers' => ['Bearer' => $apiKey]
+                'auth' => AuthenticatorSubscriber::AUTH_KEY
             ],
         ];
 
