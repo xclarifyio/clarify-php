@@ -10,19 +10,28 @@ class Bus
 {
     protected $client;
 
-    public function __construct($apikey)
+    public function __construct($apiKey)
     {
-        // use $apikey which is the Oauth2.0 bearer token
-        // to initialize the client configuration via
-        // a setting Bearer header subscriber
+        $config = [
+            'defaults' => [
+                'headers' => ['Bearer' => $apiKey]
+            ],
+        ];
 
         $spec = new OP3NvoiceSpec();
         $apiBaseUrl = 'https://api-beta.OP3Nvoice.com/v1/';
+        $httpClient = new HttpClient($config);
+
+        // attach logger to see what is happening
+        //$httpClient->getEmitter()->attach();
+
         $description = new Description($spec->getDescription($apiBaseUrl));
         $this->client = new GuzzleClient(
-            new HttpClient(),
-            $description
+            $httpClient,
+            $description,
+            []
         );
+        $this->client->getEmitter()
     }
 
     public function getClient()
