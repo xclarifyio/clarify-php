@@ -32,8 +32,8 @@ class OP3NvoiceSpec
                             'type' => 'string',
                             'location' => 'query',
                             'required' => false,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'createBundle' => [
                     'httpMethod' => 'POST',
@@ -70,8 +70,8 @@ class OP3NvoiceSpec
                             'type' => 'string',
                             'location' => 'form',
                             'required' => false,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'deleteBundle' => [
                     'httpMethod' => 'DELETE',
@@ -84,8 +84,8 @@ class OP3NvoiceSpec
                             'type' => 'string',
                             'location' => 'uri',
                             'required' => true,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'getBundle' => [
                     'httpMethod' => 'GET',
@@ -104,8 +104,8 @@ class OP3NvoiceSpec
                             'type' => 'string',
                             'location' => 'query',
                             'required' => false,
-                        ]
-                    ]
+                        ],
+                    ],
                 ],
                 'updateBundle' => [
                     'httpMethod' => 'PUT',
@@ -119,14 +119,41 @@ class OP3NvoiceSpec
                             'location' => 'uri',
                             'required' => true,
                         ],
-                        'embed' => [
-                            'description' => 'list of link relations to embed in the result bundle. Zero or more of: tracks, metadata. List is space or comma separated single string or an array of strings',
+                        'name' => [
+                            'description' => 'Name of the bundle. Up to 128 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'notify_url' => [
+                            'description' => 'URL for notifications on this bundle. Up to 256 characters.',
                             'type' => 'string',
                             'location' => 'query',
                             'required' => false,
-                        ]
-                    ]
-                ]
+                        ],
+                        'version' => [
+                            'description' => 'Object version.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                    ],
+                ],
+                'getBundleMetadata' => [
+                    'httpMethod' => 'GET',
+                    'description' => 'Gets the metadata for a bundle.',
+                    'uri' => 'bundles/{bundle_id}/metadata',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => true,
+                        ],
+                    ],
+                ],
+                ''
             ],
             'models' => [
                 'getResponse' => [
