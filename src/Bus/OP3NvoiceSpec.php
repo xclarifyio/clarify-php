@@ -148,12 +148,65 @@ class OP3NvoiceSpec
                         'bundle_id' => [
                             'description' => 'id of a bundle',
                             'type' => 'string',
-                            'location' => 'form',
+                            'location' => 'uri',
                             'required' => true,
                         ],
                     ],
                 ],
-                ''
+                'updateBundleMetadata' => [
+                    'httpMethod' => 'PUT',
+                    'description' => 'Update the metadata for a bundle.',
+                    'uri' => 'bundles/{bundle_id}/metadata',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                        'data' => [
+                            'description' => 'User-defined JSON data associated with the bundle. Must be valid JSON, up to 4000 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => true,
+                        ],
+                        'version' => [
+                            'description' => 'Object version.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                    ],
+                ],
+                'deleteBundleMetadata' => [
+                    'httpMethod' => 'DELETE',
+                    'description' => 'Delete the metadata of a bundle and set data to {} (empty object.) This is functionally equivalent to an update metadata request with data set to {}.',
+                    'uri' => 'bundles/{bundle_id}/metadata',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                    ],
+                ],
+                'addTrackToBundle' => [
+                    'httpMethod' => 'POST',
+                    'description' => 'Add a new track to a bundle. This will append a new track to the end of the tracks array or return an error if the maximum number of tracks (4) has been reached.',
+                    'uri' => 'bundles/{bundle_id}/tracks',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                    ],
+                ],
             ],
             'models' => [
                 'getResponse' => [
