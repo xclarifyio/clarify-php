@@ -15,7 +15,7 @@ class Bus
     {
         $config = [
             'defaults' => [
-                'auth' => AuthenticatorSubscriber::AUTH_KEY
+                'auth' => AuthenticatorSubscriber::AUTH_KEY,
             ],
         ];
 
