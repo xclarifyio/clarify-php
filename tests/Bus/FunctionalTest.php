@@ -16,17 +16,19 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
         $this->bus = new Bus($apiKey);
     }
 
-    public function testX()
+    /**
+     * @test
+     */
+    public function it_gets_bundles()
     {
         $client = $this->bus->getClient();
+        /** @var \GuzzleHttp\Command\Model $result */
+        $model = $client->getBundles();
 
-        try {
-            $result = $client->getBundles();
-        } catch (\Exception $e) {
-            ladybug_dump_die($e->getMessage());
-        }
-
-
-        $this->assertTrue(true);
+        $result = $model->toArray();
+        $this->assertArrayHasKey('total', $result);
+        $this->assertArrayHasKey('limit', $result);
+        $this->assertArrayHasKey('_class', $result);
+        $this->assertArrayHasKey('_links', $result);
     }
 }
