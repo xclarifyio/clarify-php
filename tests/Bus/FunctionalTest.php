@@ -20,8 +20,12 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
     {
         $client = $this->bus->getClient();
 
-        $result = $client->getBundles();
-        ladybug_dump_die($result);
+        try {
+            $result = $client->getBundles();
+        } catch (\Exception $e) {
+            ladybug_dump_die($e->getMessage());
+        }
+
 
         $this->assertTrue(true);
     }
