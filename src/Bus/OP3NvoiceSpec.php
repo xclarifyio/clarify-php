@@ -315,6 +315,26 @@ class OP3NvoiceSpec
                         ],
                     ],
                 ],
+                'search' => [
+                    'httpMethod' => 'GET',
+                    'description' => 'Searches the bundles and returns a list of matching bundles, along with what matched and where for each bundle.',
+                    'uri' => 'search',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'query' => [
+                            'description' => 'search terms, typically as typed into a search field. Up to 120 characters.',
+                            'type' => 'string',
+                            'location' => 'query',
+                            'required' => false,
+                        ],
+                        '' => [
+                            'description' => 'Track number. An integer from 0 to 3. Default is 0.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                    ],
+                ],
             ],
             'models' => [
                 'getResponse' => [
