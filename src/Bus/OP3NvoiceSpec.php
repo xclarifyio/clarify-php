@@ -327,10 +327,28 @@ class OP3NvoiceSpec
                             'location' => 'query',
                             'required' => false,
                         ],
-                        '' => [
-                            'description' => 'Track number. An integer from 0 to 3. Default is 0.',
+                        'query_fields' => [
+                            'description' => 'list of metadata and bundle fields to search with the query. Use metadata.* for all metadata fields, bundle.* for all bundle fields, * for all fields, - for no fields. Default is metadata.*. List is space or comma separated single string or an array of strings. If single string, up to 1024 characters.',
                             'type' => 'string',
-                            'location' => 'form',
+                            'location' => 'query',
+                            'required' => false,
+                        ],
+                        'filter' => [
+                            'description' => 'limit results to specified number of bundles. Default is 10. Max 100.',
+                            'type' => 'string',
+                            'location' => 'query',
+                            'required' => false,
+                        ],
+                        'embed' => [
+                            'description' => 'list of link relations to embed in the result collection. Zero or more of: items, tracks, metadata. List is space or comma separated single string or an array of strings',
+                            'type' => 'string',
+                            'location' => 'query',
+                            'required' => false,
+                        ],
+                        'iterator' => [
+                            'description' => 'opaque value, automatically provided in next/prev links',
+                            'type' => 'string',
+                            'location' => 'query',
                             'required' => false,
                         ],
                     ],
