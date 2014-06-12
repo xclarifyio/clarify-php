@@ -21,6 +21,7 @@ class FunctionalTest extends \PHPUnit_Framework_TestCase
      */
     public function it_gets_bundles()
     {
+        /** @var \OP3Nvoice\Bus\ClientStub $client */
         $client = $this->bus->getClient();
         /** @var \GuzzleHttp\Command\Model $result */
         $model = $client->getBundles();
