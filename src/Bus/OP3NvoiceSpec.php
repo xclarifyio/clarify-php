@@ -193,7 +193,7 @@ class OP3NvoiceSpec
                         ],
                     ],
                 ],
-                'addTrackToBundle' => [
+                'addBundleTrack' => [
                     'httpMethod' => 'POST',
                     'description' => 'Add a new track to a bundle. This will append a new track to the end of the tracks array or return an error if the maximum number of tracks (4) has been reached.',
                     'uri' => 'bundles/{bundle_id}/tracks',
@@ -204,6 +204,114 @@ class OP3NvoiceSpec
                             'type' => 'string',
                             'location' => 'uri',
                             'required' => true,
+                        ],
+                        'label' => [
+                            'description' => 'Label for the track. Up to 128 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'media_url' => [
+                            'description' => 'URL of a media file for this bundle. Up to 256 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => true,
+                        ],
+                        'audio_channel' => [
+                            'description' => 'The audio channel to use for the track ( "" | left | right | split ). Default is empty string which means all channels of audio in the media file are used for the track.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'source' => [
+                            'description' => 'The source of the media ( "" | phone). Empty string signifies generic media. "phone" is a telephone recording.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                    ],
+                ],
+                'updateBundleTrack' => [
+                    'httpMethod' => 'PUT',
+                    'description' => 'Update a track for a bundle. This can either set or replace the media url for a specified track or add a new track.',
+                    'uri' => 'bundles/{bundle_id}/tracks',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                        'track' => [
+                            'description' => 'Track number. An integer from 0 to 3. Default is 0.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'label' => [
+                            'description' => 'Label for the track. Up to 128 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'media_url' => [
+                            'description' => 'URL of a media file for this bundle. Up to 256 characters.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => true,
+                        ],
+                        'audio_channel' => [
+                            'description' => 'The audio channel to use for the track ( "" | left | right | split ). Default is empty string which means all channels of audio in the media file are used for the track.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'source' => [
+                            'description' => 'The source of the media ( "" | phone). Empty string signifies generic media. "phone" is a telephone recording.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                        'version' => [
+                            'description' => 'Object version.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
+                        ],
+                    ],
+                ],
+                'getBundleTrack' => [
+                    'httpMethod' => 'GET',
+                    'description' => 'Gets the description and status for the bundle\'s tracks.',
+                    'uri' => 'bundles/{bundle_id}/tracks',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                    ],
+                ],
+                'deleteBundleTrack' => [
+                    'httpMethod' => 'DELETE',
+                    'description' => 'Delete tracks of a bundle. This will only delete media stored on OP3Nvoice systems and not delete the source media on remote systems.',
+                    'uri' => 'bundles/{bundle_id}/tracks',
+                    'responseModel' => 'getResponse',
+                    'parameters' => [
+                        'bundle_id' => [
+                            'description' => 'id of a bundle',
+                            'type' => 'string',
+                            'location' => 'uri',
+                            'required' => true,
+                        ],
+                        'track' => [
+                            'description' => 'Track number. An integer from 0 to 3. Default is 0.',
+                            'type' => 'string',
+                            'location' => 'form',
+                            'required' => false,
                         ],
                     ],
                 ],
