@@ -95,7 +95,7 @@ abstract class Client
     public function create(array $options)
     {
         $metadata = isset($options['metadata']) ? $options['metadata'] : '';
-        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : 'left';
+        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
         $name = isset($options['name']) ? $options['name'] : '';
         $media_url = isset($options['media_url']) ? $options['media_url'] : '';
         $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
