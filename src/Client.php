@@ -104,7 +104,7 @@ abstract class Client
         if ($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
-        if (!in_array($audio_channel, array('left', 'right', 'split'))) {
+        if (!in_array($audio_channel, array('left', 'right', 'split', ''))) {
             throw new InvalidEnumTypeException();
         }
 
