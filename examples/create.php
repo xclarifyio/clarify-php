@@ -7,10 +7,8 @@ require __DIR__.'/../vendor/autoload.php';
 $audio = new \OP3Nvoice\Bundle($apikey);
 
 $success = $audio->create(
-    array(
-        'media_url' => 'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav',
-        'name' => 'name' . rand(0, 500),
-    )
+    'name' . rand(0, 500),
+    'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav'
 );
 
 if ($success) {

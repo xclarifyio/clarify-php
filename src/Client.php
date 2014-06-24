@@ -18,6 +18,7 @@ abstract class Client
 {
     const USER_AGENT = 'op3nvoice-php/0.9.0';
 
+    protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
     protected $apiKey   = '';
     protected $client   = null;
 
@@ -31,8 +32,6 @@ abstract class Client
      */
     protected $response = null;
     protected $statusCode = null;
-    protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
-
     public $detail   = null;
 
     /**
@@ -92,7 +91,7 @@ abstract class Client
      * @throws Exceptions\InvalidJSONException
      * @return bool
      */
-    public function create(array $options)
+    public function post(array $options)
     {
         $metadata = isset($options['metadata']) ? $options['metadata'] : '';
         $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
@@ -130,7 +129,7 @@ abstract class Client
      * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
-    public function update(array $options)
+    public function put(array $options)
     {
         $name = isset($options['name']) ? $options['name'] : '';
         $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
