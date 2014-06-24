@@ -1,6 +1,6 @@
 {
     "name": "op3nvoice/op3nvoice-helper",
-    "version": "0.8.0",
+    "version": "0.9.1",
     "type": "library",
     "description": "A PHP wrapper for the OP3Nvoice API",
     "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search"],

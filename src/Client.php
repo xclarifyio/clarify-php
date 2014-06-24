@@ -16,7 +16,7 @@ use OP3Nvoice\Exceptions\InvalidResourceException;
  */
 abstract class Client
 {
-    const USER_AGENT = 'op3nvoice-php/0.9.0';
+    const USER_AGENT = 'op3nvoice-php/0.9.1';
 
     protected $baseURI  = 'https://api-beta.OP3Nvoice.com/v1/';
     protected $apiKey   = '';

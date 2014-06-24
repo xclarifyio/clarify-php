@@ -15,4 +15,15 @@ class Bundle extends Client
 
         return $this->post($params);
     }
+
+    public function update($id, $name = '', $notify_url = '', $version  = 1)
+    {
+        $params = array();
+        $params['id'] = $id;
+        $params['name'] = $name;
+        $params['notify_url'] = $notify_url;
+        $params['version'] = $version;
+
+        return $this->put($params);
+    }
 }
