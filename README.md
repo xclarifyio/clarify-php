@@ -62,6 +62,7 @@ $results = $result['item_results'];
 ## Quickstart Guide
 
 ### Getting Started
+
 This quickstart demonstrates a simple way to get started using the OP3Nvoice API. Following these steps, it should take you no more than 5-10 minutes to have a fully functional search for your audio.
 
 ### Creating the object
@@ -79,7 +80,7 @@ $audio = new \OP3Nvoice\Bundle('my-api-key');
 Once you've created the object, you can use the object to load each one of your audio files as shown:
 
 ```php
-$result = $audio->create('http://example.com/sample-audio-file.wav', "optional bundle name");
+$result = $audio->create("optional bundle name", 'http://example.com/sample-audio-file.wav');
 ```
 
 Here are some audio files you can use for testing:
@@ -96,7 +97,7 @@ Hint: You don't have to download these files. Instead you can pass us these urls
 
 ### Searching Audio
 
-To search, you use the same \OP3Nvoice\Audio object and search using your keywords. This can be accomplished in a single line of code:
+To search, you use the same \OP3Nvoice\Bundle object and search using your keywords. This can be accomplished in a single line of code:
 
 ```php
 $result = $audio->search('my-keyword');
