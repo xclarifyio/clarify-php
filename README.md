@@ -149,26 +149,6 @@ $tracks = $audio->tracks($audiokey)['tracks'];
 $mediaUrl = $tracks[0]['media_url'];
 ```
 
-## Todo List
-
-* ~~Include Guzzle via Composer~~
-* ~~Authentication~~
-* Bundle
-  * ~~create a bundle~~
-  * ~~list all bundles~~
-  * ~~load a specific bundle~~
-  * ~~delete a bundle~~
-  * ~~update a bundle~~
-  * ~~get metadata~~
-  * ~~update metadata~~
-  * ~~delete metadata~~
-  * ~~add a track~~
-  * ~~update a track~~
-  * ~~get track information~~
-  * ~~delete a track~~
-* ~~Refactor the existing Audio/Video classes to a single Bundle resource~~
-* ~~Search~~
-
 ## Contributing
 
 1. Fork it
