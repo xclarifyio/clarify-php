@@ -94,26 +94,21 @@ abstract class Client
     public function post(array $options)
     {
         $metadata = isset($options['metadata']) ? $options['metadata'] : '';
-        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
-        $name = isset($options['name']) ? $options['name'] : '';
-        $media_url = isset($options['media_url']) ? $options['media_url'] : '';
-        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
-
         $ob = json_decode($metadata);
         if ($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
         }
+
+        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
         if (!in_array($audio_channel, array('left', 'right', 'split', ''))) {
             throw new InvalidEnumTypeException();
         }
 
         /** @var $request \Guzzle\Http\Message\Request */
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
-        $request->setPostField('name', $name);
-        $request->setPostField('media_url', $media_url);
-        $request->setPostField('notify_url', $notify_url);
-        $request->setPostField('audio_channel', $audio_channel);
-        $request->setPostField('metadata', $metadata);
+        foreach($options as $key => $value) {
+            $request->setPostField($key, $value);
+        }
 
         $response = $this->process($request);
         $this->detail = $response->json();
@@ -131,17 +126,15 @@ abstract class Client
      */
     public function put(array $options)
     {
-        $name = isset($options['name']) ? $options['name'] : '';
-        $notify_url = isset($options['notify_url']) ? $options['notify_url'] : '';
         $version = isset($options['version']) ? $options['version'] : '1';
         if (!is_numeric($version)) {
             throw new InvalidIntegerArgumentException();
         }
 
         $request = $this->client->put($options['id'], array(), '', array('exceptions' => false));
-        $request->setPostField('name', $name);
-        $request->setPostField('notify_url', $notify_url);
-        $request->setPostField('version', $version);
+        foreach($options as $key => $value) {
+            $request->setPostField($key, $value);
+        }
 
         $response = $this->process($request);
         $this->detail = $response->json();
