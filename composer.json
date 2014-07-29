@@ -21,7 +21,6 @@
         "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
-        "psr-4": { "Clarify": "src/Clarify"},
-        "psr-4": { "OP3Nvoice\\": "src/"}
+        "psr-4": { "Clarify\\": "src/Clarify/"}
     }
 }
