@@ -17,9 +17,11 @@
         "guzzle/guzzle": "~3.9.0"
     },
     "require-dev": {
-        "raulfraile/ladybug": "dev-master@dev"
+        "mockery/mockery": ">=0.7.2",
+        "phpunit/phpunit": "3.7.*"
     },
     "autoload": {
+        "psr-4": { "Clarify": "src/Clarify"},
         "psr-4": { "OP3Nvoice\\": "src/"}
     }
 }
