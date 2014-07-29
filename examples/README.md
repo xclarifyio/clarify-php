@@ -1,5 +1,5 @@
 
-This is a set of scripts to demonstrate using various pieces of the OP3Nvoice helper library.
+This is a set of scripts to demonstrate using various pieces of the Clarify helper library.
 
 This uses the PHP library available here: https://github.com/OP3Nvoice/op3nvoice-php
 

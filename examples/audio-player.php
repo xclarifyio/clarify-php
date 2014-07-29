@@ -7,7 +7,7 @@ require __DIR__.'/../vendor/autoload.php';
 $terms = isset($_GET['terms']) ? $_GET['terms'] : 'no search specified';
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$audio = new \OP3Nvoice\Bundle($apikey);
+$audio = new \Clarify\Bundle($apikey);
 $items = $audio->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
@@ -23,7 +23,7 @@ $duration = $tracks[0]['duration'];
 <html>
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-        <title>OP3Nvoice Player Demo</title>
+        <title>Clarify Player Demo</title>
         <style type="text/css">
             body { font-family: sans-serif; }
         </style>
@@ -79,7 +79,7 @@ $duration = $tracks[0]['duration'];
     
     </head>
     <body>
-        <h3>OP3Nvoice JPlayer Audio Demo</h3>
+        <h3>Clarify JPlayer Audio Demo</h3>
         <form action="" method="GET">
             Search terms: <input name="terms" value="" />
             <input type="submit" />
