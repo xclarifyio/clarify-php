@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/OP3Nvoice/op3nvoice-php/badges/quality-score.png?s=461ba0663e453941a097d9b8049ba865c4512617)](https://scrutinizer-ci.com/g/OP3Nvoice/op3nvoice-php/)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-php/?branch=master)
 
 PHP Helper Library for OP3Nvoice
 ================================
