@@ -4,7 +4,7 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \OP3Nvoice\Bundle($apikey);
+$audio = new \Clarify\Bundle($apikey);
 
 $items = $audio->index();
 

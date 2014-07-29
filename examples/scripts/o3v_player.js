@@ -1,6 +1,6 @@
 /*
- * OP3Nvoice audio player 
- * Copyright (c) 2013 OP3Nvoice Ltd. All rights reserved.
+ * Clarify audio player
+ * Copyright (c) 2014 Clarify, Inc. All rights reserved.
  *
  * Makes use of:
  *  jquery - GPL/MIT license

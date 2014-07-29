@@ -1,7 +1,7 @@
 /*
- * OP3Nvoice video player
+ * Clarify video player
  *
- * Copyright (c) 2013 OP3Nvoice Ltd. All rights reserved.
+ * Copyright (c) 2014 Clarify, Inc. All rights reserved.
  *
  * The MIT License (MIT)
  *
