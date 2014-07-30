@@ -38,10 +38,10 @@ abstract class Client
     /**
      * @param $key
      */
-    public function __construct($key)
+    public function __construct($key, $httpClient = null)
     {
         $this->apiKey = $key;
-        $this->client = new Http\Client($this->baseURI);
+        $this->client = (is_null($httpClient)) ? new Http\Client($this->baseURI) : $httpClient;
         $this->client->setUserAgent($this::USER_AGENT . '/' . PHP_VERSION);
     }
 
