@@ -1,10 +1,10 @@
 {
-    "name": "op3nvoice/op3nvoice-helper",
-    "version": "0.9.2",
+    "name": "clarify/clarify-helper",
+    "version": "0.9.4",
     "type": "library",
-    "description": "A PHP wrapper for the OP3Nvoice API",
-    "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search"],
-    "homepage": "https://github.com/caseysoftware/op3nvoice-php",
+    "description": "A PHP wrapper for the Clarify API",
+    "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search", "clarify", "clarify.io"],
+    "homepage": "https://github.com/Clarify/clarify-php",
     "license": "MIT",
     "authors": [
         {
