@@ -12,7 +12,7 @@ The recommended way to install the OP3Nvoice library is through [Composer](http:
 curl -sS https://getcomposer.org/installer | php
 
 # Add OP3Nvoice as a dependency
-php composer.phar require op3nvoice/op3nvoice-helper dev-master@dev
+php composer.phar require clarify/clarify-helper dev-master@dev
 ```
 
 or alternatively, you can add it directly to your `composer.json` file.
@@ -20,7 +20,7 @@ or alternatively, you can add it directly to your `composer.json` file.
 ```json
 {
     "require": {
-        "op3nvoice/op3nvoice-helper": "dev-master@dev"
+        "clarify/clarify-helper": "dev-master@dev"
     }
 }
 ```
@@ -42,7 +42,7 @@ require __DIR__.'/vendor/autoload.php';
 To begin using this library, initialize the OP3Nvoice object with your API key:
 
 ```php
-$audio = new \OP3Nvoice\Bundle($apikey);
+$audio = new \Clarify\Bundle($apikey);
 ```
 
 Then add an audio or video file to your search index:
@@ -54,7 +54,7 @@ $audio->create('http://example.com/', "My awesome audio file");
 Within minutes your file will be added to your index and available via a simple search:
 
 ```php
-$audio = new \OP3Nvoice\Bundle($apikey);
+$audio = new \Clarify\Bundle($apikey);
 $result = $audio->search('close');
 $results = $result['item_results'];
 ```
@@ -72,7 +72,7 @@ While you can use any programming language you choose, we provide helper librari
 ```php
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \OP3Nvoice\Bundle('my-api-key');
+$audio = new \Clarify\Bundle('my-api-key');
 ```
 
 ### Loading Audio
@@ -139,7 +139,7 @@ or our [video player](https://github.com/OP3Nvoice/op3nvoice-video-player) for v
 additional configuration but the bulk of the logic is here:
 
 ```php
-$audio = new \OP3Nvoice\Bundle($apikey);
+$audio = new \Clarify\Bundle($apikey);
 $items = $audio->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
