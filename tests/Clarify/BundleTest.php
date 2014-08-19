@@ -2,7 +2,7 @@
 include '../vendor/autoload.php';
 include 'creds.php';
 
-use \Mockery;
+use Guzzle\Http;
 
 class BundleTest extends PHPUnit_Framework_TestCase
 {
@@ -12,10 +12,12 @@ class BundleTest extends PHPUnit_Framework_TestCase
     {
         global $apikey;
 
-        $this->bundle = new \Clarify\Bundle($apikey);
+        $client = Mockery::mock(new Http\Client());
+        $this->bundle = new \Clarify\Bundle($apikey, $client);
     }
 
     /**
+     * @expectedException Guzzle\Http\Exception\CurlException
      * @expectedException Clarify\Exceptions\InvalidResourceException
      */
     public function testCreate()

@@ -2,3 +2,5 @@
 /vendor/*
 /examples/creds.php
 /creds.php
+
+tests/creds.php
