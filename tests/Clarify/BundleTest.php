@@ -1,19 +1,17 @@
 <?php
 include '../vendor/autoload.php';
-include 'creds.php';
 
 use Guzzle\Http;
 
 class BundleTest extends PHPUnit_Framework_TestCase
 {
     protected $bundle = null;
+    protected $apiKey = '123';
 
     public function setUp()
     {
-        global $apikey;
-
-        $client = Mockery::mock(new Http\Client());
-        $this->bundle = new \Clarify\Bundle($apikey, $client);
+        $client = $this->createMockClient();
+        $this->bundle = new \Clarify\Bundle($this->apiKey, $client);
     }
 
     /**
