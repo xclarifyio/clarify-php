@@ -4,22 +4,22 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 
-$items = $audio->index();
+$items = $bundle->index();
 
 foreach ($items as $item) {
-    $bundle = $audio->load($item['href']);
+    $bundle = $bundle->load($item['href']);
 
     $id = $bundle['_links']['self']['href'];
     echo $id . "\n";
     echo $bundle['name'] . "\n";
 
     $version = $bundle['version'];
-    $success = $audio->update($id, 'updated-name-' . rand(0,500), '', $version);
+    $success = $bundle->update($id, 'updated-name-' . rand(0,500), '', $version);
 
     if ($success) {
-        $bundle = $audio->load($item['href']);
+        $bundle = $bundle->load($item['href']);
         $id = $bundle['_links']['self']['href'];
         echo $id . "\n";
         echo $bundle['name'] . "\n";

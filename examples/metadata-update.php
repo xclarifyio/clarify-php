@@ -4,12 +4,12 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 
-$items = $audio->index();
+$items = $bundle->index();
 
 foreach ($items as $item) {
-    $metadata = $audio->metadata;
+    $metadata = $bundle->metadata;
     $data = $metadata->load($item['href']);
     print_r($data);
 

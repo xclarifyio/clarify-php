@@ -7,14 +7,14 @@ require __DIR__.'/../vendor/autoload.php';
 $terms = $_GET['terms'];
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$video = new \Clarify\Bundle($apikey);
-$items = $video->search($terms);
+$bundle = new \Clarify\Bundle($apikey);
+$items = $bundle->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
 $item_results = json_encode($items['item_results']);
 
-$videokey = $items['_links']['items'][0]['href'];
-$tracks = $video->tracks->load($videokey)['tracks'];
+$bundlekey = $items['_links']['items'][0]['href'];
+$tracks = $bundle->tracks->load($bundlekey)['tracks'];
 
 $mediaUrl = $tracks[0]['media_url'];
 $duration = $tracks[0]['duration'];

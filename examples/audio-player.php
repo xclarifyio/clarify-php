@@ -7,14 +7,14 @@ require __DIR__.'/../vendor/autoload.php';
 $terms = isset($_GET['terms']) ? $_GET['terms'] : 'no search specified';
 $terms = preg_replace("/[^A-Za-z0-9|]/", "", $terms);
 
-$audio = new \Clarify\Bundle($apikey);
-$items = $audio->search($terms);
+$bundle = new \Clarify\Bundle($apikey);
+$items = $bundle->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
 $item_results = json_encode($items['item_results']);
 
-$audiokey = $items['_links']['items'][0]['href'];
-$tracks = $audio->tracks->load($audiokey)['tracks'];
+$bundlekey = $items['_links']['items'][0]['href'];
+$tracks = $bundle->tracks->load($bundlekey)['tracks'];
 
 $mediaUrl = $tracks[0]['media_url'];
 $duration = $tracks[0]['duration'];

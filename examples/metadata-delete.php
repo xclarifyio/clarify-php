@@ -4,9 +4,9 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 
-$items = $audio->index();
+$items = $bundle->index();
 
 /**
  * This is an ugly bit of code but it fully demonstrates the metadata methods. It starts by loading a list of bundles,
@@ -14,7 +14,7 @@ $items = $audio->index();
  *   metadata and shows the metadata object again.
  */
 foreach ($items as $item) {
-    $metadata = $audio->metadata;
+    $metadata = $bundle->metadata;
     $data = $metadata->load($item['href']);
     print_r($data);
 

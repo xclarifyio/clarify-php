@@ -4,15 +4,15 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 
-$items = $audio->index();
+$items = $bundle->index();
 
 $item = $items[0];
 
 echo $item['href'] . "\n";
 
-$item = $audio->delete($item['href']);
-$bundle = $audio->load($item['href']);
+$item = $bundle->delete($item['href']);
+$bundle = $bundle->load($item['href']);
 
 print_r($bundle);

@@ -4,14 +4,14 @@
 require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 
-$result = $audio->search('strong');
+$result = $bundle->search('strong');
 
 $results = $result['item_results'];
 $items = $result['_links']['items'];
 foreach ($items as $index => $item) {
-    $bundle = $audio->load($item['href']);
+    $bundle = $bundle->load($item['href']);
 
     echo $bundle['_links']['self']['href'] . "\n";
     echo $bundle['name'] . "\n";
