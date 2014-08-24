@@ -2,7 +2,4 @@
 
 namespace OP3Nvoice\Exceptions;
 
-class InvalidJSONException extends \Exception
-{
-
-}
+class InvalidJSONException extends \Clarify\Exceptions\InvalidJSONException { }
