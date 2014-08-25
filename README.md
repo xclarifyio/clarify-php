@@ -42,20 +42,20 @@ require __DIR__.'/vendor/autoload.php';
 To begin using this library, initialize the OP3Nvoice object with your API key:
 
 ```php
-$audio = new \Clarify\Bundle($apikey);
+$bundle = new \Clarify\Bundle($apikey);
 ```
 
 Then add an audio or video file to your search index:
 
 ```php
-$audio->create('http://example.com/', "My awesome audio file");
+$bundle->create('http://example.com/', "My awesome audio file");
 ```
 
 Within minutes your file will be added to your index and available via a simple search:
 
 ```php
-$audio = new \Clarify\Bundle($apikey);
-$result = $audio->search('close');
+$bundle = new \Clarify\Bundle($apikey);
+$result = $bundle->search('close');
 $results = $result['item_results'];
 ```
 
@@ -72,7 +72,7 @@ While you can use any programming language you choose, we provide helper librari
 ```php
 require __DIR__.'/../vendor/autoload.php';
 
-$audio = new \Clarify\Bundle('my-api-key');
+$bundle = new \Clarify\Bundle('my-api-key');
 ```
 
 ### Loading Audio
@@ -80,17 +80,17 @@ $audio = new \Clarify\Bundle('my-api-key');
 Once you've created the object, you can use the object to load each one of your audio files as shown:
 
 ```php
-$result = $audio->create("optional bundle name", 'http://example.com/sample-audio-file.wav');
+$result = $bundle->create("optional bundle name", 'http://example.com/sample-audio-file.wav');
 ```
 
 Here are some audio files you can use for testing:
 
 ```bash
-https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav
+http://media.clarify.io/audio/samples/harvard-sentences-1.wav
 
-https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-2.wav
+http://media.clarify.io/audio/samples/harvard-sentences-2.wav
 
-https://s3-us-west-2.amazonaws.com/op3nvoice/dorothyandthewizardinoz_01_baum_64kb.mp3
+http://media.clarify.io/audio/books/dorothyandthewizardinoz\_01\_baum_64kb.mp3
 ```
 
 Hint: You don't have to download these files. Instead you can pass us these urls via the create method shown above.
@@ -100,7 +100,7 @@ Hint: You don't have to download these files. Instead you can pass us these urls
 To search, you use the same \OP3Nvoice\Bundle object and search using your keywords. This can be accomplished in a single line of code:
 
 ```php
-$result = $audio->search('my-keyword');
+$result = $bundle->search('my-keyword');
 ```
 
 Then you can process and interact the results however you wish. The code below simply shows the resulting bundle id, bundle name, and the start/end offsets for each occurrence of the search terms.
@@ -109,10 +109,10 @@ Then you can process and interact the results however you wish. The code below s
 $results = $result['item_results'];
 $items = $result['_links']['items'];
 foreach ($items as $index => $item) {
-    $bundle = $audio->load($item['href']);
+    $_bundle = $audio->load($item['href']);
 
-    echo $bundle['_links']['self']['href'] . "\n";
-    echo $bundle['name'] . "\n";
+    echo $_bundle['_links']['self']['href'] . "\n";
+    echo $_bundle['name'] . "\n";
 
     $search_hits = $results[$index]['term_results'][0]['matches'][0]['hits'];
     foreach ($search_hits as $search_hit) {
@@ -139,14 +139,14 @@ or our [video player](https://github.com/OP3Nvoice/op3nvoice-video-player) for v
 additional configuration but the bulk of the logic is here:
 
 ```php
-$audio = new \Clarify\Bundle($apikey);
-$items = $audio->search($terms);
+$bundle = new \Clarify\Bundle($apikey);
+$items = $bundle->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
 $item_results = json_encode($items['item_results']);
 
-$audiokey = $items['_links']['items'][0]['href'];
-$tracks = $audio->tracks($audiokey)['tracks'];
+$bundlekey = $items['_links']['items'][0]['href'];
+$tracks = $bundle->tracks($bundlekey)['tracks'];
 $mediaUrl = $tracks[0]['media_url'];
 ```
 
