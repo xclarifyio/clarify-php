@@ -1,11 +1,11 @@
 
 This is a set of scripts to demonstrate using various pieces of the Clarify helper library.
 
-This uses the PHP library available here: https://github.com/OP3Nvoice/op3nvoice-php
+This uses the PHP library available here: https://github.com/Clarify/clarify-php
 
 To use these examples,
 *  rename creds-dist.php to creds.php and add your API Key;
-*  load some audio or video files into your account using code similar to create.php or even using curl as found here: https://github.com/OP3Nvoice/op3nvoice-curl
+*  load some audio or video files into your account using code similar to create.php or even using curl as found here: https://github.com/Clarify/clarify-curl
 
 Here is a complete explanation of everything in this package:
 

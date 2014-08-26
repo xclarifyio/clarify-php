@@ -1,17 +1,17 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-php/?branch=master)
 
-PHP Helper Library for OP3Nvoice
+PHP Helper Library for Clarify
 ================================
 
 ### Installing via Composer
 
-The recommended way to install the OP3Nvoice library is through [Composer](http://getcomposer.org).
+The recommended way to install the Clarify library is through [Composer](http://getcomposer.org).
 
 ```bash
 # Install Composer
 curl -sS https://getcomposer.org/installer | php
 
-# Add OP3Nvoice as a dependency
+# Add Clarify as a dependency
 php composer.phar require clarify/clarify-helper dev-master@dev
 ```
 
@@ -39,7 +39,7 @@ require __DIR__.'/vendor/autoload.php';
 
 ### Usage
 
-To begin using this library, initialize the OP3Nvoice object with your API key:
+To begin using this library, initialize the Clarify object with your API key:
 
 ```php
 $bundle = new \Clarify\Bundle($apikey);
@@ -63,11 +63,11 @@ $results = $result['item_results'];
 
 ### Getting Started
 
-This quickstart demonstrates a simple way to get started using the OP3Nvoice API. Following these steps, it should take you no more than 5-10 minutes to have a fully functional search for your audio.
+This quickstart demonstrates a simple way to get started using the Clarify API. Following these steps, it should take you no more than 5-10 minutes to have a fully functional search for your audio.
 
 ### Creating the object
 
-While you can use any programming language you choose, we provide helper libraries in a couple to get you started. In PHP, you simply include the library and create a new \OP3Nvoice\Audio object using your API Key:
+While you can use any programming language you choose, we provide helper libraries in a couple to get you started. In PHP, you simply include the library and create a new \Clarify\Audio object using your API Key:
 
 ```php
 require __DIR__.'/../vendor/autoload.php';
@@ -97,7 +97,7 @@ Hint: You don't have to download these files. Instead you can pass us these urls
 
 ### Searching Audio
 
-To search, you use the same \OP3Nvoice\Bundle object and search using your keywords. This can be accomplished in a single line of code:
+To search, you use the same \Clarify\Bundle object and search using your keywords. This can be accomplished in a single line of code:
 
 ```php
 $result = $bundle->search('my-keyword');
@@ -134,8 +134,8 @@ name453
 
 ### Putting it All Together
 
-From here, we can visualize our search results with our [audio player](https://github.com/OP3Nvoice/op3nvoice-audio-player)
-or our [video player](https://github.com/OP3Nvoice/op3nvoice-video-player) for video. The player should work with no
+From here, we can visualize our search results with our [audio player](https://github.com/Clarify/clarify-audio-player)
+or our [video player](https://github.com/Clarify/clarify-video-player) for video. The player should work with no
 additional configuration but the bulk of the logic is here:
 
 ```php
