@@ -14,7 +14,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $name = 'name' . rand(0, 500);
-        $media = 'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav';
+        $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
 
         $http = $this->createMockClient('/xxxx', 'post');
         $client = new \Clarify\Bundle($this->apiKey, $http);
