@@ -1,5 +1,5 @@
 <?php
 
-namespace OP3Nvoice\Exceptions;
+namespace Clarify\Exceptions;
 
 class InvalidResourceException extends \Clarify\Exceptions\InvalidResourceException { }

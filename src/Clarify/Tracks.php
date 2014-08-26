@@ -4,7 +4,7 @@ namespace Clarify;
 
 class Tracks extends Subresource
 {
-    protected $subresource = 'o3v:tracks';
+    protected $subresource = 'clarify:tracks';
 
     /**
      * @param array $options

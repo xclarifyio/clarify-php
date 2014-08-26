@@ -1,6 +1,6 @@
 <?php
 
-namespace OP3Nvoice;
+namespace Clarify;
 
 abstract class Subresource extends Client
 {
@@ -14,7 +14,8 @@ abstract class Subresource extends Client
         $response = $this->process($request);
 
         $bundle = $response->json();
-
+echo $this->subresource . "\n";
+echo $bundle['_links'][$this->subresource]['href'] . "\n";
         return $bundle['_links'][$this->subresource]['href'];
     }
 

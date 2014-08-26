@@ -6,7 +6,7 @@ use Clarify\Exceptions\InvalidJSONException;
 
 class Metadata extends Subresource
 {
-    protected $subresource = 'o3v:metadata';
+    protected $subresource = 'clarify:metadata';
 
     /**
      * @param array $options

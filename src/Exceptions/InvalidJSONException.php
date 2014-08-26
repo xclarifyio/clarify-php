@@ -1,5 +1,5 @@
 <?php
 
-namespace OP3Nvoice\Exceptions;
+namespace Clarify\Exceptions;
 
 class InvalidJSONException extends \Clarify\Exceptions\InvalidJSONException { }
