@@ -19,19 +19,19 @@ foreach ($items as $item) {
     $success = $bundle->tracks->create(
         array(
             'id' => $item['href'],
-            'media_url' => 'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav',
+            'media_url' => 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav',
         )
     );
     $success = $bundle->tracks->create(
         array(
             'id' => $item['href'],
-            'media_url' => 'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-2.wav',
+            'media_url' => 'http://media.clarify.io/audio/samples/harvard-sentences-2.wav',
         )
     );
     $success = $bundle->tracks->create(
         array(
             'id' => $item['href'],
-            'media_url' => 'https://s3-us-west-2.amazonaws.com/op3nvoice/dorothyandthewizardinoz_01_baum_64kb.mp3',
+            'media_url' => 'http://media.clarify.io/audio/books/dorothyandthewizardinoz_01_baum_64kb.mp3',
         )
     );
 
