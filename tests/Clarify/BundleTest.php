@@ -23,8 +23,10 @@ class BundleTest extends PHPUnit_Framework_TestCase
         //$this->assertEquals($name, strlen($client->name));
     }
 
-    protected function createMockClient($method)
+    protected function createMockClient($path, $method)
     {
+        echo $path;
+
         $http = Mockery::mock(new Http\Client());
 
         switch ($method) {

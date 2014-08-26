@@ -1,5 +1,5 @@
 <?php
 
-namespace Clarify\Exceptions;
+namespace OP3Nvoice\Exceptions;
 
 class InvalidEnumTypeException extends \Clarify\Exceptions\InvalidEnumTypeException { }

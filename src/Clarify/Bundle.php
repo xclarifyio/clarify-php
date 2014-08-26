@@ -2,6 +2,13 @@
 
 namespace Clarify;
 
+/**
+ * Class Bundle
+ * @package Clarify
+ *
+ * @property metadata   This is the metadata subresource of the bundle.
+ * @property tracks     This is the tracks subresource of the bundle.
+ */
 class Bundle extends Client
 {
     public function create($name, $media_url = '', $metadata = '', $notify_url = '', $audio_channel = '')

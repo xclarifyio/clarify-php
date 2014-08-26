@@ -37,6 +37,7 @@ abstract class Client
 
     /**
      * @param $key
+     * @param null $httpClient
      */
     public function __construct($key, $httpClient = null)
     {
@@ -45,6 +46,10 @@ abstract class Client
         $this->client->setUserAgent($this::USER_AGENT . '/' . PHP_VERSION);
     }
 
+    /**
+     * @param $request
+     * @return Http\Message\Response|null
+     */
     protected function process($request)
     {
         $request->setHeader('Authorization', 'Bearer ' . $this->apiKey);
