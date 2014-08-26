@@ -99,17 +99,6 @@ abstract class Client
      */
     public function post(array $options)
     {
-        $metadata = isset($options['metadata']) ? $options['metadata'] : '';
-        $ob = json_decode($metadata);
-        if ($metadata != '' && $ob === null) {
-            throw new InvalidJSONException();
-        }
-
-        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
-        if (!in_array($audio_channel, array('left', 'right', 'split', ''))) {
-            throw new InvalidEnumTypeException();
-        }
-
         /** @var $request \Guzzle\Http\Message\Request */
         $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
         foreach($options as $key => $value) {

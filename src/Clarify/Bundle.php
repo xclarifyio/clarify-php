@@ -23,6 +23,28 @@ class Bundle extends Client
         return $this->post($params);
     }
 
+    /**
+     * @param array $options
+     * @return bool
+     * @throws InvalidEnumTypeException
+     * @throws InvalidJSONException
+     */
+    public function post(array $options)
+    {
+        $metadata = isset($options['metadata']) ? $options['metadata'] : '';
+        $ob = json_decode($metadata);
+        if ($metadata != '' && $ob === null) {
+            throw new InvalidJSONException();
+        }
+
+        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
+        if (!in_array($audio_channel, array('left', 'right', 'split', ''))) {
+            throw new InvalidEnumTypeException();
+        }
+
+        return parent::post($options);
+    }
+
     public function update($id, $name = '', $notify_url = '', $version  = 1)
     {
         $params = array();
