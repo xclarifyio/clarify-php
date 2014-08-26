@@ -8,7 +8,7 @@ $bundle = new \Clarify\Bundle($apikey);
 
 $success = $bundle->create(
     'name' . rand(0, 500),
-    'https://s3-us-west-2.amazonaws.com/op3nvoice/harvard-sentences-1.wav'
+    'http://media.clarify.io/audio/books/dorothyandthewizardinoz_01_baum_64kb.mp3'
 );
 
 if ($success) {
