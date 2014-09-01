@@ -90,7 +90,7 @@ http://media.clarify.io/audio/samples/harvard-sentences-1.wav
 
 http://media.clarify.io/audio/samples/harvard-sentences-2.wav
 
-http://media.clarify.io/audio/books/dorothyandthewizardinoz\_01\_baum_64kb.mp3
+http://media.clarify.io/audio/books/dorothyandthewizardinoz_01_baum_64kb.mp3
 ```
 
 Hint: You don't have to download these files. Instead you can pass us these urls via the create method shown above.
