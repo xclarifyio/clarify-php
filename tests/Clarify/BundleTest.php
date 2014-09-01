@@ -18,12 +18,24 @@ class BundleTest extends PHPUnit_Framework_TestCase
 
     public function testCreate()
     {
-        $name = 'name' . rand(0, 500);
+        $name = 'name - testCreate' . rand(0, 500);
         $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
         $result = $this->bundle->create($name, $media);
 
         $this->assertEquals(201, $result->getStatusCode());
         $location = $result->getHeader('Location');
         $this->assertEquals(44, strlen($location));
+    }
+
+    public function testUpdate()
+    {
+        $name = 'name - testUpdate';
+        $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
+        $result = $this->bundle->create($name, $media);
+
+        $this->assertEquals(201, $result->getStatusCode());
+        $location = $result->getHeader('Location');
+
+        $this->assertTrue($this->bundle->update($location, 'updated'));
     }
 }

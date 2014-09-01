@@ -124,6 +124,7 @@ abstract class Client
         }
 
         $request = $this->client->put($options['id'], array(), '', array('exceptions' => false));
+        unset($options['id']);
         foreach($options as $key => $value) {
             $request->setPostField($key, $value);
         }
