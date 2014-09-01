@@ -9,9 +9,7 @@ class Search extends Client
     /**
      * @param $query
      * @param int $limit
-     * @param string $embed
-     * @param string $iterator
-     *
+     * @param array $params
      * @return array|bool|float|int|string
      */
     public function search($query, $limit = 10, $params = array())
