@@ -1,4 +1,4 @@
-<phpunit>
+<phpunit bootstrap="./creds.php">
     <testsuites>
         <testsuite name="Clarify's Test Suite">
             <directory>./</directory>

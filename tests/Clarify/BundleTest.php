@@ -5,7 +5,17 @@ use Guzzle\Http;
 
 class BundleTest extends PHPUnit_Framework_TestCase
 {
-    protected $apiKey = '123';
+    protected $bundle = null;
+
+    public function setUp()
+    {
+        global $apikey;
+
+        $this->bundle = new \Clarify\Bundle($apikey);
+
+        parent::setUp();
+    }
+
 
     /**
      * @expectedException Guzzle\Http\Exception\CurlException
@@ -15,28 +25,9 @@ class BundleTest extends PHPUnit_Framework_TestCase
     {
         $name = 'name' . rand(0, 500);
         $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
+        $this->bundle->create($name, $media);
 
-        $http = $this->createMockClient('/xxxx', 'post');
-        $client = new \Clarify\Bundle($this->apiKey, $http);
-        $client->create($name, $media);
-        //$this->assertEquals(32, strlen($client->id));
-        //$this->assertEquals($name, strlen($client->name));
-    }
-
-    protected function createMockClient($path, $method)
-    {
-        echo $path;
-
-        $http = Mockery::mock(new Http\Client());
-
-        switch ($method) {
-            case 'post':
-                $http->shouldReceive($method)->once()
-                    ->andReturn($http->createRequest('POST'));
-            default:
-                // do nothing
-        }
-
-        return $http;
+        $this->assertEquals(32,     strlen($this->bundle->id));
+        $this->assertEquals($name,  $this->bundle->name);
     }
 }
