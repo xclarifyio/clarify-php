@@ -1,13 +1,15 @@
 <?php
 
 namespace Clarify;
+use Clarify\Exceptions\InvalidEnumTypeException;
+use Clarify\Exceptions\InvalidJSONException;
 
 /**
  * Class Bundle
  * @package Clarify
  *
- * @property metadata   This is the metadata subresource of the bundle.
- * @property tracks     This is the tracks subresource of the bundle.
+ * @property mixed  $metadata   This is the metadata subresource of the bundle.
+ * @property mixed  $tracks     This is the tracks subresource of the bundle.
  */
 class Bundle extends Client
 {
