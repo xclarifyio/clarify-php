@@ -6,6 +6,7 @@ use Guzzle\Http;
 class BundleTest extends PHPUnit_Framework_TestCase
 {
     protected $bundle = null;
+    protected $media  = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
 
     public function setUp()
     {
@@ -19,8 +20,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $name = 'name - testCreate' . rand(0, 500);
-        $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
-        $result = $this->bundle->create($name, $media);
+        $result = $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $result->getStatusCode());
         $location = $result->getHeader('Location');
@@ -30,8 +30,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $name = 'name - testUpdate';
-        $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
-        $result = $this->bundle->create($name, $media);
+        $result = $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $result->getStatusCode());
         $location = $result->getHeader('Location');
