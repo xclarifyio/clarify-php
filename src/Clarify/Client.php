@@ -108,10 +108,7 @@ abstract class Client
         $response = $this->process($request);
         $this->detail = $response->json();
 
-        return array(
-            'code' => $response->getStatusCode(),
-            'location_header' => $response->getHeader('Location'),
-        );
+        return $response;
     }
 
     /**

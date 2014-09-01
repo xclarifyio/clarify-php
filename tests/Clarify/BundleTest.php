@@ -16,18 +16,14 @@ class BundleTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-
-    /**
-     * @expectedException Guzzle\Http\Exception\CurlException
-     * @expectedException Clarify\Exceptions\InvalidResourceException
-     */
     public function testCreate()
     {
         $name = 'name' . rand(0, 500);
         $media = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
-        $this->bundle->create($name, $media);
+        $result = $this->bundle->create($name, $media);
 
-        $this->assertEquals(32,     strlen($this->bundle->id));
-        $this->assertEquals($name,  $this->bundle->name);
+        $this->assertEquals(201, $result->getStatusCode());
+        $location = $result->getHeader('Location');
+        $this->assertEquals(44, strlen($location));
     }
 }
