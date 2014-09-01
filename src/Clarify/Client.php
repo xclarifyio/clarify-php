@@ -129,10 +129,10 @@ abstract class Client
             $request->setPostField($key, $value);
         }
 
-        $response = $this->process($request);
-        $this->detail = $response->json();
+        $this->response = $this->process($request);
+        $this->detail = $this->response->json();
 
-        return $response->isSuccessful();
+        return $this->response->isSuccessful();
     }
 
     /**

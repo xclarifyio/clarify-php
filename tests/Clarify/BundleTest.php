@@ -36,5 +36,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $location = $result->getHeader('Location');
 
         $this->assertTrue($this->bundle->update($location, 'updated'));
+        $response = $this->bundle->getResponse();
+        $this->assertEquals(202, $response->getStatusCode());
     }
 }
