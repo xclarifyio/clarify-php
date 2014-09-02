@@ -13,7 +13,7 @@ use Clarify\Exceptions\InvalidJSONException;
  */
 class Bundle extends Client
 {
-    public function create($name, $media_url = '', $metadata = '', $notify_url = '', $audio_channel = '')
+    public function create($name = '', $media_url = '', $metadata = '', $notify_url = '', $audio_channel = '')
     {
         $params = array();
         $params['name'] = $name;
