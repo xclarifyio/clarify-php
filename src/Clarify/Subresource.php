@@ -2,6 +2,10 @@
 
 namespace Clarify;
 
+/**
+ * Class Subresource
+ * @package Clarify
+ */
 abstract class Subresource extends Client
 {
     /**

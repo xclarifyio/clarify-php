@@ -2,6 +2,10 @@
 
 namespace Clarify;
 
+/**
+ * Class Search
+ * @package Clarify
+ */
 class Search extends Client
 {
     public $detail = null;

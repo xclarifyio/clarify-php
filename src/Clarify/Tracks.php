@@ -2,6 +2,10 @@
 
 namespace Clarify;
 
+/**
+ * Class Tracks
+ * @package Clarify
+ */
 class Tracks extends Subresource
 {
     protected $subresource = 'clarify:tracks';

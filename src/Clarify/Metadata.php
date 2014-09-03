@@ -4,6 +4,10 @@ namespace Clarify;
 
 use Clarify\Exceptions\InvalidJSONException;
 
+/**
+ * Class Metadata
+ * @package Clarify
+ */
 class Metadata extends Subresource
 {
     protected $subresource = 'clarify:metadata';

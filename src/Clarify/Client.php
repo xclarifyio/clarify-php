@@ -14,6 +14,9 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
 /**
  * This is the base class that all of the individual media-related classes extend. At the moment, it simply initializes
  *   the connection by setting the user agent and the base URI for the API calls.
+ *
+ * Class Client
+ * @package Clarify
  */
 abstract class Client
 {
