@@ -1,6 +1,6 @@
 {
     "name": "clarify/clarify-helper",
-    "version": "0.9.4",
+    "version": "0.9.5",
     "type": "library",
     "description": "A PHP wrapper for the Clarify API",
     "keywords": ["op3nvoice", "openvoice", "api", "audio search", "video search", "clarify", "clarify.io"],
