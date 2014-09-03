@@ -3,10 +3,7 @@
 namespace Clarify;
 
 use Guzzle\Http;
-use Clarify\Metadata;
-use Clarify\Tracks;
 use Clarify\Exceptions\InvalidJSONException;
-use Clarify\Exceptions\InvalidResourceException;
 use Clarify\Exceptions\InvalidEnumTypeException;
 use Clarify\Exceptions\InvalidIntegerArgumentException;
 
@@ -18,7 +15,7 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  * Class Client
  * @package Clarify
  */
-abstract class Client
+class Client
 {
     const USER_AGENT = 'clarify-php/0.9.6';
 
@@ -34,8 +31,8 @@ abstract class Client
     /**
      * @var $response \Guzzle\Http\Message\Response
      */
-    protected $response = null;
-    protected $statusCode = null;
+    public $response = null;
+    public $statusCode = null;
     public $detail   = null;
 
     /**
@@ -60,38 +57,6 @@ abstract class Client
         $this->statusCode = $this->response->getStatusCode();
 
         return $this->response;
-    }
-
-    /**
-     * The response and status code are immutable so we have them as a protected properties with a getter.
-     *
-     * @return null
-     */
-    public function getResponse()
-    {
-        return $this->response;
-    }
-
-    public function getStatusCode()
-    {
-        return $this->statusCode;
-    }
-
-    /**
-     * @param $name
-     * @return Metadata|Tracks
-     * @throws InvalidResourceException
-     */
-    public function __get($name)
-    {
-        switch ($name) {
-            case 'tracks':
-                return new Tracks($this->apiKey);
-            case 'metadata':
-                return new Metadata($this->apiKey);
-            default:
-                throw new InvalidResourceException('Not supported');
-        }
     }
 
     /**

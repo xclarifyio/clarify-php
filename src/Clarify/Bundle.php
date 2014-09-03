@@ -11,8 +11,15 @@ use Clarify\Exceptions\InvalidJSONException;
  * @property mixed  $metadata   This is the metadata subresource of the bundle.
  * @property mixed  $tracks     This is the tracks subresource of the bundle.
  */
-class Bundle extends Client
+class Bundle
 {
+    protected $client = null;
+
+    public function __construct($key, $client = null)
+    {
+        $this->client = (is_null($client)) ? new \Clarify\Client($key) : $client;
+    }
+
     public function create($name = '', $media_url = '', $metadata = '', $notify_url = '', $audio_channel = '')
     {
         $params = array();
@@ -22,17 +29,6 @@ class Bundle extends Client
         $params['notify_url'] = $notify_url;
         $params['audio_channel'] = $audio_channel;
 
-        return $this->post($params);
-    }
-
-    /**
-     * @param array $options
-     * @return bool
-     * @throws InvalidEnumTypeException
-     * @throws InvalidJSONException
-     */
-    public function post(array $options)
-    {
         $metadata = isset($options['metadata']) ? $options['metadata'] : '';
         $ob = json_decode($metadata);
         if ($metadata != '' && $ob === null) {
@@ -44,7 +40,7 @@ class Bundle extends Client
             throw new InvalidEnumTypeException();
         }
 
-        return parent::post($options);
+        return $this->client->post($params);
     }
 
     public function update($id, $name = '', $notify_url = '', $version  = 1)
@@ -55,6 +51,43 @@ class Bundle extends Client
         $params['notify_url'] = $notify_url;
         $params['version'] = $version;
 
-        return $this->put($params);
+        return $this->client->put($params);
+    }
+
+    public function delete($id)
+    {
+
+    }
+
+    public function load($id)
+    {
+        
+    }
+
+    public function getResponse()
+    {
+        return $this->client->response;
+    }
+
+    public function getStatusCode()
+    {
+        return $this->client->statusCode;
+    }
+
+    /**
+     * @param $name
+     * @return Metadata|Tracks
+     * @throws InvalidResourceException
+     */
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'tracks':
+                return new Tracks($this->apiKey);
+            case 'metadata':
+                return new Metadata($this->apiKey);
+            default:
+                throw new InvalidResourceException('Not supported');
+        }
     }
 }
