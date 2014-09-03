@@ -20,6 +20,16 @@ class Bundle
         $this->client = (is_null($client)) ? new \Clarify\Client($key) : $client;
     }
 
+    /**
+     * @param string $name
+     * @param string $media_url
+     * @param string $metadata
+     * @param string $notify_url
+     * @param string $audio_channel
+     * @return bool
+     * @throws Exceptions\InvalidJSONException
+     * @throws Exceptions\InvalidEnumTypeException
+     */
     public function create($name = '', $media_url = '', $metadata = '', $notify_url = '', $audio_channel = '')
     {
         $params = array();
@@ -43,6 +53,13 @@ class Bundle
         return $this->client->post($params);
     }
 
+    /**
+     * @param $id
+     * @param string $name
+     * @param string $notify_url
+     * @param int $version
+     * @return mixed
+     */
     public function update($id, $name = '', $notify_url = '', $version  = 1)
     {
         $params = array();
@@ -61,7 +78,7 @@ class Bundle
 
     public function load($id)
     {
-        
+
     }
 
     public function getResponse()
