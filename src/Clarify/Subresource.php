@@ -8,6 +8,8 @@ namespace Clarify;
  */
 abstract class Subresource extends Client
 {
+    protected $subresource;
+
     /**
      * @param $id
      * @return mixed
