@@ -53,4 +53,9 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $this->bundle->load($location);
         $this->assertEquals(404, $this->bundle->getStatusCode());
     }
+
+    public function testIndex()
+    {
+        $this->markTestIncomplete();
+    }
 }
