@@ -36,7 +36,21 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $location = $result->getHeader('Location');
 
         $this->assertTrue($this->bundle->update($location, 'updated'));
-        $response = $this->bundle->getResponse();
-        $this->assertEquals(202, $response->getStatusCode());
+        $this->assertEquals(202, $this->bundle->getStatusCode());
+    }
+
+    public function testDelete()
+    {
+        $name = 'name - testUpdate';
+        $result = $this->bundle->create($name, $this->media);
+
+        $this->assertEquals(201, $result->getStatusCode());
+        $location = $result->getHeader('Location');
+
+        $this->assertTrue($this->bundle->delete($location));
+        $this->assertEquals(204, $this->bundle->getStatusCode());
+
+        $this->bundle->load($location);
+        $this->assertEquals(404, $this->bundle->getStatusCode());
     }
 }
