@@ -6,7 +6,7 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$results = $bundle->index(13);
+$results = $bundle->index();
 $items = $results['_links']['items'];
 
 foreach ($items as $item) {
@@ -15,3 +15,6 @@ foreach ($items as $item) {
     echo $_bundle['_links']['self']['href'] . "\n";
     echo $_bundle['name'] . "\n";
 }
+
+$page = $bundle->getNextPage();
+print_r($page);
