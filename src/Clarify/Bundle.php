@@ -82,7 +82,7 @@ class Bundle
 
     public function load($id)
     {
-        return $this->client->load($id);
+        return $this->client->get($id);
     }
 
     public function getResponse()

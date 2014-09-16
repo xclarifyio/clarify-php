@@ -103,30 +103,16 @@ class Client
         return $this->response->isSuccessful();
     }
 
-    /**
-     * @param int $limit
-     * @param string $embed
-     * @param string $iterator
-     * @return array
-     */
-    public function index($limit = 10, $embed = '', $iterator = '' )
+    public function get($url, array $parameters = array())
     {
-        $items = array();
-
-        $request = $this->client->get('bundles', array(), array('exceptions' => false));
-        $request->getQuery()->set('limit', $limit);
-        $request->getQuery()->set('embed', $embed);
-        $request->getQuery()->set('iterator', $iterator);
+        $request = $this->client->get($url, array(), array('exceptions' => false));
+        foreach($parameters as $key => $value) {
+            $request->getQuery()->set($key, $value);
+        }
 
         $response = $this->process($request);
 
-        $this->detail = $response->json();
-//todo: add information about pagination
-        if ($response->isSuccessful()) {
-            $items = $this->detail['_links']['items'];
-        }
-
-        return $items;
+        return $response->json();
     }
 
     /**
