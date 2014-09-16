@@ -6,13 +6,13 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$items = $bundle->index();
+$bundles = $bundle->index();
 
-$item = $items[0];
+$item = $bundles['_links']['items'][0];
 
 echo $item['href'] . "\n";
 
-$item = $bundle->delete($item['href']);
-$bundle = $bundle->load($item['href']);
+$bundle->delete($item['href']);
+$bundle->load($item['href']);
 
-print_r($bundle);
+echo $bundle->getStatusCode() . "\n";
