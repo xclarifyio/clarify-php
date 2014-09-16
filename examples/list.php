@@ -6,11 +6,12 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$items = $bundle->index();
+$results = $bundle->index(13);
+$items = $results['_links']['items'];
 
 foreach ($items as $item) {
-    $bundle = $bundle->load($item['href']);
+    $_bundle = $bundle->load($item['href']);
 
-    echo $bundle['_links']['self']['href'] . "\n";
-    echo $bundle['name'] . "\n";
+    echo $_bundle['_links']['self']['href'] . "\n";
+    echo $_bundle['name'] . "\n";
 }
