@@ -88,18 +88,25 @@ class Bundle
     public function index($limit = 10, $embed = '', $iterator = '')
     {
         $params = array('limit' => $limit, 'embed' => $embed, 'iterator' => $iterator);
+        $this->detail = $this->client->get('bundles', $params);
 
-        return $this->client->get('bundles', $params);
+        return $this->detail;
     }
 
     public function getNextPage()
     {
+        $next = $this->detail['_links']['next']['href'];
+        $this->detail = $this->client->get($next);
 
+        return $this->detail;
     }
 
     public function getPreviousPage()
     {
-        
+        $previous = $this->detail['_links']['prev']['href'];
+        $this->detail = $this->client->get($previous);
+
+        return $this->detail;
     }
 
     public function getResponse()
