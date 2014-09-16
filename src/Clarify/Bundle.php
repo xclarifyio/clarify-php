@@ -77,7 +77,7 @@ class Bundle
 
     public function delete($id)
     {
-
+        return $this->client->delete($id);
     }
 
     public function load($id)
