@@ -18,5 +18,5 @@ if ($success) {
     $item = $bundle->load($newURI);
     print_r($item);
 } else {
-    echo $audio->detail['message'] . "\n";
+    echo $bundle->detail['message'] . "\n";
 }
