@@ -92,6 +92,16 @@ class Bundle
         return $this->client->get('bundles', $params);
     }
 
+    public function getNextPage()
+    {
+
+    }
+
+    public function getPreviousPage()
+    {
+        
+    }
+
     public function getResponse()
     {
         return $this->client->response;
