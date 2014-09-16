@@ -85,6 +85,13 @@ class Bundle
         return $this->client->get($id);
     }
 
+    public function index($limit = 10, $embed = '', $iterator = '')
+    {
+        $params = array('limit' => $limit, 'embed' => $embed, 'iterator' => $iterator);
+
+        return $this->client->get('bundles', $params);
+    }
+
     public function getResponse()
     {
         return $this->client->response;
