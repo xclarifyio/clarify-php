@@ -94,7 +94,7 @@ class Bundle
     /**
      * @param $name
      * @return Metadata|Tracks
-     * @throws InvalidResourceException
+     * @throws Exceptions\InvalidResourceException
      */
     public function __get($name)
     {
@@ -104,7 +104,7 @@ class Bundle
             case 'metadata':
                 return new Metadata($this->apiKey);
             default:
-                throw new InvalidResourceException('Not supported');
+                throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
         }
     }
 }
