@@ -14,6 +14,7 @@ use Clarify\Exceptions\InvalidJSONException;
 class Bundle
 {
     protected $client = null;
+    public $detail = null;
 
     public function __construct($key, $client = null)
     {
@@ -50,7 +51,10 @@ class Bundle
             throw new InvalidEnumTypeException();
         }
 
-        return $this->client->post($params);
+        $result = $this->client->post($params);
+        $this->detail = $this->client->detail;
+
+        return $result;
     }
 
     /**
