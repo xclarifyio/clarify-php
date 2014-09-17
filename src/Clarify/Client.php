@@ -65,10 +65,10 @@ class Client
      * @throws Exceptions\InvalidJSONException
      * @return bool
      */
-    public function post(array $options)
+    public function post($url, array $options = array())
     {
         /** @var $request \Guzzle\Http\Message\Request */
-        $request = $this->client->post('bundles', array(), '', array('exceptions' => false));
+        $request = $this->client->post($url, array(), '', array('exceptions' => false));
         foreach($options as $key => $value) {
             $request->setPostField($key, $value);
         }
