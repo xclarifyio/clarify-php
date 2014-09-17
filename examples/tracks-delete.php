@@ -6,7 +6,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$items = $bundle->index();
+$results = $bundle->index();
+$items = $results['_links']['items'];
 
 /**
  * This is an ugly bit of code but it fully demonstrates the track methods. It starts by loading a list of bundles,

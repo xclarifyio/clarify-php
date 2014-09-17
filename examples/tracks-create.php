@@ -6,7 +6,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$items = $bundle->index();
+$results = $bundle->index();
+$items = $results['_links']['items'];
 
 /**
  * This gets the first item from our list of bundles, shows the existing tracks, adds three audio tracks, and then

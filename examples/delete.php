@@ -6,9 +6,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$bundles = $bundle->index();
-
-$item = $bundles['_links']['items'][0];
+$results = $bundle->index();
+$item = $results['_links']['items'][0];
 
 echo $item['href'] . "\n";
 
