@@ -22,7 +22,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $name = 'name - testCreate' . rand(0, 500);
         $result = $this->bundle->create($name, $this->media);
 
-        $this->assertEquals(201, $result->getStatusCode());
+        $this->assertEquals(201, $this->bundle->getStatusCode());
         $location = $result->getHeader('Location');
         $this->assertEquals(44, strlen($location));
     }
@@ -32,7 +32,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $name = 'name - testUpdate';
         $result = $this->bundle->create($name, $this->media);
 
-        $this->assertEquals(201, $result->getStatusCode());
+        $this->assertEquals(201, $this->bundle->getStatusCode());
         $location = $result->getHeader('Location');
 
         $this->assertTrue($this->bundle->update($location, 'updated'));
@@ -44,7 +44,7 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $name = 'name - testUpdate';
         $result = $this->bundle->create($name, $this->media);
 
-        $this->assertEquals(201, $result->getStatusCode());
+        $this->assertEquals(201, $this->bundle->getStatusCode());
         $location = $result->getHeader('Location');
 
         $this->assertTrue($this->bundle->delete($location));
