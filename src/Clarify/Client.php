@@ -60,10 +60,9 @@ class Client
     }
 
     /**
+     * @param $url
      * @param array $options
-     * @throws Exceptions\InvalidEnumTypeException
-     * @throws Exceptions\InvalidJSONException
-     * @return bool
+     * @return Http\Message\Response|null
      */
     public function post($url, array $options = array())
     {
@@ -103,6 +102,11 @@ class Client
         return $this->response->isSuccessful();
     }
 
+    /**
+     * @param $url
+     * @param array $parameters
+     * @return array|bool|float|int|string
+     */
     public function get($url, array $parameters = array())
     {
         $request = $this->client->get($url, array(), array('exceptions' => false));
@@ -116,22 +120,7 @@ class Client
     }
 
     /**
-     * This loads an audio bundle using a full URI
-     * @param $id
-     * @return array|bool|float|int|string
-     */
-    public function load($id)
-    {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $response = $this->process($request);
-
-        $this->detail = $response->json();
-
-        return $response->json();
-    }
-
-    /**
-     * This deletes an audio bundle using a full URI.
+     * This deletes a resource using a full URI.
      *
      * @param $id
      * @return bool
@@ -144,19 +133,5 @@ class Client
         $this->detail = $response->json();
 
         return $response->isSuccessful();
-    }
-
-    /**
-     * @param $query
-     * @param int $limit
-     * @param string $embed
-     * @param string $iterator
-     * @return array|bool|float|int|string
-     */
-    public function search($query, $limit = 10, $embed = '', $iterator = '')
-    {
-        $search = new Search($this->apiKey);
-
-        return $search->search($query, $limit, $embed, $iterator);
     }
 }
