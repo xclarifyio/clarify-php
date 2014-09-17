@@ -20,21 +20,21 @@ class Metadata extends Subresource
     public function update(array $options)
     {
         $data = isset($options['data']) ? $options['data'] : '';
-        $version = isset($options['version']) ? $options['version'] : '';
-        $resourceURI = $this->getSubresourceURI($options['id']);
-
         $ob = json_decode($data);
         if($data != '' && $ob === null) {
             throw new InvalidJSONException();
         }
 
-        $request = $this->client->put($resourceURI, array(), '', array('exceptions' => false));
-        $request->setPostField('data', $data);
-        $request->setPostField('version', $version);
-        $response = $this->process($request);
+        $resourceURI = $this->getSubresourceURI($options['id']);
 
-        $this->detail = $response->json();
+        $params = array();
+        $params['id'] = $resourceURI;
+        $params['data'] = $data;
+        $params['version'] = isset($options['version']) ? (int) $options['version'] : 1;
 
-        return $response->isSuccessful();
+        $result = $this->client->put($params);
+        $this->detail = $this->client->detail;
+
+        return $result;
     }
 }

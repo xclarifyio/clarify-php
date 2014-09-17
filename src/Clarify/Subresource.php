@@ -9,6 +9,7 @@ namespace Clarify;
 abstract class Subresource
 {
     protected $subresource;
+    protected $client = null;
     public $detail = null;
 
     public function __construct(\Clarify\Client $client)
