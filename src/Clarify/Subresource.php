@@ -9,8 +9,9 @@ namespace Clarify;
 abstract class Subresource
 {
     protected $subresource;
+    public $detail = null;
 
-    public function __construct($client)
+    public function __construct(\Clarify\Client $client)
     {
         $this->client = $client;
     }
@@ -21,12 +22,9 @@ abstract class Subresource
      */
     protected function getSubresourceURI($id)
     {
-        $request = $this->client->get($id, array(), array('exceptions' => false));
-        $response = $this->process($request);
+        $request = $this->client->get($id, array(), array('exceptions' => false));;
 
-        $bundle = $response->json();
-
-        return $bundle['_links'][$this->subresource]['href'];
+        return $request['_links'][$this->subresource]['href'];
     }
 
     /**
@@ -37,7 +35,7 @@ abstract class Subresource
     {
         $resourceURI = $this->getSubresourceURI($id);
 
-        return parent::load($resourceURI);
+        return $this->client->get($resourceURI);
     }
 
     /**

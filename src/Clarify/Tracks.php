@@ -19,15 +19,15 @@ class Tracks extends Subresource
     {
         $resourceURI = $this->getSubresourceURI($options['id']);
 
-        $request = $this->client->post($resourceURI, array(), '', array('exceptions' => false));
-        $request->setPostField('media_url', $options['media_url']);
-        $request->setPostField('label', isset($options['label']) ? $options['label'] : '');
-        $request->setPostField('audio_channel', isset($options['audio_channel']) ? $options['audio_channel'] : '');
-        $request->setPostField('source', isset($options['source']) ? $options['source'] : '');
+        $params = array();
+        $params['media_url'] = $options['media_url'];
+        $params['label'] = isset($options['label']) ? $options['label'] : '';
+        $params['audio_channel'] = isset($options['audio_channel']) ? $options['audio_channel'] : '';
+        $params['source'] = isset($options['source']) ? $options['source'] : '';
 
-        $response = $this->process($request);
-        $this->detail = $response->json();
+        $result = $this->client->post($resourceURI, $params);
+        $this->detail = $this->client->detail;
 
-        return $response->isSuccessful();
+        return $result;
     }
 }
