@@ -6,7 +6,8 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$items = $bundle->index();
+$results = $bundle->index();
+$items = $results['_links']['items'];
 
 foreach ($items as $item) {
     $tracks = $bundle->tracks->load($item['href']);
