@@ -51,7 +51,7 @@ class Bundle
             throw new InvalidEnumTypeException();
         }
 
-        $result = $this->client->post($params);
+        $result = $this->client->post('bundles', $params);
         $this->detail = $this->client->detail;
 
         return $result;
