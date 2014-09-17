@@ -93,6 +93,21 @@ class Bundle
         return $this->detail;
     }
 
+    /**
+     * @param $query
+     * @param int $limit
+     * @param string $embed
+     * @param string $iterator
+     * @return array|bool|float|int|string
+     */
+    public function search($query, $limit = 10, $embed = '', $iterator = '')
+    {
+        $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed, 'iterator' => $iterator);
+        $this->detail = $this->client->get('search', $params);
+
+        return $this->detail;
+    }
+
     public function getNextPage()
     {
         $next = $this->detail['_links']['next']['href'];
