@@ -128,9 +128,9 @@ class Bundle
     {
         switch ($name) {
             case 'tracks':
-                return new Tracks($this->apiKey);
+                return new Tracks($this->client);
             case 'metadata':
-                return new Metadata($this->apiKey);
+                return new Metadata($this->client);
             default:
                 throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
         }

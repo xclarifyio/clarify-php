@@ -6,9 +6,14 @@ namespace Clarify;
  * Class Subresource
  * @package Clarify
  */
-abstract class Subresource extends Client
+abstract class Subresource
 {
     protected $subresource;
+
+    public function __construct($client)
+    {
+        $this->client = $client;
+    }
 
     /**
      * @param $id
