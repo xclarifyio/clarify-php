@@ -40,7 +40,6 @@ class Bundle
         $params['notify_url'] = $notify_url;
         $params['audio_channel'] = $audio_channel;
 
-        $metadata = isset($options['metadata']) ? $options['metadata'] : '';
         $ob = json_decode($metadata);
         if ($metadata != '' && $ob === null) {
             throw new InvalidJSONException();
