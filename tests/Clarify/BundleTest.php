@@ -56,6 +56,14 @@ class BundleTest extends PHPUnit_Framework_TestCase
 
     public function testIndex()
     {
-        $this->markTestIncomplete();
+        $data = $this->bundle->index();
+        $items = $data['_links']['items'];
+        $this->assertEquals(10, $data['limit']);
+        $this->assertLessThanOrEqual(10, count($items));
+
+        $data = $this->bundle->index(2);
+        $items = $data['_links']['items'];
+        $this->assertEquals(2, $data['limit']);
+        $this->assertLessThanOrEqual(2, count($items));
     }
 }
