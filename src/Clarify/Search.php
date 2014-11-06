@@ -21,8 +21,8 @@ class Search extends Client
     {
         $request = $this->client->get('/v1/search', array(), array('exceptions' => false));
 
-        $request->getQuery()->set('query', $query);
-        $request->getQuery()->set('limit', $limit);
+        $request->getQuery()->set('query', urlencode($query));
+        $request->getQuery()->set('limit', (int) $limit);
         $request->getQuery()->set('iterator', $iterator);
         foreach($params as $key => $value) {
             $request->getQuery()->set($key, $value);
