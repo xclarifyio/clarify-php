@@ -14,6 +14,9 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  *
  * Class Client
  * @package Clarify
+ *
+ * @property mixed  stores      This is the stores subresource of the client.
+ * @property mixed  products    This is the products subresource of the client.
  */
 class Client
 {
