@@ -21,19 +21,4 @@ class TracksTest extends PHPUnit_Framework_TestCase
     {
         $this->markTestIncomplete();
     }
-
-    public function testGetSubresourceURI()
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testLoad()
-    {
-        $this->markTestIncomplete();
-    }
-
-    public function testDelete()
-    {
-        $this->markTestIncomplete();
-    }
 }
