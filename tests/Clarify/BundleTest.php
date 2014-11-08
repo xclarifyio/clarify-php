@@ -86,4 +86,21 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $data['limit']);
         $this->assertLessThanOrEqual(2, count($items));
     }
+
+    public function test__get()
+    {
+        $object = $this->bundle->tracks;
+        $this->assertInstanceOf('\Clarify\Tracks', $object);
+
+        $object = $this->bundle->metadata;
+        $this->assertInstanceOf('\Clarify\Metadata', $object);
+    }
+
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidResourceException
+     */
+    public function test__getWithException()
+    {
+        $object = $this->bundle->monkey;
+    }
 }
