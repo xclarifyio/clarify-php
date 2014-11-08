@@ -6,13 +6,15 @@ use Guzzle\Http;
 class BundleTest extends PHPUnit_Framework_TestCase
 {
     protected $bundle = null;
+    protected $client = null;
     protected $media  = 'http://media.clarify.io/audio/samples/harvard-sentences-1.wav';
 
     public function setUp()
     {
         global $apikey;
 
-        $this->bundle = new \Clarify\Bundle($apikey);
+        $this->client = new \Clarify\Client($apikey);
+        $this->bundle = new \Clarify\Bundle($apikey, $this->client);
 
         parent::setUp();
     }
@@ -65,5 +67,14 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $items = $data['_links']['items'];
         $this->assertEquals(2, $data['limit']);
         $this->assertLessThanOrEqual(2, count($items));
+    }
+
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidIntegerArgumentException
+     */
+    public function testPutWithException()
+    {
+        $params = array('version' => 'not an integer');
+        $this->client->put($params);
     }
 }
