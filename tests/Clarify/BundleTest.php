@@ -86,13 +86,4 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $data['limit']);
         $this->assertLessThanOrEqual(2, count($items));
     }
-
-    /**
-     * @expectedException \Clarify\Exceptions\InvalidIntegerArgumentException
-     */
-    public function testPutWithException()
-    {
-        $params = array('version' => 'not an integer');
-        $this->client->put($params);
-    }
 }
