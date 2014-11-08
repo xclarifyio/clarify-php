@@ -45,7 +45,7 @@ class Bundle
             throw new InvalidJSONException();
         }
 
-        $audio_channel = isset($options['audio_channel']) ? $options['audio_channel'] : '';
+        $audio_channel = isset($params['audio_channel']) ? $params['audio_channel'] : '';
         if (!in_array($audio_channel, array('left', 'right', 'split', ''))) {
             throw new InvalidEnumTypeException();
         }

@@ -29,6 +29,24 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(44, strlen($location));
     }
 
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidJSONException
+     */
+    public function testCreateWithJSONException()
+    {
+        $name = 'name - testCreate';
+        $this->bundle->create($name, $this->media, 'not a json string');
+    }
+
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidEnumTypeException
+     */
+    public function testCreateWithChannelException()
+    {
+        $name = 'name - testCreate';
+        $this->bundle->create($name, $this->media, '', '', 'neither channel!');
+    }
+
     public function testUpdate()
     {
         $name = 'name - testUpdate';
