@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-php/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/Clarify/clarify-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/Clarify/clarify-php/?branch=master) [![Code Climate](https://codeclimate.com/github/Clarify/clarify-php/badges/gpa.svg)](https://codeclimate.com/github/Clarify/clarify-php)
 
 PHP Helper Library for Clarify
 ================================
