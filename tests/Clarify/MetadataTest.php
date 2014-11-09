@@ -12,7 +12,8 @@ class MetadataTest extends PHPUnit_Framework_TestCase
     {
         global $apikey;
 
-        $this->bundle = new \Clarify\Bundle($apikey);
+        $this->client = new \Clarify\Client($apikey);
+        $this->metadata = new \Clarify\Metadata($this->client);
 
         parent::setUp();
     }
@@ -20,5 +21,23 @@ class MetadataTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $this->markTestIncomplete();
+    }
+
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidJSONException
+     */
+    public function testUpdateWithJSONException()
+    {
+        $params = array('data' => 'not a json string');
+        $this->metadata->update($params);
+    }
+
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidIntegerArgumentException
+     */
+    public function testUpdateWithIntegerException()
+    {
+        $params = array('version' => 'not an integer');
+        $this->metadata->update($params);
     }
 }

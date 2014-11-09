@@ -14,8 +14,9 @@ class Metadata extends Subresource
 
     /**
      * @param array $options
-     * @return bool
+     * @return mixed
      * @throws Exceptions\InvalidJSONException
+     * @throws InvalidIntegerArgumentException
      */
     public function update(array $options)
     {
@@ -31,6 +32,9 @@ class Metadata extends Subresource
         $params['id'] = $resourceURI;
         $params['data'] = $data;
         $params['version'] = isset($options['version']) ? (int) $options['version'] : 1;
+        if (!is_numeric($params['version'])) {
+            throw new InvalidIntegerArgumentException();
+        }
 
         $result = $this->client->put($params);
         $this->detail = $this->client->detail;
