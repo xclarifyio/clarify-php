@@ -17,8 +17,16 @@ class TracksTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-    public function testCreate()
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidEnumTypeException
+     */
+    public function testCreateWithChannelException()
     {
-        $this->markTestIncomplete();
+        $params = array();
+        $params['media_url'] = '';
+        $params['label'] = '';
+        $params['source'] = '';
+        $params['audio_channel'] = 'neither channel';
+        $this->bundle->tracks->create($params);
     }
 }
