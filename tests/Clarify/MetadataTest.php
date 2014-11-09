@@ -18,11 +18,6 @@ class MetadataTest extends PHPUnit_Framework_TestCase
         parent::setUp();
     }
 
-    public function testUpdate()
-    {
-        $this->markTestIncomplete();
-    }
-
     /**
      * @expectedException \Clarify\Exceptions\InvalidJSONException
      */

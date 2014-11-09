@@ -26,15 +26,11 @@ class Metadata extends Subresource
             throw new InvalidJSONException();
         }
 
-        $resourceURI = $this->getSubresourceURI($options['id']);
-
         $params = array();
-        $params['id'] = $resourceURI;
         $params['data'] = $data;
         $params['version'] = isset($options['version']) ? (int) $options['version'] : 1;
-        if (!is_numeric($params['version'])) {
-            throw new InvalidIntegerArgumentException();
-        }
+        $resourceURI = $this->getSubresourceURI($options['id']);
+        $params['id'] = $resourceURI;
 
         $result = $this->client->put($params);
         $this->detail = $this->client->detail;
