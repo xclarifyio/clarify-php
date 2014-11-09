@@ -29,4 +29,19 @@ class TracksTest extends PHPUnit_Framework_TestCase
         $params['audio_channel'] = 'neither channel';
         $this->bundle->tracks->create($params);
     }
+
+    public function testCreate()
+    {
+        $name = 'name - testCreate' . rand(0, 500);
+        $result = $this->bundle->create($name, $this->media);
+
+        $this->assertEquals(201, $this->bundle->getStatusCode());
+        $location = $result->getHeader('Location');
+
+        $params = array('media_url' => 'http://google.com', 'id' => $location);
+        $this->bundle->tracks->create($params);
+
+        $this->assertTrue($this->bundle->delete($location));
+        $this->assertEquals(204, $this->bundle->getStatusCode());
+    }
 }
