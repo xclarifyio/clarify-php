@@ -3,6 +3,7 @@
 namespace Clarify;
 use Clarify\Exceptions\InvalidEnumTypeException;
 use Clarify\Exceptions\InvalidJSONException;
+use Clarify\Exceptions\InvalidIntegerArgumentException;
 
 /**
  * Class Bundle
@@ -62,6 +63,7 @@ class Bundle
      * @param string $notify_url
      * @param int $version
      * @return mixed
+     * @throws InvalidIntegerArgumentException
      */
     public function update($id, $name = '', $notify_url = '', $version  = 1)
     {
@@ -70,6 +72,9 @@ class Bundle
         $params['name'] = $name;
         $params['notify_url'] = $notify_url;
         $params['version'] = $version;
+        if (!is_numeric($params['version'])) {
+            throw new InvalidIntegerArgumentException();
+        }
 
         return $this->client->put($params);
     }

@@ -59,6 +59,14 @@ class BundleTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(202, $this->bundle->getStatusCode());
     }
 
+    /**
+     * @expectedException \Clarify\Exceptions\InvalidIntegerArgumentException
+     */
+    public function testUpdateWithException()
+    {
+        $this->bundle->update('id', 'name', 'http://google.com', 'not a version string');
+    }
+
     public function testDelete()
     {
         $name = 'name - testUpdate';
