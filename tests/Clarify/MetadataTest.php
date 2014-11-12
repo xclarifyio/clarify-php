@@ -28,15 +28,6 @@ class MetadataTest extends PHPUnit_Framework_TestCase
         $this->metadata->update($params);
     }
 
-    /**
-     * @expectedException \Clarify\Exceptions\InvalidIntegerArgumentException
-     */
-    public function testUpdateWithIntegerException()
-    {
-        $params = array('version' => 'not an integer');
-        $this->metadata->update($params);
-    }
-
     public function testUpdate()
     {
         $name = 'name - testMetadataUpdate';
