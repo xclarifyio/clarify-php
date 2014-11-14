@@ -16,6 +16,7 @@ class Bundle
 {
     protected $client = null;
     public $detail = null;
+    public $location = null;
 
     public function __construct($key, $client = null)
     {
@@ -53,8 +54,9 @@ class Bundle
 
         $result = $this->client->post('bundles', $params);
         $this->detail = $this->client->detail;
+        $this->location = $result->getHeader('Location');
 
-        return $result;
+        return $result->isSuccessful();
     }
 
     /**
