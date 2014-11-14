@@ -22,10 +22,10 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $name = 'name - testCreate' . rand(0, 500);
-        $result = $this->bundle->create($name, $this->media);
+        $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $this->bundle->getStatusCode());
-        $location = $result->getHeader('Location');
+        $location = $this->bundle->location;
         $this->assertEquals(44, strlen($location));
 
         $this->assertTrue($this->bundle->delete($location));
@@ -53,10 +53,10 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $name = 'name - testUpdate';
-        $result = $this->bundle->create($name, $this->media);
+        $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $this->bundle->getStatusCode());
-        $location = $result->getHeader('Location');
+        $location = $this->bundle->location;
 
         $this->assertTrue($this->bundle->update($location, 'updated'));
         $this->assertEquals(202, $this->bundle->getStatusCode());
@@ -73,10 +73,10 @@ class BundleTest extends PHPUnit_Framework_TestCase
     public function testDelete()
     {
         $name = 'name - testUpdate';
-        $result = $this->bundle->create($name, $this->media);
+        $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $this->bundle->getStatusCode());
-        $location = $result->getHeader('Location');
+        $location = $this->bundle->location;
 
         $this->assertTrue($this->bundle->delete($location));
         $this->assertEquals(204, $this->bundle->getStatusCode());

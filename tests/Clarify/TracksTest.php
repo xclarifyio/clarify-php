@@ -33,10 +33,10 @@ class TracksTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $name = 'name - testCreate' . rand(0, 500);
-        $result = $this->bundle->create($name, $this->media);
+        $this->bundle->create($name, $this->media);
 
         $this->assertEquals(201, $this->bundle->getStatusCode());
-        $location = $result->getHeader('Location');
+        $location = $this->bundle->location;
 
         $params = array('media_url' => 'http://google.com', 'id' => $location);
         $this->bundle->tracks->create($params);

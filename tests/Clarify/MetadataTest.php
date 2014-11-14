@@ -31,9 +31,9 @@ class MetadataTest extends PHPUnit_Framework_TestCase
     public function testUpdate()
     {
         $name = 'name - testMetadataUpdate';
-        $result = $this->bundle->create($name, $this->media);
+        $this->bundle->create($name, $this->media);
         $this->assertEquals(201, $this->bundle->getStatusCode());
-        $location = $result->getHeader('Location');
+        $location = $this->bundle->location;
 
         $params = array('data' => '{"name" : "value"}', 'id' => $location);
         $result = $this->bundle->metadata->update($params);
