@@ -48,7 +48,7 @@ $bundle = new \Clarify\Bundle($apikey);
 Then add an audio or video file to your search index:
 
 ```php
-$bundle->create('http://example.com/', "My awesome audio file");
+$bundle->create("My awesome audio file", 'http://example.com/');
 ```
 
 Within minutes your file will be added to your index and available via a simple search:
