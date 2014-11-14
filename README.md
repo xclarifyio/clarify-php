@@ -109,7 +109,7 @@ Then you can process and interact the results however you wish. The code below s
 $results = $result['item_results'];
 $items = $result['_links']['items'];
 foreach ($items as $index => $item) {
-    $_bundle = $audio->load($item['href']);
+    $_bundle = $bundle->load($item['href']);
 
     echo $_bundle['_links']['self']['href'] . "\n";
     echo $_bundle['name'] . "\n";
