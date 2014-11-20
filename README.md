@@ -145,8 +145,9 @@ $items = $bundle->search($terms);
 $search_terms = json_encode($items['search_terms']);
 $item_results = json_encode($items['item_results']);
 
+
 $bundlekey = $items['_links']['items'][0]['href'];
-$tracks = $bundle->tracks($bundlekey)['tracks'];
+$tracks = $bundle->tracks->load($bundlekey)['tracks'];
 $mediaUrl = $tracks[0]['media_url'];
 ```
 
