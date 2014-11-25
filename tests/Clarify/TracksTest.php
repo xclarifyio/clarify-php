@@ -44,4 +44,23 @@ class TracksTest extends PHPUnit_Framework_TestCase
         $this->assertTrue($this->bundle->delete($location));
         $this->assertEquals(204, $this->bundle->getStatusCode());
     }
+
+    public function testLoad()
+    {
+        $name = 'name - testCreate' . rand(0, 500);
+        $this->bundle->create($name, $this->media);
+
+        $this->assertEquals(201, $this->bundle->getStatusCode());
+        $location = $this->bundle->location;
+
+        $params = array('media_url' => 'http://google.com', 'id' => $location);
+        $this->bundle->tracks->create($params);
+
+        $resource = $this->bundle->tracks->load($location);
+        $this->assertEquals(2, count($resource['tracks']));
+        $this->assertEquals('http://google.com', $resource['tracks'][1]['media_url']);
+
+        $this->assertTrue($this->bundle->delete($location));
+        $this->assertEquals(204, $this->bundle->getStatusCode());
+    }
 }
