@@ -47,6 +47,6 @@ abstract class Subresource
     {
         $resourceURI = $this->getSubresourceURI($id);
 
-        return parent::delete($resourceURI);
+        return $this->client->delete($resourceURI);
     }
 }
