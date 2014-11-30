@@ -30,9 +30,8 @@ class Metadata extends Subresource
         $params['data'] = $data;
         $params['version'] = isset($options['version']) ? (int) $options['version'] : 1;
         $resourceURI = $this->getSubresourceURI($options['id']);
-        $params['id'] = $resourceURI;
 
-        $result = $this->client->put($params);
+        $result = $this->client->put($resourceURI, $params);
         $this->detail = $this->client->detail;
 
         return $result;

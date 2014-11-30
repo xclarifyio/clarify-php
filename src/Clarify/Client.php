@@ -82,18 +82,19 @@ class Client
     }
 
     /**
+     * @param $url
      * @param array $options
      * @throws Exceptions\InvalidIntegerArgumentException
      * @return mixed
      */
-    public function put(array $options)
+    public function put($url, array $options)
     {
         $version = isset($options['version']) ? $options['version'] : '1';
         if (!is_numeric($version)) {
             throw new InvalidIntegerArgumentException();
         }
 
-        $request = $this->client->put($options['id'], array(), '', array('exceptions' => false));
+        $request = $this->client->put($url, array(), '', array('exceptions' => false));
         unset($options['id']);
         foreach($options as $key => $value) {
             $request->setPostField($key, $value);
