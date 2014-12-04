@@ -54,9 +54,9 @@ class Bundle
 
         $result = $this->client->post('bundles', $params);
         $this->detail = $this->client->detail;
-        $this->location = $result->getHeader('Location');
+        $this->location = $this->client->response->getHeader('Location');
 
-        return $result->isSuccessful();
+        return $result;
     }
 
     /**
@@ -70,7 +70,6 @@ class Bundle
     public function update($id, $name = '', $notify_url = '', $version  = 1)
     {
         $params = array();
-        $params['id'] = $id;
         $params['name'] = $name;
         $params['notify_url'] = $notify_url;
         $params['version'] = $version;
@@ -78,7 +77,7 @@ class Bundle
             throw new InvalidIntegerArgumentException();
         }
 
-        return $this->client->put($params);
+        return $this->client->put($id, $params);
     }
 
     public function delete($id)
@@ -147,13 +146,13 @@ class Bundle
      */
     public function __get($name)
     {
-        switch ($name) {
-            case 'tracks':
-                return new Tracks($this->client);
-            case 'metadata':
-                return new Metadata($this->client);
-            default:
-                throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
+        $classname = ucwords($name);
+        $fullclass = "Clarify\\" . $classname;
+
+        if (class_exists($fullclass)) {
+            return new $fullclass($this->client);
         }
+
+        throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
     }
 }

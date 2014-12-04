@@ -22,6 +22,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
     public function testPutWithException()
     {
         $params = array('version' => 'not an integer');
-        $this->client->put($params);
+        $this->client->put('empty url', $params);
     }
 }

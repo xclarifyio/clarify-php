@@ -18,7 +18,7 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  */
 class Client
 {
-    const USER_AGENT = 'clarify-php/1.2.0';
+    const USER_AGENT = 'clarify-php/1.2.1';
 
     protected $baseURI  = 'https://api.clarify.io/v1/';
     protected $apiKey   = '';
@@ -62,7 +62,7 @@ class Client
     }
 
     /**
-     * @param $url
+     * @param $uri
      * @param array $options
      * @return Http\Message\Response|null
      */
@@ -78,7 +78,7 @@ class Client
     }
 
     /**
-     * @param $url
+     * @param $uri
      * @param array $options
      * @return bool
      * @throws Exceptions\InvalidIntegerArgumentException
@@ -100,7 +100,7 @@ class Client
     }
 
     /**
-     * @param $url
+     * @param $uri
      * @param array $parameters
      * @return array|bool|float|int|string
      */
@@ -111,15 +111,15 @@ class Client
             $request->getQuery()->set($key, $value);
         }
 
-        $response = $this->process($request);
+        $this->process($request);
 
-        return $response->json();
+        return $this->response->json();
     }
 
     /**
      * This deletes a resource using a full URI.
      *
-     * @param $id
+     * @param $uri
      * @return bool
      */
     public function delete($uri)
