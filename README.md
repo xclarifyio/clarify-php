@@ -12,7 +12,7 @@ The recommended way to install the Clarify library is through [Composer](http://
 curl -sS https://getcomposer.org/installer | php
 
 # Add Clarify as a dependency
-php composer.phar require clarify/clarify-helper ~1.2
+php composer.phar require clarify/clarify-helper ~1.2.1
 ```
 
 or alternatively, you can add it directly to your `composer.json` file.
