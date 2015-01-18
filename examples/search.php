@@ -11,10 +11,10 @@ $result = $bundle->search('strong');
 $results = $result['item_results'];
 $items = $result['_links']['items'];
 foreach ($items as $index => $item) {
-    $bundle = $bundle->load($item['href']);
+    $_bundle = $bundle->load($item['href']);
 
-    echo $bundle['_links']['self']['href'] . "\n";
-    echo $bundle['name'] . "\n";
+    echo $_bundle['_links']['self']['href'] . "\n";
+    echo $_bundle['name'] . "\n";
 
     $search_hits = $results[$index]['term_results'][0]['matches'][0]['hits'];
     foreach ($search_hits as $search_hit) {
