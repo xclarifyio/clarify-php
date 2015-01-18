@@ -11,7 +11,7 @@ $bundle = new \Clarify\Bundle($apikey);
 $items = $bundle->search($terms);
 
 $search_terms = json_encode($items['search_terms']);
-$item_results = json_encode($items['item_results']);
+$item_results = json_encode($items['item_results'][0]);
 
 $bundlekey = $items['_links']['items'][0]['href'];
 $tracks = $bundle->tracks->load($bundlekey)['tracks'];
