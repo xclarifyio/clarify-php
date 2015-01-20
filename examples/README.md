@@ -24,11 +24,6 @@ Here is a complete explanation of everything in this package:
 | tracks-delete.php | This deletes a single track from a bundle. |
 | tracks-load.php | This loads all the information for a single track from a bundle. |
 | tracks-update.php | This allows you to update information for a single track from a bundle. |
-| audio-player.php | This is a sample audio player used to view a search result from the system. |
-| css | These are styles for the sample audio and video players. You shouldn't have to do anything with it. |
-| scripts | This is the Javascript for the sample audio and video players. You shouldn't have to do anything with it. |
-| video-player.php | This is a sample video player used to view a search result from the system. |
-
 
 This can be improved in a number of ways:
 
