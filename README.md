@@ -20,7 +20,7 @@ or alternatively, you can add it directly to your `composer.json` file.
 ```json
 {
     "require": {
-        "clarify/clarify-helper": "~1.0.0"
+        "clarify/clarify-helper": "~1.2.1"
     }
 }
 ```
