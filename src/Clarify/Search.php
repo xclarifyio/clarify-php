@@ -5,6 +5,8 @@ namespace Clarify;
 /**
  * Class Search
  * @package Clarify
+ *
+ * @deprecated since 1.3 Use \Clarify\Bundle->search() instead
  */
 class Search extends Client
 {
@@ -15,6 +17,8 @@ class Search extends Client
      * @param int $limit
      * @param array $params
      * @return array|bool|float|int|string
+     *
+     * @deprecated
      */
     public function search($query, $limit = 10, $params = array())
     {
@@ -33,11 +37,13 @@ class Search extends Client
         return $this->detail;
     }
 
+    /** @deprecated */
     public function hasMorePages()
     {
         return isset($this->detail['_links']['next']);
     }
 
+    /** @deprecated */
     public function getNextPage()
     {
         $next = $this->detail['_links']['next']['href'];
@@ -46,6 +52,7 @@ class Search extends Client
         return $this->detail;
     }
 
+    /** @deprecated */
     public function getPreviousPage()
     {
         $previous = $this->detail['_links']['prev']['href'];
