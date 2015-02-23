@@ -6,18 +6,22 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$result = $bundle->search('strong');
+$result = $bundle->search('dorothy');
 
-$results = $result['item_results'];
-$items = $result['_links']['items'];
-foreach ($items as $index => $item) {
-    $_bundle = $bundle->load($item['href']);
+while ($bundle->hasMorePages()) {
+    $results = $result['item_results'];
+    $items = $result['_links']['items'];
+    foreach ($items as $index => $item) {
+        $_bundle = $bundle->load($item['href']);
 
-    echo $_bundle['_links']['self']['href'] . "\n";
-    echo $_bundle['name'] . "\n";
+        echo $_bundle['_links']['self']['href'] . "\n";
+        echo $_bundle['name'] . "\n";
 
-    $search_hits = $results[$index]['term_results'][0]['matches'][0]['hits'];
-    foreach ($search_hits as $search_hit) {
-        echo $search_hit['start'] . ' -- ' . $search_hit['end'] . "\n";
+        $search_hits = $results[$index]['term_results'][0]['matches'][0]['hits'];
+        foreach ($search_hits as $search_hit) {
+            echo $search_hit['start'] . ' -- ' . $search_hit['end'] . "\n";
+        }
     }
+
+    $result = $bundle->getNextPage();
 }
