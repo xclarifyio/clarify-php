@@ -17,13 +17,12 @@ class Search extends Client
      * @param string $iterator
      * @return array|bool|float|int|string
      */
-    public function search($query, $limit = 10, $params = array(), $iterator = '')
+    public function search($query, $limit = 10, $params = array())
     {
         $request = $this->client->get('/v1/search', array(), array('exceptions' => false));
 
         $request->getQuery()->set('query', urlencode($query));
         $request->getQuery()->set('limit', (int) $limit);
-        $request->getQuery()->set('iterator', $iterator);
         foreach($params as $key => $value) {
             $request->getQuery()->set($key, $value);
         }

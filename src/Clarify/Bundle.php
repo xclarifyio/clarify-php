@@ -90,9 +90,9 @@ class Bundle
         return $this->client->get($id);
     }
 
-    public function index($limit = 10, $embed = '', $iterator = '')
+    public function index($limit = 10, $embed = '')
     {
-        $params = array('limit' => $limit, 'embed' => $embed, 'iterator' => $iterator);
+        $params = array('limit' => $limit, 'embed' => $embed);
         $this->detail = $this->client->get('bundles', $params);
 
         return $this->detail;
@@ -105,9 +105,9 @@ class Bundle
      * @param string $iterator
      * @return array|bool|float|int|string
      */
-    public function search($query, $limit = 10, $embed = '', $iterator = '')
+    public function search($query, $limit = 10, $embed = '')
     {
-        $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed, 'iterator' => $iterator);
+        $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed);
         $this->detail = $this->client->get('search', $params);
 
         return $this->detail;
