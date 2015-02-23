@@ -7,14 +7,16 @@ require __DIR__.'/../vendor/autoload.php';
 $bundle = new \Clarify\Bundle($apikey);
 
 $results = $bundle->index();
-$items = $results['_links']['items'];
 
-foreach ($items as $item) {
-    $_bundle = $bundle->load($item['href']);
+while ($bundle->hasMorePages()) {
+    $items = $results['_links']['items'];
 
-    echo $_bundle['_links']['self']['href'] . "\n";
-    echo $_bundle['name'] . "\n";
+    foreach ($items as $item) {
+        $_bundle = $bundle->load($item['href']);
+
+        echo $_bundle['_links']['self']['href'] . "\n";
+        echo $_bundle['name'] . "\n";
+    }
+
+    $results = $bundle->getNextPage();
 }
-
-$page = $bundle->getNextPage();
-print_r($page);

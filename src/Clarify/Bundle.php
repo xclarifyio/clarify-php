@@ -106,6 +106,11 @@ class Bundle
         return $this->detail;
     }
 
+    public function hasMorePages()
+    {
+        return isset($this->detail['_links']['next']);
+    }
+
     public function getNextPage()
     {
         $next = $this->detail['_links']['next']['href'];
