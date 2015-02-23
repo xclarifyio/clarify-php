@@ -6,11 +6,11 @@ require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
 
-$result = $bundle->search('dorothy');
+$page = $bundle->search('dorothy');
 
 while ($bundle->hasMorePages()) {
-    $results = $result['item_results'];
-    $items = $result['_links']['items'];
+    $results = $page['item_results'];
+    $items = $page['_links']['items'];
     foreach ($items as $index => $item) {
         $_bundle = $bundle->load($item['href']);
 
@@ -23,5 +23,5 @@ while ($bundle->hasMorePages()) {
         }
     }
 
-    $result = $bundle->getNextPage();
+    $page = $bundle->getNextPage();
 }
