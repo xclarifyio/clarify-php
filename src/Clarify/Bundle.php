@@ -98,13 +98,6 @@ class Bundle
         return $this->detail;
     }
 
-    /**
-     * @param $query
-     * @param int $limit
-     * @param string $embed
-     * @param string $iterator
-     * @return array|bool|float|int|string
-     */
     public function search($query, $limit = 10, $embed = '')
     {
         $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed);
