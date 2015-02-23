@@ -14,7 +14,6 @@ class Search extends Client
      * @param $query
      * @param int $limit
      * @param array $params
-     * @param string $iterator
      * @return array|bool|float|int|string
      */
     public function search($query, $limit = 10, $params = array())
@@ -32,5 +31,26 @@ class Search extends Client
         $this->detail = $response->json();
 
         return $response->json();
+    }
+
+    public function hasMorePages()
+    {
+        return isset($this->detail['_links']['next']);
+    }
+
+    public function getNextPage()
+    {
+        $next = $this->detail['_links']['next']['href'];
+        $this->detail = $this->client->get($next);
+
+        return $this->detail;
+    }
+
+    public function getPreviousPage()
+    {
+        $previous = $this->detail['_links']['prev']['href'];
+        $this->detail = $this->client->get($previous);
+
+        return $this->detail;
     }
 }
