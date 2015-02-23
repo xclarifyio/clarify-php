@@ -26,11 +26,11 @@ class Search extends Client
             $request->getQuery()->set($key, $value);
         }
 
-        $response = $this->process($request);
+        $this->process($request);
 
-        $this->detail = $response->json();
+        $this->detail = $this->response->json();
 
-        return $response->json();
+        return $this->detail;
     }
 
     public function hasMorePages()
