@@ -12,9 +12,10 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  * @property mixed  $metadata   This is the metadata subresource of the bundle.
  * @property mixed  $tracks     This is the tracks subresource of the bundle.
  */
-class Bundle
+class Bundle implements \Iterator
 {
     protected $client = null;
+    protected $position = 0;
     public $detail = null;
     public $location = null;
 
@@ -135,6 +136,38 @@ class Bundle
     public function getStatusCode()
     {
         return $this->client->statusCode;
+    }
+
+    public function rewind()
+    {
+        $this->position = 0;
+    }
+
+    public function current()
+    {
+        $item_id = $this->detail['_links']['items'][$this->position]['href'];
+
+        return $item_id;
+    }
+
+    public function key()
+    {
+        return $this->position;
+    }
+
+    public function next()
+    {
+        $this->position++;
+    }
+
+    public function valid()
+    {
+        return isset($this->detail['_links']['items'][$this->position]);
+    }
+
+    public function count()
+    {
+        return $this->detail['total'];
     }
 
     /**
