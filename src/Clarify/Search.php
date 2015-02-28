@@ -46,8 +46,12 @@ class Search extends Client
     /** @deprecated */
     public function getNextPage()
     {
-        $next = $this->detail['_links']['next']['href'];
-        $this->detail = $this->client->get($next);
+        if (isset($this->detail['_links']['next'])) {
+            $next = $this->detail['_links']['next']['href'];
+            $this->detail = $this->client->get($next);
+        } else {
+            $this->detail = json_encode(array());
+        }
 
         return $this->detail;
     }
@@ -55,8 +59,12 @@ class Search extends Client
     /** @deprecated */
     public function getPreviousPage()
     {
-        $previous = $this->detail['_links']['prev']['href'];
-        $this->detail = $this->client->get($previous);
+        if (isset($this->detail['_links']['prev'])) {
+            $previous = $this->detail['_links']['prev']['href'];
+            $this->detail = $this->client->get($previous);
+        } else {
+            $this->detail = json_encode(array());
+        }
 
         return $this->detail;
     }
