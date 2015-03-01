@@ -114,21 +114,19 @@ class Bundle implements \Iterator
 
     public function getNextPage()
     {
-        if (isset($this->detail['_links']['next'])) {
-            $next = $this->detail['_links']['next']['href'];
-            $this->detail = $this->client->get($next);
-        } else {
-            $this->detail = json_encode(array());
-        }
-
-        return $this->detail;
+        return $this->getPage('next');
     }
 
     public function getPreviousPage()
     {
-        if (isset($this->detail['_links']['prev'])) {
-            $previous = $this->detail['_links']['prev']['href'];
-            $this->detail = $this->client->get($previous);
+        return $this->getPage('prev');
+    }
+
+    protected function getPage($direction = 'next')
+    {
+        if (isset($this->detail['_links'][$direction])) {
+            $next_uri = $this->detail['_links'][$direction]['href'];
+            $this->detail = $this->client->get($next_uri);
         } else {
             $this->detail = json_encode(array());
         }
