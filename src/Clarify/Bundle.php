@@ -99,6 +99,17 @@ class Bundle implements \Iterator
         return $this->detail;
     }
 
+    /**
+     * The nice thing about search is that once you've loaded some results, you can use the normal pagination functions
+     *   without having to do anything special because search results are just another collection.
+     *
+     * @param $query
+     * @param int $limit            How many search results to return at a time
+     * @param string $embed         Should the full item be embedded in the results or just a reference?
+     * @return array|bool|float|int|string
+     *
+     * @todo: Implement the query_fields and filter parameters
+     */
     public function search($query, $limit = 10, $embed = '')
     {
         $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed);
