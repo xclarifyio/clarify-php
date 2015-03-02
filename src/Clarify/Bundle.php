@@ -104,15 +104,16 @@ class Bundle implements \Iterator
      *   without having to do anything special because search results are just another collection.
      *
      * @param $query
-     * @param int $limit            How many search results to return at a time
-     * @param string $embed         Should the full item be embedded in the results or just a reference?
+     * @param int $limit                    How many search results to return at a time
+     * @param string $embed                 Should the full item be embedded in the results or just a reference?
+     * @param string $query_fields
+     * @param string $filter
      * @return array|bool|float|int|string
-     *
-     * @todo: Implement the query_fields and filter parameters
      */
-    public function search($query, $limit = 10, $embed = '')
+    public function search($query, $limit = 10, $embed = '', $query_fields = '', $filter = '')
     {
-        $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed);
+        $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed,
+                        'query_fields' => $query_fields, 'filter' => $filter);
         $this->detail = $this->client->get('search', $params);
 
         return $this->detail;
