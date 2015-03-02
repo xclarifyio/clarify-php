@@ -17,8 +17,6 @@ class Search extends Client
      * @param int $limit
      * @param array $params
      * @return array|bool|float|int|string
-     *
-     * @deprecated
      */
     public function search($query, $limit = 10, $params = array())
     {
@@ -37,31 +35,26 @@ class Search extends Client
         return $this->detail;
     }
 
-    /** @deprecated */
     public function hasMorePages()
     {
         return isset($this->detail['_links']['next']);
     }
 
-    /** @deprecated */
     public function getNextPage()
     {
-        if (isset($this->detail['_links']['next'])) {
-            $next = $this->detail['_links']['next']['href'];
-            $this->detail = $this->client->get($next);
-        } else {
-            $this->detail = json_encode(array());
-        }
-
-        return $this->detail;
+        return $this->getPage('next');
     }
 
-    /** @deprecated */
     public function getPreviousPage()
     {
-        if (isset($this->detail['_links']['prev'])) {
-            $previous = $this->detail['_links']['prev']['href'];
-            $this->detail = $this->client->get($previous);
+        return $this->getPage('prev');
+    }
+
+    protected function getPage($direction = 'next')
+    {
+        if (isset($this->detail['_links'][$direction])) {
+            $next_uri = $this->detail['_links'][$direction]['href'];
+            $this->detail = $this->client->get($next_uri);
         } else {
             $this->detail = json_encode(array());
         }
