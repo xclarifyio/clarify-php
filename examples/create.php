@@ -12,10 +12,9 @@ $success = $bundle->create(
 );
 
 if ($success) {
-    $newURI = $bundle->detail['_links']['self']['href'];
-    echo $newURI . "\n";
+    echo $bundle->location . "\n";
 
-    $item = $bundle->load($newURI);
+    $item = $bundle->load($bundle->location);
     print_r($item);
 } else {
     echo $bundle->detail['message'] . "\n";
