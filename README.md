@@ -7,6 +7,8 @@ You can get started in minutes using our Quickstarts:
 
 [http://clarify.io/docs/quickstarts/](http://clarify.io/docs/quickstarts/)
 
+See more examples for listing, getting, and deleting bundles etc. in the /examples folder.
+
 ## Contributing
 
 1. Fork it
