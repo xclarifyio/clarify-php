@@ -7,6 +7,8 @@ To use these examples,
 *  rename creds-dist.php to creds.php and add your API Key;
 *  load some audio or video files into your account using code similar to create.php or even using curl as found here: https://github.com/Clarify/clarify-curl
 
+You can find additional information and sample code here: http://clarify.io/docs/quickstarts/
+
 Here is a complete explanation of everything in this package:
 
 | Filename        | Description  |
