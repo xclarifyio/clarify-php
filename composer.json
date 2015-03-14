@@ -22,5 +22,8 @@
     },
     "autoload": {
         "psr-4": { "Clarify\\": "src/Clarify/"}
+    },
+    "archive": {
+        "exclude": ["/examples", "/tests"]
     }
 }
