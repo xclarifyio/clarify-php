@@ -5,6 +5,7 @@ require __DIR__.'/creds.php';
 require __DIR__.'/../vendor/autoload.php';
 
 $bundle = new \Clarify\Bundle($apikey);
+$bundle->index();
 
 foreach ($bundle as $bundle_id) {
     $_bundle = $bundle->load($bundle_id);
