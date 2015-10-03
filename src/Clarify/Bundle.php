@@ -110,10 +110,10 @@ class Bundle implements \Iterator
      * @param string $filter
      * @return array|bool|float|int|string
      */
-    public function search($query, $limit = 10, $embed = '', $query_fields = '', $filter = '')
+    public function search($query, $limit = 10, $embed = '', $query_fields = '', $filter = '', $language = 'en')
     {
         $params = array('query' => $query, 'limit' => $limit, 'embed' => $embed,
-                        'query_fields' => $query_fields, 'filter' => $filter);
+                        'query_fields' => $query_fields, 'filter' => $filter, 'language' => $language);
         $this->detail = $this->client->get('search', $params);
 
         return $this->detail;
