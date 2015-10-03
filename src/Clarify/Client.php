@@ -18,7 +18,7 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  */
 class Client
 {
-    const USER_AGENT = 'clarify-php/1.2.1';
+    const USER_AGENT = 'clarify-php/1.3';
 
     protected $baseURI  = 'https://api.clarify.io/v1/';
     protected $apiKey   = '';

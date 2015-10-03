@@ -108,6 +108,7 @@ class Bundle implements \Iterator
      * @param string $embed                 Should the full item be embedded in the results or just a reference?
      * @param string $query_fields
      * @param string $filter
+     * @param string $language
      * @return array|bool|float|int|string
      */
     public function search($query, $limit = 10, $embed = '', $query_fields = '', $filter = '', $language = 'en')
