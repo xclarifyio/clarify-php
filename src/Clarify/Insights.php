@@ -25,6 +25,6 @@ class Insights extends Subresource
             return $data[$name];
         }
 
-        throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
+        throw new \Clarify\Exceptions\InvalidResourceException("The key '$name' was not found.");
     }
 }

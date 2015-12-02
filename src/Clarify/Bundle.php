@@ -191,7 +191,7 @@ class Bundle implements \Iterator
 
     /**
      * @param $name
-     * @return Metadata|Tracks
+     * @return Metadata|Tracks|Insights
      * @throws Exceptions\InvalidResourceException
      */
     public function __get($name)
@@ -203,6 +203,6 @@ class Bundle implements \Iterator
             return new $fullclass($this->client);
         }
 
-        throw new \Clarify\Exceptions\InvalidResourceException('Not supported');
+        throw new \Clarify\Exceptions\InvalidResourceException('That subresource was not found');
     }
 }
