@@ -1,6 +1,4 @@
 /.idea/*
 /vendor/*
-/examples/creds.php
-/creds.php
-tests/creds.php
+/examples/credentials.php
 tests/reports/*
