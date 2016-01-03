@@ -2,7 +2,7 @@
 
 namespace Clarify;
 
-use Guzzle\Http;
+use GuzzleHttp\Client as GuzzleClient;
 use Clarify\Exceptions\InvalidIntegerArgumentException;
 
 
@@ -23,15 +23,7 @@ class Client
     protected $baseURI  = 'https://api.clarify.io/v1/';
     protected $apiKey   = '';
     protected $client   = null;
-
-    /**
-     * @var $response \Guzzle\Http\Message\Request
-     */
     protected $request  = null;
-
-    /**
-     * @var $response \Guzzle\Http\Message\Response
-     */
     public $response = null;
     public $statusCode = null;
     public $detail   = null;
@@ -43,8 +35,9 @@ class Client
     public function __construct($key, $httpClient = null)
     {
         $this->apiKey = $key;
-        $this->client = (is_null($httpClient)) ? new Http\Client($this->baseURI) : $httpClient;
-        $this->client->setUserAgent($this::USER_AGENT . '/' . PHP_VERSION);
+        $this->httpClient = (is_null($httpClient)) ? new GuzzleClient(
+            ['base_uri' => $this->baseURI, 'headers' => ['User-Agent' => $this::USER_AGENT . '/' . PHP_VERSION ]]
+        ) : $httpClient;
     }
 
     /**
@@ -106,14 +99,13 @@ class Client
      */
     public function get($uri, array $parameters = array())
     {
-        $request = $this->client->get($uri, array(), array('exceptions' => false));
-        foreach($parameters as $key => $value) {
-            $request->getQuery()->set($key, $value);
-        }
+        $this->response = $this->httpClient->get($uri,
+            ['exceptions' => false, 'query' => $parameters, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+        );
+        $this->statusCode = $this->response->getStatusCode();
+        $raw_body = $this->response->getBody();
 
-        $this->process($request);
-
-        return $this->response->json();
+        return json_decode($raw_body, true);
     }
 
     /**
