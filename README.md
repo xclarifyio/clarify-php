@@ -9,6 +9,8 @@ You can get started in minutes using our Quickstarts:
 
 See more examples for listing, getting, and deleting bundles etc. in the /examples folder.
 
+To use any of the examples, rename credentials-dist.php to credentials.php and add your API key from here: https://developer.clarify.io/apps/list/
+
 ## Contributing
 
 1. Fork it
