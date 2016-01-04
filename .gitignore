@@ -1,4 +1,5 @@
-/.idea/*
-/vendor/*
-/examples/credentials.php
+.idea/*
+vendor/*
+examples/credentials.php
+composer.lock
 tests/reports/*
