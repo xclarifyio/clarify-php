@@ -61,13 +61,19 @@ class Client
      */
     public function post($uri, array $options = array())
     {
-        /** @var $request \Guzzle\Http\Message\Request */
-        $request = $this->client->post($uri, array(), '', array('exceptions' => false));
-        foreach($options as $key => $value) {
-            $request->setPostField($key, $value);
+        $successful = false;
+
+        $this->response = $this->httpClient->post($uri,
+            ['http_errors' => false, 'form_params' => $options, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+        );
+        $this->statusCode = $this->response->getStatusCode();
+        $this->detail = json_decode($this->response->getBody(), true);
+
+        if (2 == substr($this->statusCode, 0, 1)) {
+            $successful = true;
         }
 
-        return $this->process($request);
+        return $successful;
     }
 
     /**
@@ -103,9 +109,9 @@ class Client
             ['http_errors' => false, 'query' => $parameters, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
         );
         $this->statusCode = $this->response->getStatusCode();
-        $raw_body = $this->response->getBody();
+        $this->detail = json_decode($this->response->getBody(), true);
 
-        return json_decode($raw_body, true);
+        return $this->detail;
     }
 
     /**
@@ -122,6 +128,7 @@ class Client
             ['http_errors' => false, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
         );
         $this->statusCode = $this->response->getStatusCode();
+        $this->detail = json_decode($this->response->getBody(), true);
 
         if (2 == substr($this->statusCode, 0, 1)) {
             $successful = true;

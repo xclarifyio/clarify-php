@@ -55,8 +55,7 @@ class Bundle implements \Iterator
 
         $result = $this->client->post('bundles', $params);
         $this->detail = $this->client->detail;
-        $this->location = $this->client->response->getHeader('Location');
-
+        $this->location = $this->client->response->getHeader('Location')[0];
         return $result;
     }
 
