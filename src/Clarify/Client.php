@@ -100,7 +100,7 @@ class Client
     public function get($uri, array $parameters = array())
     {
         $this->response = $this->httpClient->get($uri,
-            ['exceptions' => false, 'query' => $parameters, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+            ['http_errors' => false, 'query' => $parameters, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
         );
         $this->statusCode = $this->response->getStatusCode();
         $raw_body = $this->response->getBody();
@@ -119,7 +119,7 @@ class Client
         $successful = false;
 
         $this->response = $this->httpClient->delete($uri,
-            ['exceptions' => false, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+            ['http_errors' => false, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
         );
         $this->statusCode = $this->response->getStatusCode();
 
