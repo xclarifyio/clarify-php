@@ -116,8 +116,17 @@ class Client
      */
     public function delete($uri)
     {
-        $request = $this->client->delete($uri, array(), '', array('exceptions' => false));
+        $successful = false;
 
-        return $this->process($request);
+        $this->response = $this->httpClient->delete($uri,
+            ['exceptions' => false, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+        );
+        $this->statusCode = $this->response->getStatusCode();
+
+        if (2 == substr($this->statusCode, 0, 1)) {
+            $successful = true;
+        }
+
+        return $successful;
     }
 }
