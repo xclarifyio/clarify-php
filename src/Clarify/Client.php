@@ -84,18 +84,25 @@ class Client
      */
     public function put($uri, array $options)
     {
+        $successful = false;
+
         $version = isset($options['version']) ? $options['version'] : '1';
         if (!is_numeric($version)) {
             throw new InvalidIntegerArgumentException();
         }
 
-        $request = $this->client->put($uri, array(), '', array('exceptions' => false));
         unset($options['id']);
-        foreach($options as $key => $value) {
-            $request->setPostField($key, $value);
+        $this->response = $this->httpClient->put($uri,
+            ['http_errors' => false, 'form_params' => $options, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
+        );
+        $this->statusCode = $this->response->getStatusCode();
+        $this->detail = json_decode($this->response->getBody(), true);
+
+        if (2 == substr($this->statusCode, 0, 1)) {
+            $successful = true;
         }
 
-        return $this->process($request);
+        return $successful;
     }
 
     /**
