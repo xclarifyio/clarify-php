@@ -19,16 +19,6 @@ foreach ($items as $item) {
     $data = $tracks->load($item['href']);
     print_r($data);
 
-    $tracks->update(
-        array(
-            'id' => $item['href'],
-            'track' => 1,
-            'label' => "an awesome label",
-        )
-    );
-    $data = $tracks->load($item['href']);
-    print_r($data);
-
     $tracks->delete($item['href']);
     $data = $tracks->load($item['href']);
 

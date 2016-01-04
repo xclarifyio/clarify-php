@@ -10,21 +10,22 @@ $results = $bundle->index();
 $items = $results['_links']['items'];
 
 foreach ($items as $item) {
-    $bundle = $bundle->load($item['href']);
+    $_bundle = $bundle->load($item['href']);
 
-    $id = $bundle['_links']['self']['href'];
+    $id = $_bundle['_links']['self']['href'];
     echo $id . "\n";
-    echo $bundle['name'] . "\n";
+    echo $_bundle['name'] . "\n";
 
-    $version = $bundle['version'];
+    $version = $_bundle['version'];
     $success = $bundle->update($id, 'updated-name-' . rand(0,500), '', $version);
 
     if ($success) {
-        $bundle = $bundle->load($item['href']);
-        $id = $bundle['_links']['self']['href'];
+        $_bundle = $bundle->load($item['href']);
+        $id = $_bundle['_links']['self']['href'];
         echo $id . "\n";
-        echo $bundle['name'] . "\n";
+        echo $_bundle['name'] . "\n";
     } else {
         echo "Nope, it didn't update \n";
     }
+    echo "\n\n";
 }
