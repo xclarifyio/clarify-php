@@ -20,19 +20,10 @@ class Search extends Client
      */
     public function search($query, $limit = 10, $params = array())
     {
-        $request = $this->client->get('/v1/search', array(), array('exceptions' => false));
+        $params['query'] = urlencode($query);
+        $params['limit'] = (int) $limit;
 
-        $request->getQuery()->set('query', urlencode($query));
-        $request->getQuery()->set('limit', (int) $limit);
-        foreach($params as $key => $value) {
-            $request->getQuery()->set($key, $value);
-        }
-
-        $this->process($request);
-
-        $this->detail = $this->response->json();
-
-        return $this->detail;
+        return $this->get('search', $params);
     }
 
     public function hasMorePages()
