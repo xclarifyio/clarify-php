@@ -43,14 +43,11 @@ class Client
     /**
      * @param $uri
      * @param array $options
-     * @return Http\Message\Response|null
+     * @return bool
      */
     public function post($uri, array $options = array())
     {
-        $this->response = $this->httpClient->post($uri,
-            ['http_errors' => false, 'form_params' => $options, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
-        );
-        $this->statusCode = $this->response->getStatusCode();
+        $this->process('PUT', $uri, ['form_params' => $options]);
         $this->detail = json_decode($this->response->getBody(), true);
 
         return $this->isSuccessful();
@@ -70,10 +67,7 @@ class Client
         }
 
         unset($options['id']);
-        $this->response = $this->httpClient->put($uri,
-            ['http_errors' => false, 'form_params' => $options, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
-        );
-        $this->statusCode = $this->response->getStatusCode();
+        $this->process('PUT', $uri, ['form_params' => $options]);
         $this->detail = json_decode($this->response->getBody(), true);
 
         return $this->isSuccessful();
@@ -86,10 +80,10 @@ class Client
      */
     public function get($uri, array $parameters = array())
     {
-        $this->response = $this->httpClient->get($uri,
-            ['http_errors' => false, 'query' => $parameters, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
-        );
-        $this->statusCode = $this->response->getStatusCode();
+        $options = array();
+        $options['query'] = $parameters;
+
+        $this->process('GET', $uri, $options);
         $this->detail = json_decode($this->response->getBody(), true);
 
         return $this->detail;
@@ -103,27 +97,24 @@ class Client
      */
     public function delete($uri)
     {
-        $this->response = $this->httpClient->delete($uri,
-            ['http_errors' => false, 'headers' => ['Authorization' => 'Bearer ' . $this->apiKey ] ]
-        );
-        $this->statusCode = $this->response->getStatusCode();
-        $this->detail = json_decode($this->response->getBody(), true);
-
-        return $this->isSuccessful();
+        return $this->process('DELETE', $uri);
     }
 
     /**
-     * @param $request
-     * @return Http\Message\Response|null
+     * @param $method
+     * @param $uri
+     * @param array $options
+     * @return mixed
      */
-    protected function process($request)
+    protected function process($method, $uri, $options = array())
     {
-        $request->setHeader('Authorization', 'Bearer ' . $this->apiKey);
-        $this->response =  $request->send();
-        $this->statusCode = $this->response->getStatusCode();
-        $this->detail = $this->response->json();
+        $options['http_errors'] = 'false';
+        $options['headers']     = ['Authorization' => 'Bearer ' . $this->apiKey ];
 
-        return $this->response->isSuccessful();
+        $this->response = $this->httpClient->request($method, $uri, $options);
+        $this->statusCode = $this->response->getStatusCode();
+
+        return $this->isSuccessful();
     }
 
     protected function isSuccessful()
