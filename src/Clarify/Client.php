@@ -47,7 +47,7 @@ class Client
      */
     public function post($uri, array $options = array())
     {
-        $this->process('PUT', $uri, ['form_params' => $options]);
+        $this->process('POST', $uri, ['form_params' => $options]);
         $this->detail = json_decode($this->response->getBody(), true);
 
         return $this->isSuccessful();
