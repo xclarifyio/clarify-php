@@ -19,9 +19,9 @@ class Bundle implements \Iterator
     public $detail = null;
     public $location = null;
 
-    public function __construct($key, $client = null)
+    public function __construct($key, $client = null, $user_agent = '')
     {
-        $this->client = (is_null($client)) ? new \Clarify\Client($key) : $client;
+        $this->client = (is_null($client)) ? new \Clarify\Client($key, $client, $user_agent) : $client;
     }
 
     /**

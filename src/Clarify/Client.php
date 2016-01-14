@@ -18,7 +18,8 @@ use Clarify\Exceptions\InvalidIntegerArgumentException;
  */
 class Client
 {
-    const USER_AGENT = 'clarify-php/2.0.0';
+    const USER_AGENT = 'clarify-php';
+    const VERSION = '2.0.0';
 
     protected $baseURI  = 'https://api.clarify.io/v1/';
     protected $apiKey   = '';
@@ -31,12 +32,14 @@ class Client
     /**
      * @param $key
      * @param null $httpClient
+     * @param string $user_agent    only used if you need a custom/unique user agent
      */
-    public function __construct($key, $httpClient = null)
+    public function __construct($key, $httpClient = null, $user_agent = '')
     {
         $this->apiKey = $key;
+        $_agent = ('' == $user_agent) ? $this::USER_AGENT : $user_agent;
         $this->client = (is_null($httpClient)) ? new GuzzleClient(
-            ['base_uri' => $this->baseURI, 'headers' => ['User-Agent' => $this::USER_AGENT . '/' . PHP_VERSION ]]
+            ['base_uri' => $this->baseURI, 'headers' => ['User-Agent' => $_agent . '/' . $this::VERSION . '/' . PHP_VERSION ]]
         ) : $httpClient;
     }
 
