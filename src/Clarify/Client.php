@@ -35,7 +35,7 @@ class Client
     public function __construct($key, $httpClient = null)
     {
         $this->apiKey = $key;
-        $this->httpClient = (is_null($httpClient)) ? new GuzzleClient(
+        $this->client = (is_null($httpClient)) ? new GuzzleClient(
             ['base_uri' => $this->baseURI, 'headers' => ['User-Agent' => $this::USER_AGENT . '/' . PHP_VERSION ]]
         ) : $httpClient;
     }
@@ -111,7 +111,7 @@ class Client
         $options['http_errors'] = 'false';
         $options['headers']     = ['Authorization' => 'Bearer ' . $this->apiKey ];
 
-        $this->response = $this->httpClient->request($method, $uri, $options);
+        $this->response = $this->client->request($method, $uri, $options);
         $this->statusCode = $this->response->getStatusCode();
 
         return $this->isSuccessful();
