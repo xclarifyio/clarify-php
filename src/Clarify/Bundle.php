@@ -138,7 +138,9 @@ class Bundle implements \Iterator
     {
         if (isset($this->detail['_links'][$direction])) {
             $next_uri = $this->detail['_links'][$direction]['href'];
-            $this->detail = $this->client->get($next_uri);
+            $_params = parse_url($next_uri);
+            parse_str($_params['query'], $params);
+            $this->detail = $this->client->get($next_uri, $params);
         } else {
             $this->detail = json_encode(array());
         }
