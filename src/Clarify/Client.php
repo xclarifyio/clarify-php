@@ -53,7 +53,7 @@ class Client
     public function post($uri, array $options = array())
     {
         $this->process('POST', $uri, ['form_params' => $options]);
-        $this->detail = json_decode($this->response->getBody(), true);
+        $this->detail = json_decode($this->raw, true);
 
         return $this->isSuccessful();
     }
@@ -73,7 +73,7 @@ class Client
 
         unset($options['id']);
         $this->process('PUT', $uri, ['form_params' => $options]);
-        $this->detail = json_decode($this->response->getBody(), true);
+        $this->detail = json_decode($this->raw, true);
 
         return $this->isSuccessful();
     }
@@ -89,7 +89,7 @@ class Client
         $options['query'] = $parameters;
 
         $this->process('GET', $uri, $options);
-        $this->detail = json_decode($this->response->getBody(), true);
+        $this->detail = json_decode($this->raw, true);
 
         return $this->detail;
     }
