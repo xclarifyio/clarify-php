@@ -25,9 +25,11 @@ class Client
     protected $apiKey   = '';
     protected $client   = null;
     protected $request  = null;
-    public $response = null;
-    public $statusCode = null;
-    public $detail   = null;
+    public $response    = null;
+    public $statusCode  = null;
+    public $raw         = null; // This is the raw response body. It's unlikely you'll need it but just in case.
+    public $detail      = null; // This is the json decoded response. This is probably what you want.
+
 
     /**
      * @param $key
@@ -116,6 +118,7 @@ class Client
 
         $this->response = $this->client->request($method, $uri, $options);
         $this->statusCode = $this->response->getStatusCode();
+        $this->raw = $this->response->getBody();
 
         return $this->isSuccessful();
     }
